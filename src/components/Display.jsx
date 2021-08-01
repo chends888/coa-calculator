@@ -99,43 +99,59 @@ const Display = ({
           // maxWidth: 1000,
         }}
       >
-        <List dense={true}>
-          <ListItem>
-            <ListItemText
-              primary={"Total exp: " + addCommas(expGap)}
-              secondary=""
-            />
-          </ListItem>
-          {/* {console.log("Material: ", material)} */}
-          <ListItem>
-            {material[0] === "material" ? (
-              // Render empty component in case no material was selected
-              <></>
-            ) : keywords[0] === "Bars" ? (
-              // Render results for Smithing
+        {expGap <= 0 || isNaN(parseFloat(expGap)) ? (
+          <></>
+        ) : (
+          <List dense={true}>
+            <ListItem>
               <ListItemText
-                primary={
-                  "Total " +
-                  material[0] +
-                  " " +
-                  keywords[0] +
-                  ": " +
-                  addCommas(Math.ceil(expGapBoost / material[1]["xp"]))
-                }
+                primary={"Total exp: " + addCommas(expGap)}
+                secondary=""
               />
-            ) : keywords[0] === "Relics of" ? (
-              // Render results for Crafting
-              // Cursed relics exception
-              material[0] === "Cursed" ? (
+            </ListItem>
+            {/* {console.log("Material: ", material)} */}
+            <ListItem>
+              {material[0] === "material" ? (
+                // Render empty component in case no material was selected
+                <></>
+              ) : keywords[0] === "Bars" ? (
+                // Render results for Smithing
                 <ListItemText
                   primary={
                     "Total " +
                     material[0] +
-                    " relics:   " +
+                    " " +
+                    keywords[0] +
+                    ": " +
                     addCommas(Math.ceil(expGapBoost / material[1]["xp"]))
                   }
                 />
+              ) : keywords[0] === "Relics of" ? (
+                // Render results for Crafting
+                // Cursed relics exception
+                material[0] === "Cursed" ? (
+                  <ListItemText
+                    primary={
+                      "Total " +
+                      material[0] +
+                      " Relics: " +
+                      addCommas(Math.ceil(expGapBoost / material[1]["xp"]))
+                    }
+                  />
+                ) : (
+                  <ListItemText
+                    primary={
+                      "Total " +
+                      keywords[0] +
+                      " " +
+                      material[0] +
+                      ": " +
+                      addCommas(Math.ceil(expGapBoost / material[1]["xp"]))
+                    }
+                  />
+                )
               ) : (
+                // Render results for Cooking
                 <ListItemText
                   primary={
                     "Total " +
@@ -146,39 +162,27 @@ const Display = ({
                     addCommas(Math.ceil(expGapBoost / material[1]["xp"]))
                   }
                 />
-              )
-            ) : (
-              // Render results for Cooking
-              <ListItemText
-                primary={
-                  "Total " +
-                  keywords[0] +
-                  " " +
-                  material[0] +
-                  ": " +
-                  addCommas(Math.ceil(expGapBoost / material[1]["xp"]))
-                }
-              />
-            )}
-          </ListItem>
-
-          {Object.keys(material[1]["submaterials"]).map((submaterial) => (
-            // Render submaterials
-            <ListItem>
-              <ListItemText
-                primary={
-                  "Total " +
-                  submaterial +
-                  ": " +
-                  addCommas(
-                    Math.ceil(expGapBoost / material[1]["xp"]) *
-                      material[1]["submaterials"][submaterial]
-                  )
-                }
-              />
+              )}
             </ListItem>
-          ))}
-        </List>
+
+            {Object.keys(material[1]["submaterials"]).map((submaterial) => (
+              // Render submaterials
+              <ListItem>
+                <ListItemText
+                  primary={
+                    "Total " +
+                    submaterial +
+                    ": " +
+                    addCommas(
+                      Math.ceil(expGapBoost / material[1]["xp"]) *
+                        material[1]["submaterials"][submaterial]
+                    )
+                  }
+                />
+              </ListItem>
+            ))}
+          </List>
+        )}
       </Box>
     </>
   );

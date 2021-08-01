@@ -4,41 +4,46 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Box from "@material-ui/core/Box";
 
-const Attribute = ({ minValue, maxValue, attributeName, updateAttribute }) => {
-  const [attribute, setAttribute] = React.useState(1);
+const Attribute = ({ maxValue, attributeName, updateAttribute }) => {
+  const [attribute, setAttribute] = React.useState();
 
   const checkAndUpdateValue = (currentValue, newValue) => {
     let finalValue;
-    // Check if value is above minimum
-    if (currentValue > minValue || newValue >= minValue) {
-      // Check if value is less tha maximum
+    console.log(currentValue, newValue);
+    // Check if value is above minimum or equal to undefined (when input is empty)
+    if (newValue > 0 || newValue === undefined) {
+      // Check if value is less than maximum
       if (currentValue > maxValue || newValue >= maxValue) {
-        finalValue = 120;
-        setAttribute(finalValue);
+        finalValue = maxValue;
+        setAttribute(maxValue);
       } else {
         finalValue = newValue;
         setAttribute(finalValue);
       }
+    } else if (newValue < 0) {
+      console.log(newValue);
+      finalValue = 0;
+      setAttribute(0);
     } else {
-      finalValue = minValue;
-      setAttribute(finalValue);
+      setAttribute(newValue);
+      finalValue = newValue;
     }
     // Update parent component attribute
     updateAttribute(finalValue);
   };
 
-  React.useEffect(() => {
-    // eslint-disable-next-line
-    if (minValue + 1 > attribute && minValue != 0) {
-      // eslint-disable-next-line
-      if (minValue > 1) {
-        checkAndUpdateValue(attribute, minValue + 10);
-      } else {
-        checkAndUpdateValue(attribute, minValue + 9);
-      }
-    }
-    // eslint-disable-next-line
-  }, [minValue]);
+  // React.useEffect(() => {
+  //   // eslint-disable-next-line
+  //   if (minValue + 1 > attribute && minValue != 0) {
+  //     // eslint-disable-next-line
+  //     if (minValue > 1) {
+  //       checkAndUpdateValue(attribute, minValue + 10);
+  //     } else {
+  //       checkAndUpdateValue(attribute, minValue + 9);
+  //     }
+  //   }
+  //   // eslint-disable-next-line
+  // }, [minValue]);
 
   return (
     <>

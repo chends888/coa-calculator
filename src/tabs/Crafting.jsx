@@ -65,13 +65,13 @@ const Cooking = () => {
   return (
     <>
       <Attribute
-        minValue={0}
+        
         maxValue={120}
         attributeName={"Your Crafting Level"}
         updateAttribute={updateCurrentLevel}
       />
       <Attribute
-        minValue={currentLevel}
+        
         maxValue={120}
         attributeName={"Target Crafting Level"}
         updateAttribute={updateTargetLevel}

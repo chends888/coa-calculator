@@ -68,13 +68,13 @@ const Smithing = () => {
   return (
     <>
       <Attribute
-        minValue={0}
+        
         maxValue={120}
         attributeName={"Your Smithing Level"}
         updateAttribute={updateCurrentLevel}
       />
       <Attribute
-        minValue={currentLevel}
+        
         maxValue={120}
         attributeName={"Target Smithing Level"}
         updateAttribute={updateTargetLevel}
