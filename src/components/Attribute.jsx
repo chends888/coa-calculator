@@ -32,18 +32,6 @@ const Attribute = ({ maxValue, attributeName, updateAttribute }) => {
     updateAttribute(finalValue);
   };
 
-  // React.useEffect(() => {
-  //   // eslint-disable-next-line
-  //   if (minValue + 1 > attribute && minValue != 0) {
-  //     // eslint-disable-next-line
-  //     if (minValue > 1) {
-  //       checkAndUpdateValue(attribute, minValue + 10);
-  //     } else {
-  //       checkAndUpdateValue(attribute, minValue + 9);
-  //     }
-  //   }
-  //   // eslint-disable-next-line
-  // }, [minValue]);
 
   return (
     <>
