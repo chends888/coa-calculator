@@ -48,7 +48,7 @@ const Smithing = () => {
   };
 
   React.useEffect(() => {
-    fetch("http://localhost:8000/artisan")
+    fetch("https://coa-calculator-backend.herokuapp.com/artisan")
       .then((response) => {
         if (response.ok) {
           return response.json();

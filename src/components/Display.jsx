@@ -60,7 +60,7 @@ const Display = ({
   }, [boostsDidUpdate, boosts, boostsPrev]);
 
   React.useEffect(() => {
-    fetch("http://localhost:8000/exp")
+    fetch("https://coa-calculator-backend.herokuapp.com/exp")
       .then((response) => {
         if (response.ok) {
           return response.json();
