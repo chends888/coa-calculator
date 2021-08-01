@@ -44,7 +44,7 @@ const Smithing = () => {
   const updateBoosts = (boosts, updatedBoostName) => {
     setBoosts(boosts);
     setBoostDidUpdate([updatedBoostName, !boostsDidUpdate[1]]);
-    console.log("Boosts update", updatedBoostName);
+    // console.log("Boosts update", updatedBoostName);
   };
 
   React.useEffect(() => {
@@ -61,7 +61,7 @@ const Smithing = () => {
         // console.log("set busy");
       })
       .catch((error) => {
-        console.log("Error:", error);
+        console.log("Error on fetch Artisan Skills data:", error);
       });
   }, []);
 

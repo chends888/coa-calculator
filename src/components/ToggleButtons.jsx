@@ -35,7 +35,7 @@ const ToggleButtons = ({ updateMaterial, artisanData, skill }) => {
     if (event.currentTarget.value !== "loading") {
       // setSelectedMaterial(event.currentTarget.value);
       setSelectedMaterial(newMaterial);
-      console.log(newMaterial, selectedMaterial);
+      // console.log(newMaterial, selectedMaterial);
       if (newMaterial === null) {
         updateMaterial(["material", { name: "material", submaterials: {} }]);
       } else {

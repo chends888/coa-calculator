@@ -37,25 +37,25 @@ const Display = ({
 
   // Update exp gap to match applied boosts
   React.useEffect(() => {
-    console.log("boost changed", boostsPrev);
+    // console.log("boost changed", boostsPrev);
     let expGapCopy = expGapBoost;
-    console.log("before boost loop", boostsDidUpdate[0]);
+    // console.log("before boost loop", boostsDidUpdate[0]);
     for (let i = 0; i < boosts.length; i++) {
-      console.log("entered boost loop", boosts[i].name, boostsDidUpdate[0]);
+      // console.log("entered boost loop", boosts[i].name, boostsDidUpdate[0]);
       if (boosts[i].name === boostsDidUpdate[0]) {
         if (boosts[i].active === true) {
-          console.log("activate boost", boosts[i].name);
+          // console.log("activate boost", boosts[i].name);
           expGapCopy /= boosts[i].value;
           setExpGapBoost(Math.floor(expGapCopy));
         } else {
-          console.log("deactivate boost", boosts[i].name);
+          // console.log("deactivate boost", boosts[i].name);
           expGapCopy *= boosts[i].value;
           setExpGapBoost(Math.ceil(expGapCopy));
         }
       }
     }
 
-    console.log("boosts", boosts);
+    // console.log("boosts", boosts);
     // eslint-disable-next-line
   }, [boostsDidUpdate, boosts, boostsPrev]);
 
@@ -73,19 +73,11 @@ const Display = ({
         // console.log("set busy");
       })
       .catch((error) => {
-        console.log("Error:", error);
+        console.log("Error on fetch exp data:", error);
       });
   }, []);
 
   React.useEffect(() => {
-    console.log(
-      "useEffect initial",
-      level,
-      expData[level],
-      targetLevel,
-      expData[targetLevel],
-      expGapBoost
-    );
     if (!isBusy) {
       // console.log("useEffect inside if", expGapBoost);
       setExpGap(expData[targetLevel] - expData[level]);

@@ -34,7 +34,7 @@ const ToggleButtons = ({ updateMaterial, artisanData, skill }) => {
       artisanData[skill][event.target.value],
     ]);
   };
-  console.log("artisanData:", artisanData);
+  // console.log("artisanData:", artisanData);
   return (
     <>
       <Box

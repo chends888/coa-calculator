@@ -31,7 +31,7 @@ const Boosts = ({ boosts, updateBoosts }) => {
   const [selectedBoost, setSelectedBoost] = React.useState([]);
 
   const handleChange = (event, boostName) => {
-    console.log(boosts, boostName);
+    // console.log(boosts, boostName);
     setSelectedBoost(boostName);
     let boostsCopy = boosts;
     for (let i = 0; i < boostsCopy.length; i++) {

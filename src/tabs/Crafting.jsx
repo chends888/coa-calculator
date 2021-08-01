@@ -41,7 +41,7 @@ const Cooking = () => {
   const updateBoosts = (boosts, updatedBoostName) => {
     setBoosts(boosts);
     setBoostDidUpdate([updatedBoostName, !boostsDidUpdate[1]]);
-    console.log("Boosts update", updatedBoostName);
+    // console.log("Boosts update", updatedBoostName);
   };
 
   React.useEffect(() => {
@@ -58,7 +58,7 @@ const Cooking = () => {
         // console.log("set busy");
       })
       .catch((error) => {
-        console.log("Error:", error);
+        // console.log("Error:", error);
       });
   }, []);
 
