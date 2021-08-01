@@ -13,7 +13,7 @@ const Footer = () => {
           color="text.secondary"
           component="p"
         >
-          Bugs? Suggestions? Contact me on Discord:{" "}
+          Bugs? Suggestions? DM me on Discord:{" "}
           <Link
             color="inherit"
             href="https://discordapp.com/users/chends#7176"
@@ -24,7 +24,7 @@ const Footer = () => {
           </Link>
         </Typography>
         <Typography variant="body2" color="text.secondary" align="center">
-          {"Copyright © "}
+          {"All data from "}
           <Link
             color="inherit"
             href="https://www.curseofaros.com/"
@@ -32,15 +32,6 @@ const Footer = () => {
             target="_blank"
           >
             Curse of Aros
-          </Link>
-          {" and "}
-          <Link
-            color="inherit"
-            href="https://bitgate.com/"
-            rel="noopener"
-            target="_blank"
-          >
-            Bitgate, Inc.
           </Link>{" "}
           {new Date().getFullYear()}
           {"."}

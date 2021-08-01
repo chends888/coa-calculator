@@ -30,7 +30,6 @@ const Display = ({
   const [expGapBoost, setExpGapBoost] = React.useState(0);
   // Variable to check if data has been fetched
   const [isBusy, setBusy] = React.useState(true);
-  const boostsPrev = usePrevious(boosts);
 
   const addCommas = (num) => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -46,30 +45,31 @@ const Display = ({
     console.log(materialXP);
     return Math.floor(materialXP);
   };
-  // Update exp gap to match applied boosts
-  React.useEffect(() => {
-    // console.log("boost changed", boostsPrev);
-    let expGapCopy = expGapBoost;
-    // console.log("before boost loop", boostsDidUpdate[0]);
-    for (let i = 0; i < boosts.length; i++) {
-      // console.log("entered boost loop", boosts[i].name, boostsDidUpdate[0]);
-      if (boosts[i].name === boostsDidUpdate[0]) {
-        if (boosts[i].active === true) {
-          // console.log("activate boost", boosts[i].name);
-          expGapCopy /= boosts[i].value;
-          setExpGapBoost(Math.floor(expGapCopy));
-        } else {
-          // console.log("deactivate boost", boosts[i].name);
-          expGapCopy *= boosts[i].value;
-          setExpGapBoost(Math.ceil(expGapCopy));
-        }
-      }
-    }
+  // // Update exp gap to match applied boosts
+  // React.useEffect(() => {
+  //   // console.log("boost changed", boostsPrev);
+  //   let expGapCopy = expGapBoost;
+  //   // console.log("before boost loop", boostsDidUpdate[0]);
+  //   for (let i = 0; i < boosts.length; i++) {
+  //     // console.log("entered boost loop", boosts[i].name, boostsDidUpdate[0]);
+  //     if (boosts[i].name === boostsDidUpdate[0]) {
+  //       if (boosts[i].active === true) {
+  //         // console.log("activate boost", boosts[i].name);
+  //         expGapCopy /= boosts[i].value;
+  //         setExpGapBoost(Math.floor(expGapCopy));
+  //       } else {
+  //         // console.log("deactivate boost", boosts[i].name);
+  //         expGapCopy *= boosts[i].value;
+  //         setExpGapBoost(Math.ceil(expGapCopy));
+  //       }
+  //     }
+  //   }
 
-    // console.log("boosts", boosts);
-    // eslint-disable-next-line
-  }, [boostsDidUpdate, boosts, boostsPrev]);
+  // console.log("boosts", boosts);
+  // eslint-disable-next-line
+  // }, [boostsDidUpdate, boosts, boostsPrev]);
 
+  // Request Exp data from back end
   React.useEffect(() => {
     fetch("https://coa-calculator-backend.herokuapp.com/exp")
       .then((response) => {
@@ -202,8 +202,10 @@ const Display = ({
                     submaterial +
                     ": " +
                     addCommas(
-                      Math.ceil(expGapBoost / material[1]["xp"]) *
-                        material[1]["submaterials"][submaterial]
+                      Math.ceil(
+                        expGapBoost /
+                          calculateMaterialXpBoost(material[1]["xp"])
+                      ) * material[1]["submaterials"][submaterial]
                     )
                   }
                 />
