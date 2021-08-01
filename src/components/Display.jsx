@@ -8,13 +8,13 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 
-function usePrevious(value) {
-  const ref = React.useRef();
-  React.useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-}
+// function usePrevious(value) {
+//   const ref = React.useRef();
+//   React.useEffect(() => {
+//     ref.current = value;
+//   });
+//   return ref.current;
+// }
 
 const Display = ({
   level,

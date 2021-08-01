@@ -5,13 +5,14 @@ import TextField from "@material-ui/core/TextField";
 import Box from "@material-ui/core/Box";
 
 const Attribute = ({ maxValue, attributeName, updateAttribute }) => {
-  const [attribute, setAttribute] = React.useState();
+  const [attribute, setAttribute] = React.useState(null);
 
   const checkAndUpdateValue = (currentValue, newValue) => {
     let finalValue;
+    newValue = Math.floor(newValue);
     // console.log(currentValue, newValue);
     // Check if value is above minimum or equal to undefined (when input is empty)
-    if (newValue > 0 || newValue === undefined) {
+    if (newValue > 0 || newValue === null) {
       // Check if value is less than maximum
       if (currentValue > maxValue || newValue >= maxValue) {
         finalValue = maxValue;
