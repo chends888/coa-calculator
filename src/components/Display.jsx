@@ -31,10 +31,21 @@ const Display = ({
   // Variable to check if data has been fetched
   const [isBusy, setBusy] = React.useState(true);
   const boostsPrev = usePrevious(boosts);
+
   const addCommas = (num) => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
+  const calculateMaterialXpBoost = (materialXP) => {
+    // let materialXPBoost = materialXP
+    for (let i = 0; i < boosts.length; i++) {
+      if (boosts[i].active) {
+        materialXP *= boosts[i].value;
+      }
+    }
+    console.log(materialXP);
+    return Math.floor(materialXP);
+  };
   // Update exp gap to match applied boosts
   React.useEffect(() => {
     // console.log("boost changed", boostsPrev);
@@ -123,7 +134,11 @@ const Display = ({
                     " " +
                     keywords[0] +
                     ": " +
-                    addCommas(Math.ceil(expGapBoost / material[1]["xp"]))
+                    addCommas(
+                      Math.ceil(
+                        expGap / calculateMaterialXpBoost(material[1]["xp"])
+                      )
+                    )
                   }
                 />
               ) : keywords[0] === "Relics of" ? (
@@ -135,7 +150,12 @@ const Display = ({
                       "Total " +
                       material[0] +
                       " Relics: " +
-                      addCommas(Math.ceil(expGapBoost / material[1]["xp"]))
+                      addCommas(
+                        Math.ceil(
+                          expGap / calculateMaterialXpBoost(material[1]["xp"])
+                        )
+                      )
+                      // addCommas(Math.ceil(expGap / calculateMaterialXpBoost(material[1]["xp"])))
                     }
                   />
                 ) : (
@@ -146,7 +166,11 @@ const Display = ({
                       " " +
                       material[0] +
                       ": " +
-                      addCommas(Math.ceil(expGapBoost / material[1]["xp"]))
+                      addCommas(
+                        Math.ceil(
+                          expGap / calculateMaterialXpBoost(material[1]["xp"])
+                        )
+                      )
                     }
                   />
                 )
@@ -159,7 +183,11 @@ const Display = ({
                     " " +
                     material[0] +
                     ": " +
-                    addCommas(Math.ceil(expGapBoost / material[1]["xp"]))
+                    addCommas(
+                      Math.ceil(
+                        expGap / calculateMaterialXpBoost(material[1]["xp"])
+                      )
+                    )
                   }
                 />
               )}

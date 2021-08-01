@@ -9,7 +9,7 @@ const Attribute = ({ maxValue, attributeName, updateAttribute }) => {
 
   const checkAndUpdateValue = (currentValue, newValue) => {
     let finalValue;
-    console.log(currentValue, newValue);
+    // console.log(currentValue, newValue);
     // Check if value is above minimum or equal to undefined (when input is empty)
     if (newValue > 0 || newValue === undefined) {
       // Check if value is less than maximum
@@ -21,7 +21,7 @@ const Attribute = ({ maxValue, attributeName, updateAttribute }) => {
         setAttribute(finalValue);
       }
     } else if (newValue < 0) {
-      console.log(newValue);
+      // console.log(newValue);
       finalValue = 0;
       setAttribute(0);
     } else {
