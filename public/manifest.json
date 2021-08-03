@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "CoA Calculator",
+  "name": "Curse of Aros Skills Calculator",
   "icons": [
     {
       "src": "favicon.ico",
