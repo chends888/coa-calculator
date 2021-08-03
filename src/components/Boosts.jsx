@@ -9,22 +9,30 @@ import { styled } from "@material-ui/core/styles";
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   "& .MuiToggleButtonGroup-grouped": {
     margin: theme.spacing(0.5),
+    borderRadius: theme.shape.borderRadius,
     borderColor: "#bdbdbd",
-    "&.Mui-disabled": {
-      border: 1,
+    border: 0,
+  //   "&.Mui-disabled": {
+  //     border: 1,
     },
-    ".Mui-selected": {
-      borderColor: "#2e7d32",
-    },
-    "&:not(:first-of-type)": {
-      borderRadius: theme.shape.borderRadius,
-      borderColor: "#bdbdbd",
-    },
-    "&:first-of-type": {
-      borderRadius: theme.shape.borderRadius,
-      borderColor: "#bdbdbd",
-    },
-  },
+  //   ".Mui-selected": {
+  //     borderColor: "#2e7d32",
+  //   },
+  //   "&:not(:first-of-type)": {
+  //     border: 1,
+  //     borderRadius: theme.shape.borderRadius,
+  //     borderColor: "#bdbdbd",
+  //     // borderLeft: 1,
+  //   },
+  //   "&:first-of-type": {
+  //     border: 1,
+  //     borderRadius: theme.shape.borderRadius,
+  //     borderColor: "#bdbdbd",
+  //   },
+  // },
+  // border: 0,
+  // borderRadius: theme.shape.borderRadius,
+  // margin: theme.spacing(0.5),
 }));
 
 const Boosts = ({ boosts, updateBoosts }) => {
@@ -68,6 +76,7 @@ const Boosts = ({ boosts, updateBoosts }) => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    // border: 1,
                   },
                 }}
               >
