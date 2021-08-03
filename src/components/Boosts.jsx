@@ -8,31 +8,31 @@ import { styled } from "@material-ui/core/styles";
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   "& .MuiToggleButtonGroup-grouped": {
-    margin: theme.spacing(0.5),
-    borderRadius: theme.shape.borderRadius,
+    // margin: theme.spacing(0.5),
     borderColor: "#bdbdbd",
-    border: 0,
-  //   "&.Mui-disabled": {
-  //     border: 1,
+    // border:1,
+    // "&.Mui-disabled": {
+    //   // border: 1,
+    // },
+    // ".Mui-selected": {
+    //   borderColor: "#2e7d32",
+    // },
+    "&:not(:first-of-type)": {
+      // borderRadius: theme.shape.borderRadius,
+      // borderLeft: 1,
+      // borderColor: "#bdbdbd",
     },
-  //   ".Mui-selected": {
-  //     borderColor: "#2e7d32",
-  //   },
-  //   "&:not(:first-of-type)": {
-  //     border: 1,
-  //     borderRadius: theme.shape.borderRadius,
-  //     borderColor: "#bdbdbd",
-  //     // borderLeft: 1,
-  //   },
-  //   "&:first-of-type": {
-  //     border: 1,
-  //     borderRadius: theme.shape.borderRadius,
-  //     borderColor: "#bdbdbd",
-  //   },
-  // },
-  // border: 0,
-  // borderRadius: theme.shape.borderRadius,
-  // margin: theme.spacing(0.5),
+    "&:first-of-type": {
+      marginLeft: theme.spacing(1),
+      // borderRadius: theme.shape.borderRadius,
+      // borderColor: "#bdbdbd",
+    },
+    "&:last-of-type": {
+      marginRight: theme.spacing(1),
+      // borderRadius: theme.shape.borderRadius,
+      // borderColor: "#bdbdbd",
+    },
+  },
 }));
 
 const Boosts = ({ boosts, updateBoosts }) => {
@@ -94,7 +94,10 @@ const Boosts = ({ boosts, updateBoosts }) => {
                     alt="Boost icon"
                   />
                 </Box>
-                {boost.name + " (+" + Math.floor((boost.value - 1) * 100) + "%)"}
+                {boost.name +
+                  " (+" +
+                  Math.floor((boost.value - 1) * 100) +
+                  "%)"}
               </ToggleButton>
               // <FormControlLabel
               //   control={

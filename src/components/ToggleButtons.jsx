@@ -13,8 +13,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
     margin: theme.spacing(0.5),
     borderRadius: theme.shape.borderRadius,
     borderColor: "#bdbdbd",
-    "&.Mui-disabled": {
-    },
+    "&.Mui-disabled": {},
     "&:not(:first-of-type)": {
       borderRadius: theme.shape.borderRadius,
       borderColor: "#bdbdbd",
