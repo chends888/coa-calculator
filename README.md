@@ -7,3 +7,6 @@ This is the front end of a calculator built with React to support calculating Sk
 ## Setup:
 
 npm install
+
+## Run on develop server:
+npm run start
