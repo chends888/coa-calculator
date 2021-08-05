@@ -4,9 +4,9 @@ http://coa-calculator.herokuapp.com/
 This is the front end of a calculator built with React to support calculating Skills XP on CoA.
 
 
-## Setup:
+## Setup (install `npm` dependencies):
 
-npm install
+`npm install`
 
 ## Run on develop server:
-npm run start
+`npm run start`
