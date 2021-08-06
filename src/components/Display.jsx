@@ -8,27 +8,17 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 
-// function usePrevious(value) {
-//   const ref = React.useRef();
-//   React.useEffect(() => {
-//     ref.current = value;
-//   });
-//   return ref.current;
-// }
-
 const Display = ({
   level,
   targetLevel,
   material,
   boosts,
-  boostsDidUpdate,
   keywords,
+  applyBoostOnSmelt,
+  buyOrSmeltBars,
 }) => {
   const [expData, setExp] = React.useState({});
   const [expGap, setExpGap] = React.useState(0);
-  // Auxiliary var for applying boosts
-  const [expGapBoost, setExpGapBoost] = React.useState(0);
-  // Variable to check if data has been fetched
   const [isBusy, setBusy] = React.useState(true);
 
   const addCommas = (num) => {
@@ -36,42 +26,18 @@ const Display = ({
   };
 
   const calculateMaterialXpBoost = (materialXP) => {
-    // let materialXPBoost = materialXP
     for (let i = 0; i < boosts.length; i++) {
       if (boosts[i].active) {
         materialXP *= boosts[i].value;
       }
     }
-    console.log(materialXP);
     return Math.floor(materialXP);
   };
-  // // Update exp gap to match applied boosts
-  // React.useEffect(() => {
-  //   // console.log("boost changed", boostsPrev);
-  //   let expGapCopy = expGapBoost;
-  //   // console.log("before boost loop", boostsDidUpdate[0]);
-  //   for (let i = 0; i < boosts.length; i++) {
-  //     // console.log("entered boost loop", boosts[i].name, boostsDidUpdate[0]);
-  //     if (boosts[i].name === boostsDidUpdate[0]) {
-  //       if (boosts[i].active === true) {
-  //         // console.log("activate boost", boosts[i].name);
-  //         expGapCopy /= boosts[i].value;
-  //         setExpGapBoost(Math.floor(expGapCopy));
-  //       } else {
-  //         // console.log("deactivate boost", boosts[i].name);
-  //         expGapCopy *= boosts[i].value;
-  //         setExpGapBoost(Math.ceil(expGapCopy));
-  //       }
-  //     }
-  //   }
-
-  // console.log("boosts", boosts);
-  // eslint-disable-next-line
-  // }, [boostsDidUpdate, boosts, boostsPrev]);
 
   // Request Exp data from back end
   React.useEffect(() => {
-    fetch("https://coa-calculator-backend.herokuapp.com/exp")
+    // fetch("http://localhost:8000/exp")
+      fetch("https://coa-calculator-backend.herokuapp.com/exp")
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -90,12 +56,8 @@ const Display = ({
 
   React.useEffect(() => {
     if (!isBusy) {
-      // console.log("useEffect inside if", expGapBoost);
       setExpGap(expData[targetLevel] - expData[level]);
-      setExpGapBoost(expData[targetLevel] - expData[level]);
     }
-    // setExpGap(addCommas(expGapBoost));
-    // console.log("useEffect final", expGapBoost);
     // eslint-disable-next-line
   }, [expData, level, targetLevel]);
 
@@ -120,27 +82,67 @@ const Display = ({
                 secondary=""
               />
             </ListItem>
-            {/* {console.log("Material: ", material)} */}
             <ListItem>
               {material[0] === "material" ? (
                 // Render empty component in case no material was selected
                 <></>
               ) : keywords[0] === "Bars" ? (
                 // Render results for Smithing
-                <ListItemText
-                  primary={
-                    "Total " +
-                    material[0] +
-                    " " +
-                    keywords[0] +
-                    ": " +
-                    addCommas(
-                      Math.ceil(
-                        expGap / calculateMaterialXpBoost(material[1]["xp"])
+                // TODO: instead of if-else, try if-elif-elif-else
+                buyOrSmeltBars ? (
+                  // Don't include smelting XP
+                  <ListItemText
+                    primary={
+                      "Total " +
+                      material[0] +
+                      " " +
+                      keywords[0] +
+                      ": " +
+                      addCommas(
+                        Math.ceil(
+                          expGap /
+                            calculateMaterialXpBoost(material[1]["xp-forge"])
+                        )
                       )
-                    )
-                  }
-                />
+                    }
+                  />
+                ) : applyBoostOnSmelt ? (
+                  // Include and apply Boosts on bar Smelting
+                  <ListItemText
+                    primary={
+                      "Total " +
+                      material[0] +
+                      " " +
+                      keywords[0] +
+                      ": " +
+                      addCommas(
+                        Math.ceil(
+                          expGap /
+                            (calculateMaterialXpBoost(material[1]["xp-forge"]) +
+                              calculateMaterialXpBoost(material[1]["xp-smelt"]))
+                        )
+                      )
+                    }
+                  />
+                ) : (
+                  // Include but don't apply Boosts on bar Smelting
+                  <ListItemText
+                    primary={
+                      "Total " +
+                      material[0] +
+                      " " +
+                      keywords[0] +
+                      ": " +
+                      addCommas(
+                        Math.ceil(
+                          expGap /
+                            (calculateMaterialXpBoost(material[1]["xp-forge"]) +
+                              parseFloat(material[1]["xp-smelt"]))
+                        )
+                      )
+                    }
+                  />
+                )
               ) : keywords[0] === "Relics of" ? (
                 // Render results for Crafting
                 // Cursed relics exception
@@ -193,22 +195,99 @@ const Display = ({
               )}
             </ListItem>
 
+            {/* Render submaterials */}
             {Object.keys(material[1]["submaterials"]).map((submaterial) => (
-              // Render submaterials
               <ListItem>
-                <ListItemText
-                  primary={
-                    "Total " +
-                    submaterial +
-                    ": " +
-                    addCommas(
-                      Math.ceil(
-                        expGapBoost /
-                          calculateMaterialXpBoost(material[1]["xp"])
-                      ) * material[1]["submaterials"][submaterial]
+                {keywords[0] === "Bars" ? (
+                  // Smithing exception
+                  applyBoostOnSmelt ? (
+                    // Apply Boosts on bar Smelting
+                    buyOrSmeltBars ? (
+                      // Don't include smelting XP
+                      <ListItemText
+                        primary={
+                          "Total " +
+                          submaterial +
+                          ": " +
+                          addCommas(
+                            Math.ceil(
+                              expGap /
+                                calculateMaterialXpBoost(
+                                  material[1]["xp-forge"]
+                                )
+                            ) * material[1]["submaterials"][submaterial]
+                          )
+                        }
+                      />
+                    ) : (
+                      // Include smelting XP
+                      <ListItemText
+                        primary={
+                          "Total " +
+                          submaterial +
+                          ": " +
+                          addCommas(
+                            Math.ceil(
+                              expGap /
+                                (calculateMaterialXpBoost(
+                                  material[1]["xp-forge"]
+                                ) +
+                                  calculateMaterialXpBoost(
+                                    material[1]["xp-smelt"]
+                                  ))
+                            ) * material[1]["submaterials"][submaterial]
+                          )
+                        }
+                      />
                     )
-                  }
-                />
+                  ) : // Don't apply Boosts on bar Smelting
+                  buyOrSmeltBars ? (
+                    // Don't include smelting XP
+                    <ListItemText
+                      primary={
+                        "Total " +
+                        submaterial +
+                        ": " +
+                        addCommas(
+                          Math.ceil(
+                            expGap /
+                              calculateMaterialXpBoost(material[1]["xp-forge"])
+                          ) * material[1]["submaterials"][submaterial]
+                        )
+                      }
+                    />
+                  ) : (
+                    <ListItemText
+                      primary={
+                        "Total " +
+                        submaterial +
+                        ": " +
+                        addCommas(
+                          Math.ceil(
+                            expGap /
+                              (calculateMaterialXpBoost(
+                                material[1]["xp-forge"]
+                              ) +
+                                parseFloat(material[1]["xp-smelt"]))
+                          ) * material[1]["submaterials"][submaterial]
+                        )
+                      }
+                    />
+                  )
+                ) : (
+                  <ListItemText
+                    primary={
+                      "Total " +
+                      submaterial +
+                      ": " +
+                      addCommas(
+                        Math.ceil(
+                          expGap / calculateMaterialXpBoost(material[1]["xp"])
+                        ) * material[1]["submaterials"][submaterial]
+                      )
+                    }
+                  />
+                )}
               </ListItem>
             ))}
           </List>

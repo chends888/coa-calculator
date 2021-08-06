@@ -9,6 +9,8 @@ import Display from "../components/Display";
 import ToggleButtons from "../components/ToggleButtons";
 import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
+import SmithingSwitch from "../components/Switch";
+import BoostCheckbox from "../components/Checkbox";
 
 // Max bar input: 567.019.187
 const Smithing = () => {
@@ -35,20 +37,35 @@ const Smithing = () => {
   const [artisanData, setArtisanData] = useState({});
 
   // Exp boosts
-  const [boostsDidUpdate, setBoostDidUpdate] = useState(["Boost name", false]);
+  const [boostsDidUpdate, setBoostDidUpdate] = useState(false);
   const [boosts, setBoosts] = useState([
     { name: "World Boost", value: 1.5, active: false },
     { name: "Infernal Ring", value: 1.04, active: false },
     { name: "Infernal Hammer", value: 1.04, active: false },
   ]);
-  const updateBoosts = (boosts, updatedBoostName) => {
+  const updateBoosts = (boosts) => {
     setBoosts(boosts);
-    setBoostDidUpdate([updatedBoostName, !boostsDidUpdate[1]]);
+    setBoostDidUpdate(!boostsDidUpdate);
     // console.log("Boosts update", updatedBoostName);
+  };
+  // Apply Boosts on bar smelting control
+  const [applyBoostOnSmelt, setApplyBoostOnSmelt] = useState(false);
+  const updateApplyBoostOnSmelt = (applyBoostOnSmelt) => {
+    // console.log(applyBoostOnSmelt);
+    console.log(applyBoostOnSmelt);
+    setApplyBoostOnSmelt(applyBoostOnSmelt);
+  };
+  // Smelt or buy bars controll
+  const [buyOrSmeltBars, setBuyOrSmeltBars] = useState(false);
+  const updateBuyOrSmeltBars = (buyOrSmeltBars) => {
+    // console.log(buyOrSmeltBars);
+    console.log(buyOrSmeltBars);
+    setBuyOrSmeltBars(buyOrSmeltBars);
   };
 
   React.useEffect(() => {
-    fetch("https://coa-calculator-backend.herokuapp.com/artisan")
+    // fetch("http://localhost:8000/artisan")
+      fetch("https://coa-calculator-backend.herokuapp.com/artisan")
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -68,13 +85,11 @@ const Smithing = () => {
   return (
     <>
       <Attribute
-        
         maxValue={120}
         attributeName={"Your Smithing Level"}
         updateAttribute={updateCurrentLevel}
       />
       <Attribute
-        
         maxValue={120}
         attributeName={"Target Smithing Level"}
         updateAttribute={updateTargetLevel}
@@ -88,6 +103,14 @@ const Smithing = () => {
         artisanData={artisanData}
         skill="Smithing"
       />
+      <SmithingSwitch
+        buyOrSmeltBars={buyOrSmeltBars}
+        updateBuyOrSmeltBars={updateBuyOrSmeltBars}
+      />
+      <BoostCheckbox
+        applyBoostOnSmelt={applyBoostOnSmelt}
+        updateApplyBoostOnSmelt={updateApplyBoostOnSmelt}
+      />
       <Boosts boosts={boosts} updateBoosts={updateBoosts} />
       <Display
         level={currentLevel}
@@ -95,7 +118,8 @@ const Smithing = () => {
         material={material}
         keywords={["Bars"]}
         boosts={boosts}
-        boostsDidUpdate={boostsDidUpdate}
+        applyBoostOnSmelt={applyBoostOnSmelt}
+        buyOrSmeltBars={buyOrSmeltBars}
       />
       {/* <Slider sliderName={"Your Smithing XP"}/>
       <Slider sliderName={"Ore 1"}/>

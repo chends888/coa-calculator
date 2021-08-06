@@ -1,5 +1,5 @@
 import React from "react";
-// import Checkbox from "@material-ui/core/Checkbox";
+
 // import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Box from "@material-ui/core/Box";
 import { ToggleButton } from "@material-ui/core";
@@ -7,15 +7,15 @@ import ToggleButtonGroup from "@material-ui/core/ToggleButtonGroup";
 import { styled } from "@material-ui/core/styles";
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
+  "& .Mui-selected": {
+    color: "error",
+  },
   "& .MuiToggleButtonGroup-grouped": {
     // margin: theme.spacing(0.5),
     borderColor: "#bdbdbd",
     // border:1,
     // "&.Mui-disabled": {
     //   // border: 1,
-    // },
-    // ".Mui-selected": {
-    //   borderColor: "#2e7d32",
     // },
     "&:not(:first-of-type)": {
       // borderRadius: theme.shape.borderRadius,
@@ -48,7 +48,8 @@ const Boosts = ({ boosts, updateBoosts }) => {
         boostsCopy[i].active = !boosts[i].active;
       }
     }
-    updateBoosts(boostsCopy, event.currentTarget.value);
+    console.log('boosts:', boostsCopy);
+    updateBoosts(boostsCopy);
   };
 
   return (
@@ -58,6 +59,8 @@ const Boosts = ({ boosts, updateBoosts }) => {
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "center",
+          marginBottom: 1,
+          marginTop: 1,
         }}
       >
         <StyledToggleButtonGroup

@@ -48,11 +48,11 @@ const ToggleButtons = ({ updateMaterial, artisanData, skill }) => {
       <Box
         sx={{
           "& > :not(style)": {
-            marginBottom: 1,
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "center",
             maxWidth: 450,
+            // marginBottom: 1,
             marginLeft: "auto",
             marginRight: "auto",
           },
