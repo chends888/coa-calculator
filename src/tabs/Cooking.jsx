@@ -9,6 +9,7 @@ import Display from "../components/Display";
 import ToggleButtons from "../components/ToggleButtons";
 import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
+import CustomSwitch from "../components/CustomSwitch";
 
 const Cooking = () => {
   // Person's current level
@@ -42,6 +43,12 @@ const Cooking = () => {
     setBoosts(boosts);
     setBoostDidUpdate([updatedBoostName, !boostsDidUpdate[1]]);
     // console.log("Boosts update", updatedBoostName);
+  };
+
+  const [selectFoodOrBait, setSelectFoodOrBait] = useState(false);
+  const updateselectFoodOrBait = (selectFoodOrBait) => {
+    console.log(selectFoodOrBait);
+    setSelectFoodOrBait(selectFoodOrBait);
   };
 
   React.useEffect(() => {
@@ -79,10 +86,24 @@ const Cooking = () => {
           alignItems: "center",
         }}
       />
-      <ToggleButtons
-        updateMaterial={updateMaterial}
-        artisanData={artisanData}
-        skill="Cooking"
+      {selectFoodOrBait === true ? (
+        <ToggleButtons
+          updateMaterial={updateMaterial}
+          artisanData={artisanData}
+          skill="Cooking"
+        />
+      ) : (
+        <ToggleButtons
+          updateMaterial={updateMaterial}
+          artisanData={artisanData}
+          skill="Cooking-Baits"
+        />
+      )}
+      <CustomSwitch
+        value={selectFoodOrBait}
+        updateValue={updateselectFoodOrBait}
+        falseText="Bait"
+        trueText="Food"
       />
       <Boosts boosts={boosts} updateBoosts={updateBoosts} />
 

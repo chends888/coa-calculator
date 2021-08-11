@@ -9,7 +9,7 @@ import Display from "../components/Display";
 import ToggleButtons from "../components/ToggleButtons";
 import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
-import SmithingSwitch from "../components/Switch";
+import CustomSwitch from "../components/CustomSwitch";
 import BoostCheckbox from "../components/Checkbox";
 
 // Max bar input: 567.019.187
@@ -65,7 +65,7 @@ const Smithing = () => {
 
   React.useEffect(() => {
     // fetch("http://localhost:8000/artisan")
-      fetch("https://coa-calculator-backend.herokuapp.com/artisan")
+    fetch("https://coa-calculator-backend.herokuapp.com/artisan")
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -103,9 +103,11 @@ const Smithing = () => {
         artisanData={artisanData}
         skill="Smithing"
       />
-      <SmithingSwitch
-        buyOrSmeltBars={buyOrSmeltBars}
-        updateBuyOrSmeltBars={updateBuyOrSmeltBars}
+      <CustomSwitch
+        value={buyOrSmeltBars}
+        updateValue={updateBuyOrSmeltBars}
+        falseText="Smelt Bars"
+        trueText="Buy Bars"
       />
       <BoostCheckbox
         applyBoostOnSmelt={applyBoostOnSmelt}

@@ -17,9 +17,9 @@ const Div = styled("div")(({ theme }) => ({
   //   padding: theme.spacing(1),
 }));
 
-const SmithingSwitch = ({ buyOrSmeltBars, updateBuyOrSmeltBars }) => {
+const CustomSwitch = ({ value, updateValue, falseText, trueText }) => {
   const handleChange = () => {
-    updateBuyOrSmeltBars(!buyOrSmeltBars);
+    updateValue(!value);
   };
 
   return (
@@ -46,7 +46,7 @@ const SmithingSwitch = ({ buyOrSmeltBars, updateBuyOrSmeltBars }) => {
         }}
         spacing={0}
       >
-        <Div>Smelt Bars</Div>
+        <Div>{falseText}</Div>
         <Grid item>
           <Switch
             // checked={} // relevant state for your case
@@ -54,10 +54,10 @@ const SmithingSwitch = ({ buyOrSmeltBars, updateBuyOrSmeltBars }) => {
             color="default"
           />
         </Grid>
-        <Div>Buy Bars</Div>
+        <Div>{trueText}</Div>
       </Grid>
     </Box>
   );
 };
 
-export default SmithingSwitch;
+export default CustomSwitch;

@@ -102,7 +102,7 @@ const ToggleButtons = ({ updateMaterial, artisanData, skill }) => {
                     height="22"
                     value={material}
                     onClick={handleChange}
-                    alt="Material icon"
+                    alt="Icon"
                   />
                 </Box>
                 {material}
