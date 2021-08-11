@@ -87,12 +87,14 @@ const Cooking = () => {
         }}
       />
       {selectFoodOrBait === true ? (
+        // Render food buttons
         <ToggleButtons
           updateMaterial={updateMaterial}
           artisanData={artisanData}
           skill="Cooking"
         />
       ) : (
+        // Render baits buttons
         <ToggleButtons
           updateMaterial={updateMaterial}
           artisanData={artisanData}
@@ -107,14 +109,28 @@ const Cooking = () => {
       />
       <Boosts boosts={boosts} updateBoosts={updateBoosts} />
 
-      <Display
-        level={currentLevel}
-        targetLevel={targetLevel}
-        material={material}
-        keywords={["Cooked"]}
-        boosts={boosts}
-        boostsDidUpdate={boostsDidUpdate}
-      />
+
+      {selectFoodOrBait === true ? (
+        // Results for food
+        <Display
+          level={currentLevel}
+          targetLevel={targetLevel}
+          material={material}
+          keywords={["Cooked"]}
+          boosts={boosts}
+          boostsDidUpdate={boostsDidUpdate}
+        />
+      ) : (
+        // Results for baits
+        <Display
+          level={currentLevel}
+          targetLevel={targetLevel}
+          material={material}
+          keywords={[""]}
+          boosts={boosts}
+          boostsDidUpdate={boostsDidUpdate}
+        />
+      )}
       {/* <Slider sliderName={"Your Smithing XP"}/>
       <Slider sliderName={"Ore 1"}/>
       <Slider sliderName={"Ore 2"}/> */}
