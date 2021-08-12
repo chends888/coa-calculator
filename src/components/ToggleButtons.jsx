@@ -25,7 +25,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   },
 }));
 
-const ToggleButtons = ({ updateMaterial, artisanData, skill }) => {
+const ToggleButtons = ({ updateMaterial, skillsData, skill }) => {
   const [selectedMaterial, setSelectedMaterial] = React.useState();
 
   const handleChange = (event, newMaterial) => {
@@ -38,7 +38,7 @@ const ToggleButtons = ({ updateMaterial, artisanData, skill }) => {
       } else {
         updateMaterial([
           event.currentTarget.value,
-          artisanData[skill][event.currentTarget.value],
+          skillsData[skill][event.currentTarget.value],
         ]);
       }
     }
@@ -71,8 +71,8 @@ const ToggleButtons = ({ updateMaterial, artisanData, skill }) => {
             // borderTop: 2,
           }}
         >
-          {artisanData[skill] !== undefined ? (
-            Object.keys(artisanData[skill]).map((material) => (
+          {skillsData[skill] !== undefined ? (
+            Object.keys(skillsData[skill]).map((material) => (
               <ToggleButton
                 value={material}
                 sx={{

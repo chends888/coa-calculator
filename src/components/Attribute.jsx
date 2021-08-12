@@ -71,7 +71,7 @@ const Attribute = ({ maxValue, attributeName, updateAttribute }) => {
             "& > :not(style)": {
               margin: 1,
               // marginTop: 3,
-              width: "22ch",
+              width: "25ch",
             },
             // display: flex,
             // "justify-content": center,

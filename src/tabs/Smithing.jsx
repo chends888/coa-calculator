@@ -100,7 +100,7 @@ const Smithing = () => {
       />
       <ToggleButtons
         updateMaterial={updateMaterial}
-        artisanData={artisanData}
+        skillsData={artisanData}
         skill="Smithing"
       />
       <CustomSwitch

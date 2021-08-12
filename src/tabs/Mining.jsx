@@ -9,9 +9,8 @@ import Display from "../components/Display";
 import ToggleButtons from "../components/ToggleButtons";
 import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
-import CustomSwitch from "../components/CustomSwitch";
 
-const Cooking = () => {
+const Mining = () => {
   // Person's current level
   const [currentLevel, setCurrentLevel] = useState(1);
   const updateCurrentLevel = (currentLevel) => {
@@ -32,12 +31,13 @@ const Cooking = () => {
   };
 
   // Person's target material
-  const [artisanData, setArtisanData] = useState({});
+  const [gatheringData, setGatheringData] = useState({});
 
   // Exp boosts
   const [boostsDidUpdate, setBoostDidUpdate] = useState(["Boost name", false]);
   const [boosts, setBoosts] = useState([
     { name: "World Boost", value: 1.5, active: false },
+    { name: "Prospector's Necklace", value: 1.05, active: false },
   ]);
   const updateBoosts = (boosts, updatedBoostName) => {
     setBoosts(boosts);
@@ -45,15 +45,9 @@ const Cooking = () => {
     // console.log("Boosts update", updatedBoostName);
   };
 
-  const [selectFoodOrBait, setSelectFoodOrBait] = useState(false);
-  const updateselectFoodOrBait = (selectFoodOrBait) => {
-    console.log(selectFoodOrBait);
-    setSelectFoodOrBait(selectFoodOrBait);
-  };
-
   React.useEffect(() => {
-    // fetch("http://localhost:8000/artisan")
-      fetch("https://coa-calculator-backend.herokuapp.com/artisan")
+    // fetch("http://localhost:8000/gathering")
+    fetch("https://coa-calculator-backend.herokuapp.com/gathering")
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -62,7 +56,7 @@ const Cooking = () => {
       })
       .then((data) => {
         // setBusy(false);
-        setArtisanData(data);
+        setGatheringData(data);
         // console.log("set busy");
       })
       .catch((error) => {
@@ -73,63 +67,36 @@ const Cooking = () => {
   return (
     <>
       <Attribute
+        
         maxValue={120}
-        attributeName={"Your Cooking Level"}
+        attributeName={"Your Mining Level"}
         updateAttribute={updateCurrentLevel}
       />
       <Attribute
+        
         maxValue={120}
-        attributeName={"Target Cooking Level"}
+        attributeName={"Target Mining Level"}
         updateAttribute={updateTargetLevel}
         sx={{
           justifyContent: "center",
           alignItems: "center",
         }}
       />
-      {selectFoodOrBait === true ? (
-        // Render food buttons
-        <ToggleButtons
-          updateMaterial={updateMaterial}
-          skillsData={artisanData}
-          skill="Cooking-Baits"
-        />
-      ) : (
-        // Render baits buttons
-        <ToggleButtons
-          updateMaterial={updateMaterial}
-          skillsData={artisanData}
-          skill="Cooking"
-        />
-      )}
-      <CustomSwitch
-        value={selectFoodOrBait}
-        updateValue={updateselectFoodOrBait}
-        falseText="Food"
-        trueText="Bait"
+      <ToggleButtons
+        updateMaterial={updateMaterial}
+        skillsData={gatheringData}
+        skill="Mining"
       />
       <Boosts boosts={boosts} updateBoosts={updateBoosts} />
 
-      {selectFoodOrBait === true ? (
-        // Results for food
-        <Display
-          level={currentLevel}
-          targetLevel={targetLevel}
-          material={material}
-          keywords={[""]}
-          boosts={boosts}
-          boostsDidUpdate={boostsDidUpdate}
-        />
-      ) : (
-        // Results for baits
-        <Display
-          level={currentLevel}
-          targetLevel={targetLevel}
-          material={material}
-          keywords={["Cooked"]}
-          boosts={boosts}
-          boostsDidUpdate={boostsDidUpdate}
-        />
-      )}
+      <Display
+        level={currentLevel}
+        targetLevel={targetLevel}
+        material={material}
+        keywords={[""]}
+        boosts={boosts}
+        boostsDidUpdate={boostsDidUpdate}
+      />
       {/* <Slider sliderName={"Your Smithing XP"}/>
       <Slider sliderName={"Ore 1"}/>
       <Slider sliderName={"Ore 2"}/> */}
@@ -138,4 +105,4 @@ const Cooking = () => {
   );
 };
 
-export default Cooking;
+export default Mining;

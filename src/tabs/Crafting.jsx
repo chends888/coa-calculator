@@ -83,7 +83,7 @@ const Cooking = () => {
       />
       <ToggleButtons
         updateMaterial={updateMaterial}
-        artisanData={artisanData}
+        skillsData={artisanData}
         skill="Crafting"
       />
       <Boosts boosts={boosts} updateBoosts={updateBoosts} />

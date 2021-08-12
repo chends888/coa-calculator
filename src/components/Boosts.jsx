@@ -94,7 +94,7 @@ const Boosts = ({ boosts, updateBoosts }) => {
                     height="22"
                     value={boost.name}
                     onClick={handleChange}
-                    alt="Boost icon"
+                    alt="Icon"
                   />
                 </Box>
                 {boost.name +

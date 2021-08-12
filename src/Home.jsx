@@ -1,8 +1,11 @@
 import React from "react";
 import { Tabs, Tab, Box } from "@material-ui/core";
+
 import Smithing from "./tabs/Smithing";
 import Cooking from "./tabs/Cooking";
 import Crafting from "./tabs/Crafting";
+import Mining from "./tabs/Mining";
+import Woodcutting from "./tabs/Woodcutting";
 import Header from "./components/Header";
 
 const Home = (props) => {
@@ -13,13 +16,17 @@ const Home = (props) => {
   const tabNameToIndex = {
     0: "smithing",
     1: "crafting",
-    2: "cooking"
+    2: "cooking",
+    3: "mining",
+    4: "woodcutting",
   };
 
   const indexToTabName = {
     smithing: 0,
     crafting: 1,
     cooking: 2,
+    mining: 3,
+    woodcutting: 4,
   };
 
   const [selectedTab, setSelectedTab] = React.useState(indexToTabName[page]);
@@ -43,8 +50,8 @@ const Home = (props) => {
             <Tab label="Smithing" />
             <Tab label="Crafting" />
             <Tab label="Cooking" />
-            <Tab label="Mining (Coming soon)" disabled />
-            <Tab label="Woodcutting (Coming soon)" disabled />
+            <Tab label="Mining" />
+            <Tab label="Woodcutting" />
             <Tab label="Fishing (Coming soon)" disabled />
           </Tabs>
         </Box>
@@ -52,6 +59,8 @@ const Home = (props) => {
       {selectedTab === 0 && <Smithing />}
       {selectedTab === 1 && <Crafting />}
       {selectedTab === 2 && <Cooking />}
+      {selectedTab === 3 && <Mining />}
+      {selectedTab === 4 && <Woodcutting />}
     </>
   );
 };
