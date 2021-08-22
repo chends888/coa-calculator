@@ -48,7 +48,7 @@ const Boosts = ({ boosts, updateBoosts }) => {
         boostsCopy[i].active = !boosts[i].active;
       }
     }
-    console.log('boosts:', boostsCopy);
+    // console.log('boosts:', boostsCopy);
     updateBoosts(boostsCopy);
   };
 

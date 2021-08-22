@@ -1,18 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Home from "./Home";
 import { Route, Switch, Redirect } from "react-router-dom";
 import HttpsRedirect from "react-https-redirect";
 
-const App = () => {
+import { ThemeProvider, createTheme } from "@material-ui/core/styles";
+
+const App = ({currentTheme, updateCurrentTheme}) => {
+  // const [currentTheme, setCurrentTheme] = useState("dark");
+  // const updateCurrentTheme = () => {
+  //   if (currentTheme === "dark") {
+  //     setCurrentTheme("light");
+  //   } else {
+  //     setCurrentTheme("dark");
+  //   }
+  //   updateTheme(currentTheme);
+  // };
+
+  // const theme = createTheme({
+  //   palette: {
+  //     mode: currentTheme,
+  //   },
+  // });
+
   return (
-    <HttpsRedirect>
-      <Switch>
-        <Redirect exact from="/" to="/smithing" />
-        <Route exact path="/:page?" render={(props) => <Home {...props} />} />
-        {/* <Route render={() => <Redirect to={{ pathname: "/smithing" }} />} /> */}
-      </Switch>
-    </HttpsRedirect>
+    // <ThemeProvider theme={theme}>
+      <HttpsRedirect>
+        <Switch>
+          <Redirect exact from="/" to="/smithing" />
+          <Route
+            exact
+            path="/:page?"
+            render={(props) => (
+              <Home
+                {...props}
+                currentTheme={currentTheme}
+                updateCurrentTheme={updateCurrentTheme}
+              />
+            )}
+          />
+        </Switch>
+      </HttpsRedirect>
+    // </ThemeProvider>
   );
 };
 

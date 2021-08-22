@@ -10,10 +10,9 @@ import ToggleButtons from "../components/ToggleButtons";
 import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
 import CustomSwitch from "../components/CustomSwitch";
-import BoostCheckbox from "../components/Checkbox";
 
-// Max bar input: 567.019.187
-const Smithing = () => {
+
+const Mining = () => {
   // Person's current level
   const [currentLevel, setCurrentLevel] = useState(1);
   const updateCurrentLevel = (currentLevel) => {
@@ -34,37 +33,29 @@ const Smithing = () => {
   };
 
   // Person's target material
-  const [artisanData, setArtisanData] = useState({});
+  const [gatheringData, setGatheringData] = useState({});
 
   // Exp boosts
-  const [boostsDidUpdate, setBoostDidUpdate] = useState(false);
+  const [boostsDidUpdate, setBoostDidUpdate] = useState(["Boost name", false]);
   const [boosts, setBoosts] = useState([
     { name: "World Boost", value: 1.5, active: false },
-    { name: "Infernal Ring", value: 1.04, active: false },
-    { name: "Infernal Hammer", value: 1.04, active: false },
   ]);
-  const updateBoosts = (boosts) => {
+  const updateBoosts = (boosts, updatedBoostName) => {
     setBoosts(boosts);
-    setBoostDidUpdate(!boostsDidUpdate);
+    setBoostDidUpdate([updatedBoostName, !boostsDidUpdate[1]]);
     // console.log("Boosts update", updatedBoostName);
   };
-  // Apply Boosts on bar smelting control
-  const [applyBoostOnSmelt, setApplyBoostOnSmelt] = useState(false);
-  const updateApplyBoostOnSmelt = (applyBoostOnSmelt) => {
-    // console.log(applyBoostOnSmelt);
-    setApplyBoostOnSmelt(applyBoostOnSmelt);
-  };
-  // Smelt or buy bars controll
-  const [buyOrSmeltBars, setBuyOrSmeltBars] = useState(false);
-  const updateBuyOrSmeltBars = (buyOrSmeltBars) => {
-    // console.log(buyOrSmeltBars);
-    // console.log(buyOrSmeltBars);
-    setBuyOrSmeltBars(buyOrSmeltBars);
+
+//   Select fished or baits
+  const [selectFishOrBait, setSelectFishOrBait] = useState(false);
+  const updateselectFishOrBait = (selectFishOrBait) => {
+    // console.log(selectFishOrBait);
+    setSelectFishOrBait(selectFishOrBait);
   };
 
   React.useEffect(() => {
-    // fetch("http://localhost:8000/artisan")
-    fetch("https://coa-calculator-backend.herokuapp.com/artisan")
+    // fetch("http://localhost:8000/gathering")
+    fetch("https://coa-calculator-backend.herokuapp.com/gathering")
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -73,54 +64,62 @@ const Smithing = () => {
       })
       .then((data) => {
         // setBusy(false);
-        setArtisanData(data);
+        setGatheringData(data);
         // console.log("set busy");
       })
       .catch((error) => {
-        console.log("Error on fetch Artisan Skills data:", error);
+        // console.log("Error:", error);
       });
   }, []);
 
   return (
     <>
       <Attribute
+        
         maxValue={120}
-        attributeName={"Your Smithing Level"}
+        attributeName={"Your Fishing Level"}
         updateAttribute={updateCurrentLevel}
       />
       <Attribute
+        
         maxValue={120}
-        attributeName={"Target Smithing Level"}
+        attributeName={"Target Fishing Level"}
         updateAttribute={updateTargetLevel}
         sx={{
           justifyContent: "center",
           alignItems: "center",
         }}
       />
-      <ToggleButtons
-        updateMaterial={updateMaterial}
-        skillsData={artisanData}
-        skill="Smithing"
-      />
+      {selectFishOrBait === true ? (
+        // Render bait buttons
+        <ToggleButtons
+          updateMaterial={updateMaterial}
+          skillsData={gatheringData}
+          skill="Fishing-Baits"
+        />
+      ) : (
+        // Render fish buttons
+        <ToggleButtons
+          updateMaterial={updateMaterial}
+          skillsData={gatheringData}
+          skill="Fishing"
+        />
+      )}
       <CustomSwitch
-        value={buyOrSmeltBars}
-        updateValue={updateBuyOrSmeltBars}
-        falseText="Smelt Bars"
-        trueText="Buy Bars"
-      />
-      <BoostCheckbox
-        applyBoostOnSmelt={applyBoostOnSmelt}
-        updateApplyBoostOnSmelt={updateApplyBoostOnSmelt}
+        value={selectFishOrBait}
+        updateValue={updateselectFishOrBait}
+        falseText="Fish"
+        trueText="Bait"
       />
       <Boosts boosts={boosts} updateBoosts={updateBoosts} />
+
       <Display
         level={currentLevel}
         targetLevel={targetLevel}
         material={material}
-        keywords={["Bars"]}
+        keywords={[""]}
         boosts={boosts}
-        applyBoostOnSmelt={applyBoostOnSmelt}
-        buyOrSmeltBars={buyOrSmeltBars}
+        boostsDidUpdate={boostsDidUpdate}
       />
       {/* <Slider sliderName={"Your Smithing XP"}/>
       <Slider sliderName={"Ore 1"}/>
@@ -130,4 +129,4 @@ const Smithing = () => {
   );
 };
 
-export default Smithing;
+export default Mining;

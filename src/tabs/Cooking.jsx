@@ -45,9 +45,10 @@ const Cooking = () => {
     // console.log("Boosts update", updatedBoostName);
   };
 
+  // Select foods or baits
   const [selectFoodOrBait, setSelectFoodOrBait] = useState(false);
   const updateselectFoodOrBait = (selectFoodOrBait) => {
-    console.log(selectFoodOrBait);
+    // console.log(selectFoodOrBait);
     setSelectFoodOrBait(selectFoodOrBait);
   };
 
