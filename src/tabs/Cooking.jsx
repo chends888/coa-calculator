@@ -13,14 +13,14 @@ import CustomSwitch from "../components/CustomSwitch";
 
 const Cooking = () => {
   // Person's current level
-  const [currentLevel, setCurrentLevel] = useState(1);
+  const [currentLevel, setCurrentLevel] = useState([1, 0]);
   const updateCurrentLevel = (currentLevel) => {
     setCurrentLevel(currentLevel);
   };
   // Person's target level
-  const [targetLevel, setNextAttribute] = useState(1);
+  const [targetLevel, setTargetLevel] = useState([1, 0]);
   const updateTargetLevel = (targetLevel) => {
-    setNextAttribute(targetLevel);
+    setTargetLevel(targetLevel);
   };
   // Person's target material
   const [material, setMaterial] = useState([
@@ -77,6 +77,7 @@ const Cooking = () => {
         maxValue={120}
         attributeName={"Your Cooking Level"}
         updateAttribute={updateCurrentLevel}
+        isCurrentLevel={true}
       />
       <Attribute
         maxValue={120}

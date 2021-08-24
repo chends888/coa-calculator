@@ -14,7 +14,7 @@ const theme = createTheme({
 });
 const updateTheme = (theme) => {
   currentTheme = theme;
-  console.log("updated theme", currentTheme);
+  // console.log("updated theme", currentTheme);
   theme = createTheme({
     palette: {
       mode: theme,

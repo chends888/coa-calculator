@@ -15,14 +15,14 @@ import BoostCheckbox from "../components/Checkbox";
 // Max bar input: 567.019.187
 const Smithing = () => {
   // Person's current level
-  const [currentLevel, setCurrentLevel] = useState(1);
+  const [currentLevel, setCurrentLevel] = useState([1, 0]);
   const updateCurrentLevel = (currentLevel) => {
     setCurrentLevel(currentLevel);
   };
   // Person's target level
-  const [targetLevel, setNextAttribute] = useState(1);
+  const [targetLevel, setTargetLevel] = useState([1, 0]);
   const updateTargetLevel = (targetLevel) => {
-    setNextAttribute(targetLevel);
+    setTargetLevel(targetLevel);
   };
   // Person's target material
   const [material, setMaterial] = useState([
@@ -87,6 +87,7 @@ const Smithing = () => {
         maxValue={120}
         attributeName={"Your Smithing Level"}
         updateAttribute={updateCurrentLevel}
+        isCurrentLevel={true}
       />
       <Attribute
         maxValue={120}

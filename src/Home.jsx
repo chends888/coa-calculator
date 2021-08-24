@@ -46,53 +46,58 @@ const Home = (props) => {
     setSelectedTab(newValue);
   };
 
-    // const [currentTheme, setCurrentTheme] = useState("dark");
-    // const updateCurrentTheme = () => {
-    //   if (currentTheme === "dark") {
-    //     setCurrentTheme("light");
-    //   } else {
-    //     setCurrentTheme("dark");
-    //   }
-    // };
+  // const [currentTheme, setCurrentTheme] = useState("dark");
+  // const updateCurrentTheme = () => {
+  //   if (currentTheme === "dark") {
+  //     setCurrentTheme("light");
+  //   } else {
+  //     setCurrentTheme("dark");
+  //   }
+  // };
 
-    // const theme = createTheme({
-    //   palette: {
-    //     mode: currentTheme,
-    //   },
-    // });
+  // const theme = createTheme({
+  //   palette: {
+  //     mode: currentTheme,
+  //   },
+  // });
 
   return (
     <>
-        <Header
-          title="Curse of Aros Skills Calculator"
-          updateTheme={updateCurrentTheme}
-          currentTheme={currentTheme}
-        />
-        <Box sx={{ width: "100%" }}>
-          <Box
-            sx={{ borderBottom: 1, borderColor: "divider", marginBottom: 1 }}
+      <Header
+        title="Curse of Aros Skills Calculator"
+        updateTheme={updateCurrentTheme}
+        currentTheme={currentTheme}
+      />
+      <Box sx={{ width: "100%" }}>
+        <Box sx={{ borderBottom: 1, borderColor: "divider", marginBottom: 1 }}>
+          <Tabs
+            value={selectedTab}
+            onChange={handleChange}
+            variant="scrollable"
+            // scrollButtons={false}
           >
-            <Tabs
-              value={selectedTab}
-              onChange={handleChange}
-              variant="scrollable"
-              // scrollButtons={false}
-            >
-              <Tab label="Smithing" />
-              <Tab label="Crafting" />
-              <Tab label="Cooking" />
-              <Tab label="Mining" />
-              <Tab label="Woodcutting" />
-              <Tab label="Fishing" />
-            </Tabs>
-          </Box>
+            <Tab label="Smithing" />
+            <Tab label="Crafting" />
+            <Tab label="Cooking" />
+            <Tab label="Mining" />
+            <Tab label="Woodcutting" />
+            <Tab label="Fishing" />
+          </Tabs>
+          <Tabs
+            // value={selectedTab}
+            // onChange={handleChange}
+            variant="scrollable"
+          >
+          <Tab label="Combat (Coming Soon)" disabled/>
+          </Tabs>
         </Box>
-        {selectedTab === 0 && <Smithing />}
-        {selectedTab === 1 && <Crafting />}
-        {selectedTab === 2 && <Cooking />}
-        {selectedTab === 3 && <Mining />}
-        {selectedTab === 4 && <Woodcutting />}
-        {selectedTab === 5 && <Fishing />}
+      </Box>
+      {selectedTab === 0 && <Smithing />}
+      {selectedTab === 1 && <Crafting />}
+      {selectedTab === 2 && <Cooking />}
+      {selectedTab === 3 && <Mining />}
+      {selectedTab === 4 && <Woodcutting />}
+      {selectedTab === 5 && <Fishing />}
     </>
   );
 };

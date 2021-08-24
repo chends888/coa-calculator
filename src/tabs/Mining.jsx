@@ -12,14 +12,14 @@ import Footer from "../components/Footer";
 
 const Mining = () => {
   // Person's current level
-  const [currentLevel, setCurrentLevel] = useState(1);
+  const [currentLevel, setCurrentLevel] = useState([1, 0]);
   const updateCurrentLevel = (currentLevel) => {
     setCurrentLevel(currentLevel);
   };
   // Person's target level
-  const [targetLevel, setNextAttribute] = useState(1);
+  const [targetLevel, setTargetLevel] = useState([1, 0]);
   const updateTargetLevel = (targetLevel) => {
-    setNextAttribute(targetLevel);
+    setTargetLevel(targetLevel);
   };
   // Person's target material
   const [material, setMaterial] = useState([
@@ -71,6 +71,7 @@ const Mining = () => {
         maxValue={120}
         attributeName={"Your Mining Level"}
         updateAttribute={updateCurrentLevel}
+        isCurrentLevel={true}
       />
       <Attribute
         
