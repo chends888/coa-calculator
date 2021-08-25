@@ -11,16 +11,24 @@ import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
 import CustomSwitch from "../components/CustomSwitch";
 import BoostCheckbox from "../components/Checkbox";
+import { CodeSharp } from "@material-ui/icons";
 
 // Max bar input: 567.019.187
 const Smithing = () => {
   // Person's current level
-  const [currentLevel, setCurrentLevel] = useState([1, 0]);
+  const [currentLevel, setCurrentLevel] = useState(1);
   const updateCurrentLevel = (currentLevel) => {
     setCurrentLevel(currentLevel);
   };
+  // Person's current level percentage
+  const [currentPercentage, setCurrentPercentage] = useState(0);
+  const updateCurrentPercentage = (currentPercentage) => {
+    currentPercentage = currentPercentage / 100;
+    console.log("update %", currentPercentage);
+    setCurrentPercentage(currentPercentage);
+  };
   // Person's target level
-  const [targetLevel, setTargetLevel] = useState([1, 0]);
+  const [targetLevel, setTargetLevel] = useState(1);
   const updateTargetLevel = (targetLevel) => {
     setTargetLevel(targetLevel);
   };
@@ -87,6 +95,7 @@ const Smithing = () => {
         maxValue={120}
         attributeName={"Your Smithing Level"}
         updateAttribute={updateCurrentLevel}
+        updateAttribute2={updateCurrentPercentage}
         isCurrentLevel={true}
       />
       <Attribute
@@ -102,6 +111,7 @@ const Smithing = () => {
         updateMaterial={updateMaterial}
         skillsData={artisanData}
         skill="Smithing"
+        currentLevel={currentLevel}
       />
       <CustomSwitch
         value={buyOrSmeltBars}
@@ -116,6 +126,7 @@ const Smithing = () => {
       <Boosts boosts={boosts} updateBoosts={updateBoosts} />
       <Display
         level={currentLevel}
+        levelPercentage={currentPercentage}
         targetLevel={targetLevel}
         material={material}
         keywords={["Bars"]}

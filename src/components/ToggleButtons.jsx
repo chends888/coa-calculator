@@ -25,7 +25,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   },
 }));
 
-const ToggleButtons = ({ updateMaterial, skillsData, skill }) => {
+const ToggleButtons = ({ updateMaterial, skillsData, skill, currentLevel }) => {
   const [selectedMaterial, setSelectedMaterial] = React.useState();
 
   const handleChange = (event, newMaterial) => {
@@ -36,6 +36,9 @@ const ToggleButtons = ({ updateMaterial, skillsData, skill }) => {
       if (newMaterial === null) {
         updateMaterial(["material", { name: "material", submaterials: {} }]);
       } else {
+        console.log(currentLevel);
+        console.log(skillsData['Crafting']['Wealth']['level']);
+        // console.log("Skills data: ", currentLevel >= parseInt(skillsData[skill]['Gold']['level']));
         updateMaterial([
           event.currentTarget.value,
           skillsData[skill][event.currentTarget.value],
@@ -72,42 +75,80 @@ const ToggleButtons = ({ updateMaterial, skillsData, skill }) => {
           }}
         >
           {skillsData[skill] !== undefined ? (
-            Object.keys(skillsData[skill]).map((material) => (
-              <ToggleButton
-                value={material}
-                sx={{
-                  // outlineColor: "red",
-                  // outlineWidth: "1px",
-                  // outlineStyle: "solid",
-                  // borderWidth: 4,
-                  // borderRadius: "2px",
-                  // margin: "20px",
-                  "& > :not(style)": {
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  },
-                  // border: 1,
-                  // borderColor: "#b4b4b4",
-                }}
-              >
-                <Box
+            Object.keys(skillsData[skill]).map((material) =>
+              currentLevel >= parseInt(skillsData[skill][material]['level']) ? (
+                <ToggleButton
+                  value={material}
                   sx={{
-                    marginRight: 0.4,
+                    // outlineColor: "red",
+                    // outlineWidth: "1px",
+                    // outlineStyle: "solid",
+                    // borderWidth: 4,
+                    // borderRadius: "2px",
+                    // margin: "20px",
+                    "& > :not(style)": {
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    },
+                    // border: 1,
+                    // borderColor: "#b4b4b4",
                   }}
                 >
-                  <img
-                    src={`/images/${skill}/${material}.png`}
-                    width="22"
-                    height="22"
-                    value={material}
-                    onClick={handleChange}
-                    alt="Icon"
-                  />
-                </Box>
-                {material}
-              </ToggleButton>
-            ))
+                  <Box
+                    sx={{
+                      marginRight: 0.4,
+                    }}
+                  >
+                    <img
+                      src={`/images/${skill}/${material}.png`}
+                      width="22"
+                      height="22"
+                      value={material}
+                      onClick={handleChange}
+                      alt="Icon"
+                    />
+                  </Box>
+                  {material}
+                </ToggleButton>
+              ) : (
+                <ToggleButton
+                  value={material}
+                  disabled
+                  sx={{
+                    // outlineColor: "red",
+                    // outlineWidth: "1px",
+                    // outlineStyle: "solid",
+                    // borderWidth: 4,
+                    // borderRadius: "2px",
+                    // margin: "20px",
+                    "& > :not(style)": {
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    },
+                    // border: 1,
+                    // borderColor: "#b4b4b4",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      marginRight: 0.4,
+                    }}
+                  >
+                    <img
+                      src={`/images/${skill}/Gray ${material}.png`}
+                      width="22"
+                      height="22"
+                      value={material}
+                      onClick={handleChange}
+                      alt="Icon"
+                    />
+                  </Box>
+                  {material}
+                </ToggleButton>
+              )
+            )
           ) : (
             <ToggleButton value="loading">Loading</ToggleButton>
           )}

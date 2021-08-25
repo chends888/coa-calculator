@@ -13,12 +13,19 @@ import CustomSwitch from "../components/CustomSwitch";
 
 const Cooking = () => {
   // Person's current level
-  const [currentLevel, setCurrentLevel] = useState([1, 0]);
+  const [currentLevel, setCurrentLevel] = useState(1);
   const updateCurrentLevel = (currentLevel) => {
     setCurrentLevel(currentLevel);
   };
+  // Person's current level percentage
+  const [currentPercentage, setCurrentPercentage] = useState(0);
+  const updateCurrentPercentage = (currentPercentage) => {
+    currentPercentage = currentPercentage / 100;
+    console.log("update %", currentPercentage);
+    setCurrentPercentage(currentPercentage);
+  };
   // Person's target level
-  const [targetLevel, setTargetLevel] = useState([1, 0]);
+  const [targetLevel, setTargetLevel] = useState(1);
   const updateTargetLevel = (targetLevel) => {
     setTargetLevel(targetLevel);
   };
@@ -77,6 +84,7 @@ const Cooking = () => {
         maxValue={120}
         attributeName={"Your Cooking Level"}
         updateAttribute={updateCurrentLevel}
+        updateAttribute2={updateCurrentPercentage}
         isCurrentLevel={true}
       />
       <Attribute
@@ -94,6 +102,7 @@ const Cooking = () => {
           updateMaterial={updateMaterial}
           skillsData={artisanData}
           skill="Cooking-Baits"
+          currentLevel={currentLevel}
         />
       ) : (
         // Render baits buttons
@@ -101,6 +110,7 @@ const Cooking = () => {
           updateMaterial={updateMaterial}
           skillsData={artisanData}
           skill="Cooking"
+          currentLevel={currentLevel}
         />
       )}
       <CustomSwitch
@@ -115,6 +125,7 @@ const Cooking = () => {
         // Results for food
         <Display
           level={currentLevel}
+          levelPercentage={currentPercentage}
           targetLevel={targetLevel}
           material={material}
           keywords={[""]}
@@ -125,6 +136,7 @@ const Cooking = () => {
         // Results for baits
         <Display
           level={currentLevel}
+          levelPercentage={currentPercentage}
           targetLevel={targetLevel}
           material={material}
           keywords={["Cooked"]}

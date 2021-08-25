@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import Box from "@material-ui/core/Box";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
-const Attribute = ({ maxValue, attributeName, updateAttribute, isCurrentLevel }) => {
+const Attribute = ({ maxValue, attributeName, updateAttribute, updateAttribute2, isCurrentLevel }) => {
   const [attribute, setAttribute] = React.useState(null);
   const [attribute2, setAttribute2] = React.useState(0);
 
@@ -34,7 +34,7 @@ const Attribute = ({ maxValue, attributeName, updateAttribute, isCurrentLevel })
       finalValue = newValue;
     }
     // Update parent component attribute and attribute 2
-    updateAttribute([finalValue, attribute2]);
+    updateAttribute(finalValue);
   };
 
   const checkAndUpdateValue2 = (currentValue, newValue, maxValue) => {
@@ -62,7 +62,7 @@ const Attribute = ({ maxValue, attributeName, updateAttribute, isCurrentLevel })
       finalValue = newValue;
     }
     // Update parent component attribute and attribute 2
-    updateAttribute([attribute, finalValue]);
+    updateAttribute2(finalValue);
   };
 
   return (

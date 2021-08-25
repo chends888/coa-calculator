@@ -14,12 +14,19 @@ import CustomSwitch from "../components/CustomSwitch";
 
 const Mining = () => {
   // Person's current level
-  const [currentLevel, setCurrentLevel] = useState([1, 0]);
+  const [currentLevel, setCurrentLevel] = useState(1);
   const updateCurrentLevel = (currentLevel) => {
     setCurrentLevel(currentLevel);
   };
+  // Person's current level percentage
+  const [currentPercentage, setCurrentPercentage] = useState(0);
+  const updateCurrentPercentage = (currentPercentage) => {
+    currentPercentage = currentPercentage / 100;
+    console.log("update %", currentPercentage);
+    setCurrentPercentage(currentPercentage);
+  };
   // Person's target level
-  const [targetLevel, setTargetLevel] = useState([1, 0]);
+  const [targetLevel, setTargetLevel] = useState(1);
   const updateTargetLevel = (targetLevel) => {
     setTargetLevel(targetLevel);
   };
@@ -79,6 +86,7 @@ const Mining = () => {
         maxValue={120}
         attributeName={"Your Fishing Level"}
         updateAttribute={updateCurrentLevel}
+        updateAttribute2={updateCurrentPercentage}
         isCurrentLevel={true}
       />
       <Attribute
@@ -97,6 +105,7 @@ const Mining = () => {
           updateMaterial={updateMaterial}
           skillsData={gatheringData}
           skill="Fishing-Baits"
+          currentLevel={currentLevel}
         />
       ) : (
         // Render fish buttons
@@ -104,6 +113,7 @@ const Mining = () => {
           updateMaterial={updateMaterial}
           skillsData={gatheringData}
           skill="Fishing"
+          currentLevel={currentLevel}
         />
       )}
       <CustomSwitch
@@ -116,6 +126,7 @@ const Mining = () => {
 
       <Display
         level={currentLevel}
+        levelPercentage={currentPercentage}
         targetLevel={targetLevel}
         material={material}
         keywords={[""]}

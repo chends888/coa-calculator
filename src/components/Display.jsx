@@ -10,6 +10,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 
 const Display = ({
   level,
+  levelPercentage,
   targetLevel,
   material,
   boosts,
@@ -58,15 +59,25 @@ const Display = ({
     if (!isBusy) {
       // console.log(
       //   "totalExpGap:",
-      //   ((expData[targetLevel[0]] - expData[level[0]]) * (100 - level[1])) / 100
+      //   ((expData[targetLevel] - expData[level]) * (100 - levelPercentage)) / 100
       // );
+      // if (levelPercentage === 0) {
+      //   console.log("% = 0");
+      //   levelPercentage = 100;
+      // }
+      console.log('level percentage:', levelPercentage);
       const currentLevelExp =
-        ((expData[level[0] + 1] - expData[level[0]]) * (level[1])) / 100;
-      const targetLevelExp = (expData[targetLevel[0]])
-        setExpGap(Math.ceil(targetLevelExp - currentLevelExp));
+      parseInt(expData[level]) + (parseInt(expData[level + 1]) - parseInt(expData[level])) * levelPercentage;
+      // ((expData[level + 1] - expData[level]) * levelPercentage) + expData[level];
+      console.log(
+        "level XP: ", currentLevelExp);
+        const targetLevelExp = expData[targetLevel];
+        console.log("target lelve XP:", targetLevelExp);
+      console.log(targetLevelExp);
+      setExpGap(Math.ceil(targetLevelExp - currentLevelExp));
     }
     // eslint-disable-next-line
-  }, [expData, level, targetLevel]);
+  }, [expData, level, targetLevel, levelPercentage]);
 
   return (
     <>
