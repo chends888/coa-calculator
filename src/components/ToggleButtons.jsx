@@ -36,8 +36,8 @@ const ToggleButtons = ({ updateMaterial, skillsData, skill, currentLevel }) => {
       if (newMaterial === null) {
         updateMaterial(["material", { name: "material", submaterials: {} }]);
       } else {
-        console.log(currentLevel);
-        console.log(skillsData['Crafting']['Wealth']['level']);
+        // console.log(currentLevel);
+        // console.log(skillsData['Crafting']['Wealth']['level']);
         // console.log("Skills data: ", currentLevel >= parseInt(skillsData[skill]['Gold']['level']));
         updateMaterial([
           event.currentTarget.value,
