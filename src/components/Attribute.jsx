@@ -5,7 +5,13 @@ import TextField from "@material-ui/core/TextField";
 import Box from "@material-ui/core/Box";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
-const Attribute = ({ maxValue, attributeName, updateAttribute, updateAttribute2, isCurrentLevel }) => {
+const Attribute = ({
+  maxValue,
+  attributeName,
+  updateAttribute,
+  updateAttribute2,
+  isCurrentLevel,
+}) => {
   const [attribute, setAttribute] = React.useState(null);
   const [attribute2, setAttribute2] = React.useState(0);
 
@@ -120,6 +126,9 @@ const Attribute = ({ maxValue, attributeName, updateAttribute, updateAttribute2,
             InputProps={{
               endAdornment: <InputAdornment>%</InputAdornment>,
             }}
+            onFocus={(event) => {
+              event.target.select();
+            }}
             // Remove initial zero
             // value={('' + attribute).replace(/^0+/, '')}
             onChange={function (event) {
@@ -140,7 +149,6 @@ const Attribute = ({ maxValue, attributeName, updateAttribute, updateAttribute2,
               // alignItems: "center",
             }}
           />
-
         ) : (
           <></>
         )}
