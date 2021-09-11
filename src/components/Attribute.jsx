@@ -67,8 +67,22 @@ const Attribute = ({
       setAttribute2(newValue);
       finalValue = newValue;
     }
-    // Update parent component attribute and attribute 2
+    // Update parent component attribute 2
     updateAttribute2(finalValue);
+  };
+
+  const checkIfNaN = (value) => {
+    console.log("Value: ", value);
+    if (Number.isNaN(value)) {
+      // Update attribute 2
+      setAttribute2(0);
+      // Update parent component attribute 2
+      updateAttribute2(0);
+    }
+    // else {
+    //   // Update parent component attribute 2
+    //   updateAttribute2(value);
+    // }
   };
 
   return (
@@ -98,6 +112,9 @@ const Attribute = ({
           type="number"
           // defaultValue="1"
           value={attribute}
+          onFocus={(event) => {
+            event.target.select();
+          }}
           // Remove initial zero
           // value={('' + attribute).replace(/^0+/, '')}
           onChange={function (event) {
@@ -128,6 +145,11 @@ const Attribute = ({
             }}
             onFocus={(event) => {
               event.target.select();
+            }}
+            // onBlur={checkIfNaN(event.target.valueAsNumber)}
+            onBlur={function (event) {
+              checkIfNaN(event.target.valueAsNumber);
+              // updateAttribute(newAttribute);
             }}
             // Remove initial zero
             // value={('' + attribute).replace(/^0+/, '')}
