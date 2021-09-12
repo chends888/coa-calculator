@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 import Home from "./Home";
 import { Route, Switch, Redirect } from "react-router-dom";
 import HttpsRedirect from "react-https-redirect";
 
-import { ThemeProvider, createTheme } from "@material-ui/core/styles";
+// import { ThemeProvider, createTheme } from "@material-ui/core/styles";
 
 const App = ({currentTheme, updateCurrentTheme}) => {
   // const [currentTheme, setCurrentTheme] = useState("dark");

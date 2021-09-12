@@ -106,6 +106,7 @@ const Mining = () => {
         keywords={[""]}
         boosts={boosts}
         boostsDidUpdate={boostsDidUpdate}
+        skill="Woodcutting"
       />
       {/* <Slider sliderName={"Your Smithing XP"}/>
       <Slider sliderName={"Ore 1"}/>

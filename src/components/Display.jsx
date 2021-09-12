@@ -17,6 +17,7 @@ const Display = ({
   keywords,
   applyBoostOnSmelt,
   buyOrSmeltBars,
+  skill,
 }) => {
   const [expData, setExp] = React.useState({});
   const [expGap, setExpGap] = React.useState(0);
@@ -102,10 +103,11 @@ const Display = ({
               />
             </ListItem>
             <ListItem>
+              {/* Render empty component if not material is selected */}
               {material[0] === "material" ? (
                 // Render empty component in case no material was selected
                 <></>
-              ) : keywords[0] === "Bars" ? (
+              ) : skill === "Smithing" ? (
                 // Render results for Smithing
                 // TODO: instead of if-else, try if-elif-elif-else
                 buyOrSmeltBars ? (
@@ -162,7 +164,8 @@ const Display = ({
                     }
                   />
                 )
-              ) : keywords[0] === "Relics of" ? (
+              ) : // ) : keywords[0] === "Relics of" ? (
+              skill === "Crafting" ? (
                 // Render results for Crafting
                 // Cursed relics exception
                 material[0] === "Cursed" ? (
@@ -217,7 +220,7 @@ const Display = ({
             {/* Render submaterials */}
             {Object.keys(material[1]["submaterials"]).map((submaterial) => (
               <ListItem>
-                {keywords[0] === "Bars" ? (
+                {skill === "Smithing" ? (
                   // Smithing exception
                   applyBoostOnSmelt ? (
                     // Apply Boosts on bar Smelting
@@ -309,6 +312,69 @@ const Display = ({
                 )}
               </ListItem>
             ))}
+            {/* Render number of inventories */}
+            <ListItem>
+              {/* Render empty component if not material is selected */}
+              {material[0] === "material" ? (
+                <></>
+              ) : skill === "Crafting" ? (
+                material[0] === "Cursed" || material[0] === "Experience" ? (
+                  <ListItemText
+                    primary={
+                      "Inventories (16 per inventory): " +
+                      addCommas(
+                        Math.ceil(
+                          expGap /
+                            calculateMaterialXpBoost(material[1]["xp"]) /
+                            16
+                        )
+                      )
+                    }
+                  />
+                ) : (
+                  <ListItemText
+                    primary={
+                      "Inventories (36 per inventory): " +
+                      addCommas(
+                        Math.ceil(
+                          expGap /
+                            calculateMaterialXpBoost(material[1]["xp"]) /
+                            36
+                        )
+                      )
+                    }
+                  />
+                )
+              ) : skill === "Cooking" ? (
+                <ListItemText
+                  primary={
+                    "Inventories (16 fish and 16 salt): " +
+                    addCommas(
+                      Math.ceil(
+                        expGap /
+                          calculateMaterialXpBoost(material[1]["xp"]) /
+                          16
+                      )
+                    )
+                  }
+                />
+              ) : skill === "Mining" || skill === "Woodcutting" ? (
+                <ListItemText
+                  primary={
+                    "Inventories (36 per inventory): " +
+                    addCommas(
+                      Math.ceil(
+                        expGap /
+                          calculateMaterialXpBoost(material[1]["xp"]) /
+                          36
+                      )
+                    )
+                  }
+                />
+              ) : (
+                <></>
+              )}
+            </ListItem>
           </List>
         )}
       </Box>

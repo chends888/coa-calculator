@@ -25,7 +25,7 @@ const Mining = () => {
   const [currentPercentage, setCurrentPercentage] = useState(0);
   const updateCurrentPercentage = (currentPercentage) => {
     currentPercentage = currentPercentage / 100;
-    console.log("update %", currentPercentage);
+    // console.log("update %", currentPercentage);
     setCurrentPercentage(currentPercentage);
   };
   // Person's target material
@@ -107,6 +107,7 @@ const Mining = () => {
         keywords={[""]}
         boosts={boosts}
         boostsDidUpdate={boostsDidUpdate}
+        skill="Mining"
       />
       {/* <Slider sliderName={"Your Smithing XP"}/>
       <Slider sliderName={"Ore 1"}/>

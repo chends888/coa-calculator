@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { Tabs, Tab, Box } from "@material-ui/core";
-import { ThemeProvider, createTheme } from "@material-ui/core/styles";
+// import { ThemeProvider, createTheme } from "@material-ui/core/styles";
 
 import Header from "./components/Header";
 import Smithing from "./tabs/Smithing";

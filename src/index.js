@@ -12,15 +12,15 @@ const theme = createTheme({
     mode: currentTheme,
   },
 });
-const updateTheme = (theme) => {
-  currentTheme = theme;
-  // console.log("updated theme", currentTheme);
-  theme = createTheme({
-    palette: {
-      mode: theme,
-    },
-  });
-};
+// const updateTheme = (theme) => {
+//   currentTheme = theme;
+//   // console.log("updated theme", currentTheme);
+//   theme = createTheme({
+//     palette: {
+//       mode: theme,
+//     },
+//   });
+// };
 
 
 

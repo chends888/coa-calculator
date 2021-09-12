@@ -21,7 +21,7 @@ const Cooking = () => {
   const [currentPercentage, setCurrentPercentage] = useState(0);
   const updateCurrentPercentage = (currentPercentage) => {
     currentPercentage = currentPercentage / 100;
-    console.log("update %", currentPercentage);
+    // console.log("update %", currentPercentage);
     setCurrentPercentage(currentPercentage);
   };
   // Person's target level
@@ -61,7 +61,7 @@ const Cooking = () => {
 
   React.useEffect(() => {
     // fetch("http://localhost:8000/artisan")
-      fetch("https://coa-calculator-backend.herokuapp.com/artisan")
+    fetch("https://coa-calculator-backend.herokuapp.com/artisan")
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -142,6 +142,7 @@ const Cooking = () => {
           keywords={["Cooked"]}
           boosts={boosts}
           boostsDidUpdate={boostsDidUpdate}
+          skill="Cooking"
         />
       )}
       {/* <Slider sliderName={"Your Smithing XP"}/>

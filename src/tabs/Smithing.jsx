@@ -11,7 +11,7 @@ import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
 import CustomSwitch from "../components/CustomSwitch";
 import BoostCheckbox from "../components/Checkbox";
-import { CodeSharp } from "@material-ui/icons";
+// import { CodeSharp } from "@material-ui/icons";
 
 // Max bar input: 567.019.187
 const Smithing = () => {
@@ -24,7 +24,7 @@ const Smithing = () => {
   const [currentPercentage, setCurrentPercentage] = useState(0);
   const updateCurrentPercentage = (currentPercentage) => {
     currentPercentage = currentPercentage / 100;
-    console.log("update %", currentPercentage);
+    // console.log("update %", currentPercentage);
     setCurrentPercentage(currentPercentage);
   };
   // Person's target level
@@ -133,6 +133,7 @@ const Smithing = () => {
         boosts={boosts}
         applyBoostOnSmelt={applyBoostOnSmelt}
         buyOrSmeltBars={buyOrSmeltBars}
+        skill="Smithing"
       />
       {/* <Slider sliderName={"Your Smithing XP"}/>
       <Slider sliderName={"Ore 1"}/>

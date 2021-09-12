@@ -10,7 +10,7 @@ import ToggleButtons from "../components/ToggleButtons";
 import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
 
-const Cooking = () => {
+const Crafting = () => {
   // Person's current level
   const [currentLevel, setCurrentLevel] = useState(1);
   const updateCurrentLevel = (currentLevel) => {
@@ -20,7 +20,7 @@ const Cooking = () => {
   const [currentPercentage, setCurrentPercentage] = useState(0);
   const updateCurrentPercentage = (currentPercentage) => {
     currentPercentage = currentPercentage / 100;
-    console.log("update %", currentPercentage);
+    // console.log("update %", currentPercentage);
     setCurrentPercentage(currentPercentage);
   };
   // Person's target level
@@ -73,7 +73,6 @@ const Cooking = () => {
   return (
     <>
       <Attribute
-        
         maxValue={120}
         attributeName={"Your Crafting Level"}
         updateAttribute={updateCurrentLevel}
@@ -81,7 +80,6 @@ const Cooking = () => {
         isCurrentLevel={true}
       />
       <Attribute
-        
         maxValue={120}
         attributeName={"Target Crafting Level"}
         updateAttribute={updateTargetLevel}
@@ -106,6 +104,7 @@ const Cooking = () => {
         keywords={["Relics of"]}
         boosts={boosts}
         boostsDidUpdate={boostsDidUpdate}
+        skill="Crafting"
       />
       {/* <Slider sliderName={"Your Smithing XP"}/>
       <Slider sliderName={"Ore 1"}/>
@@ -115,4 +114,4 @@ const Cooking = () => {
   );
 };
 
-export default Cooking;
+export default Crafting;
