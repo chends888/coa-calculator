@@ -131,6 +131,7 @@ const Cooking = () => {
           keywords={[""]}
           boosts={boosts}
           boostsDidUpdate={boostsDidUpdate}
+          skill="Cooking"
         />
       ) : (
         // Results for baits
