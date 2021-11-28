@@ -49,8 +49,16 @@ const Mining = () => {
   };
 
   React.useEffect(() => {
-    // fetch("http://localhost:8000/gathering")
-    fetch("https://coa-calculator-backend.herokuapp.com/gathering")
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+      // development build code
+      console.log('develop');
+      var url = "http://localhost:8000/gathering";
+    } else {
+      // production build code
+      console.log('prod');
+      var url = "https://coa-calculator-backend.herokuapp.com/gathering";
+    }
+    fetch(url)
       .then((response) => {
         if (response.ok) {
           return response.json();
