@@ -9,12 +9,6 @@ import Display from "../components/Display";
 import ToggleButtons from "../components/ToggleButtons";
 import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
-// import Dropdown from "../components/Dropdown";
-// import Accordion from '@mui/material/Accordion';
-// import AccordionSummary from '@mui/material/AccordionSummary';
-// import AccordionDetails from '@mui/material/AccordionDetails';
-// import ExpandMoreIcon from '@material-iu/icons-material/ExpandMore';
-// import Typography from '@mui/material/Typography';
 
 
 
@@ -37,10 +31,7 @@ const Combat = () => {
     setTargetLevel(targetLevel);
   };
   // Person's target monster
-  const [monster, setMonster] = useState([
-    "material",
-    { name: "material", level: "0", xp: "0", gold: "0" },
-  ]);
+  const [monster, setMonster] = useState(['loading']);
   const updateMonster = (monster) => {
     setMonster(monster);
   };
@@ -108,7 +99,7 @@ const Combat = () => {
         // currentLevel={currentLevel}
       /> */}
       <ToggleButtons
-        updateMaterial={updateMonster}
+        updateElement={updateMonster}
         skillsData={monsterData}
         skill="Combat"
       // currentLevel={9999}
@@ -119,7 +110,7 @@ const Combat = () => {
         level={currentLevel}
         levelPercentage={currentPercentage}
         targetLevel={targetLevel}
-        material={monster}
+        element={monster}
         boosts={boosts}
         keywords={[""]}
         skill="Combat"

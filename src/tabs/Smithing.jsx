@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import "../App.css";
-// import { styled } from "@mui/material/styles";
 // import Slider from "./components/Slider";
 import Attribute from "../components/Attribute";
 import Display from "../components/Display";
@@ -11,7 +10,6 @@ import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
 import CustomSwitch from "../components/CustomSwitch";
 import BoostCheckbox from "../components/Checkbox";
-// import { CodeSharp } from "@mui/icons-material";
 
 // Max bar input: 567.019.187
 const Smithing = () => {
@@ -32,13 +30,10 @@ const Smithing = () => {
   const updateTargetLevel = (targetLevel) => {
     setTargetLevel(targetLevel);
   };
-  // Person's target material
-  const [material, setMaterial] = useState([
-    "material",
-    { name: "material", submaterials: {} },
-  ]);
-  const updateMaterial = (material) => {
-    setMaterial(material);
+  // Person's target element
+  const [element, setElement] = useState(['loading']);
+  const updateElement = (element) => {
+    setElement(element);
   };
 
   // Smithing data
@@ -110,7 +105,7 @@ const Smithing = () => {
         }}
       />
       <ToggleButtons
-        updateMaterial={updateMaterial}
+        updateElement={updateElement}
         skillsData={artisanData}
         skill="Smithing"
         currentLevel={currentLevel}
@@ -130,7 +125,7 @@ const Smithing = () => {
         level={currentLevel}
         levelPercentage={currentPercentage}
         targetLevel={targetLevel}
-        material={material}
+        element={element}
         keywords={["Bars"]}
         boosts={boosts}
         applyBoostOnSmelt={applyBoostOnSmelt}

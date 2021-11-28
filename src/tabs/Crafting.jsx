@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import "../App.css";
-// import { styled } from "@mui/material/styles";
 // import Slider from "./components/Slider";
 import Attribute from "../components/Attribute";
 import Display from "../components/Display";
@@ -28,13 +27,10 @@ const Crafting = () => {
   const updateTargetLevel = (targetLevel) => {
     setTargetLevel(targetLevel);
   };
-  // Person's target material
-  const [material, setMaterial] = useState([
-    "material",
-    { name: "material", submaterials: {} },
-  ]);
-  const updateMaterial = (material) => {
-    setMaterial(material);
+  // Person's target element
+  const [element, setElement] = useState(['loading']);
+  const updateElement = (element) => {
+    setElement(element);
   };
 
   // Crafting data
@@ -89,7 +85,7 @@ const Crafting = () => {
         }}
       />
       <ToggleButtons
-        updateMaterial={updateMaterial}
+        updateElement={updateElement}
         skillsData={artisanData}
         skill="Crafting"
         currentLevel={currentLevel}
@@ -100,7 +96,7 @@ const Crafting = () => {
         level={currentLevel}
         levelPercentage={currentPercentage}
         targetLevel={targetLevel}
-        material={material}
+        element={element}
         keywords={["Relics of"]}
         boosts={boosts}
         boostsDidUpdate={boostsDidUpdate}

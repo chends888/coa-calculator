@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import "../App.css";
-// import { styled } from "@mui/material/styles";
 // import Slider from "./components/Slider";
 import Attribute from "../components/Attribute";
 import Display from "../components/Display";
@@ -30,13 +29,10 @@ const Fishing = () => {
   const updateTargetLevel = (targetLevel) => {
     setTargetLevel(targetLevel);
   };
-  // Person's target material
-  const [material, setMaterial] = useState([
-    "material",
-    { name: "material", submaterials: {} },
-  ]);
-  const updateMaterial = (material) => {
-    setMaterial(material);
+  // Person's target element
+  const [element, setElement] = useState(['loading']);
+  const updateElement = (element) => {
+    setElement(element);
   };
 
   // Fishing data
@@ -102,7 +98,7 @@ const Fishing = () => {
       {selectFishOrBait === true ? (
         // Render bait buttons
         <ToggleButtons
-          updateMaterial={updateMaterial}
+          updateElement={updateElement}
           skillsData={gatheringData}
           skill="Fishing-Baits"
           currentLevel={currentLevel}
@@ -110,7 +106,7 @@ const Fishing = () => {
       ) : (
         // Render fish buttons
         <ToggleButtons
-          updateMaterial={updateMaterial}
+          updateElement={updateElement}
           skillsData={gatheringData}
           skill="Fishing"
           currentLevel={currentLevel}
@@ -128,7 +124,7 @@ const Fishing = () => {
         level={currentLevel}
         levelPercentage={currentPercentage}
         targetLevel={targetLevel}
-        material={material}
+        element={element}
         keywords={[""]}
         boosts={boosts}
         boostsDidUpdate={boostsDidUpdate}

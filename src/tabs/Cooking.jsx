@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 
 import "../App.css";
-// import { styled } from "@mui/material/styles";
-// import Slider from "./components/Slider";
 import Attribute from "../components/Attribute";
 import Display from "../components/Display";
-// import Dropdown from "./components/Dropdown";
 import ToggleButtons from "../components/ToggleButtons";
 import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
@@ -29,13 +26,10 @@ const Cooking = () => {
   const updateTargetLevel = (targetLevel) => {
     setTargetLevel(targetLevel);
   };
-  // Person's target material
-  const [material, setMaterial] = useState([
-    "material",
-    { name: "material", submaterials: {} },
-  ]);
-  const updateMaterial = (material) => {
-    setMaterial(material);
+  // Person's target element
+  const [element, setElement] = useState(['loading']);
+  const updateElement = (element) => {
+    setElement(element);
   };
 
   // Cooking data
@@ -99,7 +93,7 @@ const Cooking = () => {
       {selectFoodOrBait === true ? (
         // Render food buttons
         <ToggleButtons
-          updateMaterial={updateMaterial}
+          updateElement={updateElement}
           skillsData={artisanData}
           skill="Cooking-Baits"
           currentLevel={currentLevel}
@@ -107,7 +101,7 @@ const Cooking = () => {
       ) : (
         // Render baits buttons
         <ToggleButtons
-          updateMaterial={updateMaterial}
+          updateElement={updateElement}
           skillsData={artisanData}
           skill="Cooking"
           currentLevel={currentLevel}
@@ -127,7 +121,7 @@ const Cooking = () => {
           level={currentLevel}
           levelPercentage={currentPercentage}
           targetLevel={targetLevel}
-          material={material}
+          element={element}
           keywords={[""]}
           boosts={boosts}
           boostsDidUpdate={boostsDidUpdate}
@@ -139,7 +133,7 @@ const Cooking = () => {
           level={currentLevel}
           levelPercentage={currentPercentage}
           targetLevel={targetLevel}
-          material={material}
+          element={element}
           keywords={["Cooked"]}
           boosts={boosts}
           boostsDidUpdate={boostsDidUpdate}

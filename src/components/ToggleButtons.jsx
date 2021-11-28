@@ -32,23 +32,21 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
 
 
 
-const ToggleButtons = ({ updateMaterial, skillsData, skill, currentLevel }) => {
-  const [selectedMaterial, setSelectedMaterial] = React.useState();
+const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
+  const [selectedElement, setSelectedElement] = React.useState();
 
-  const handleChange = (event, newMaterial) => {
-    console.log('material:', event.currentTarget.value, newMaterial);
+  const handleChange = (event, newElement) => {
     if (event.currentTarget.value !== "loading") {
-      // setSelectedMaterial(event.currentTarget.value);
-      setSelectedMaterial(newMaterial);
-      // console.log(newMaterial, selectedMaterial);
-      if (newMaterial === null) {
-        updateMaterial(["material", { name: "material", submaterials: {} }]);
+      // setSelectedElement(event.currentTarget.value);
+      setSelectedElement(newElement);
+      // console.log(newElement, selectedElement);
+      if (newElement === null) {
+        updateElement(['loading']);
       } else {
         // console.log(currentLevel);
         // console.log(skillsData['Crafting']['Wealth']['level']);
         // console.log("Skills data: ", currentLevel >= parseInt(skillsData[skill]['Gold']['level']));
-        console.log('updating material:', event.currentTarget.value, skillsData[skill][event.currentTarget.value]);
-        updateMaterial([
+        updateElement([
           event.currentTarget.value,
           skillsData[skill][event.currentTarget.value],
         ]);
@@ -93,7 +91,7 @@ const ToggleButtons = ({ updateMaterial, skillsData, skill, currentLevel }) => {
               parseInt(skillsData[skill][attribute]['level']) >= levelRange[0] && parseInt(skillsData[skill][attribute]['level']) <= levelRange[1] ? (
                 <StyledToggleButtonGroup
                   size="small"
-                  value={selectedMaterial}
+                  value={selectedElement}
                   exclusive
                   onChange={handleChange}
                   sx={{
@@ -168,17 +166,17 @@ const ToggleButtons = ({ updateMaterial, skillsData, skill, currentLevel }) => {
 
           <StyledToggleButtonGroup
             size="small"
-            value={selectedMaterial}
+            value={selectedElement}
             exclusive
             onChange={handleChange}
             sx={{
               padding: 1,
             }}
           >
-            {Object.keys(skillsData[skill]).map((material) =>
-              currentLevel >= parseInt(skillsData[skill][material]['level']) ? (
+            {Object.keys(skillsData[skill]).map((element) =>
+              currentLevel >= parseInt(skillsData[skill][element]['level']) ? (
                 <ToggleButton
-                  value={material}
+                  value={element}
                   onClick={handleChange}
                   sx={{
 
@@ -196,19 +194,19 @@ const ToggleButtons = ({ updateMaterial, skillsData, skill, currentLevel }) => {
                   // onClick={handleChange}
                   >
                     <img
-                      src={`/images/${skill}/${material}.gif`}
+                      src={`/images/${skill}/${element}.gif`}
                       width="22"
                       height="22"
-                      value={material}
+                      value={element}
                       // onClick={handleChange}
                       alt=""
                     />
                   </Box>
-                  {material}
+                  {element}
                 </ToggleButton>
               ) : (
                 <ToggleButton
-                  value={material}
+                  value={element}
                   disabled
                   sx={{
                     "& > :not(style)": {
@@ -225,15 +223,15 @@ const ToggleButtons = ({ updateMaterial, skillsData, skill, currentLevel }) => {
                   // onClick={handleChange}
                   >
                     <img
-                      src={`/images/${skill}/Gray ${material}.gif`}
+                      src={`/images/${skill}/Gray ${element}.gif`}
                       width="22"
                       height="22"
-                      value={material}
+                      value={element}
                       // onClick={handleChange}
                       alt=""
                     />
                   </Box>
-                  {material}
+                  {element}
                 </ToggleButton>
               )
             )}
