@@ -1,8 +1,8 @@
 import * as React from "react";
-import Switch from "@material-ui/core/Switch";
-import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
-import { styled } from "@material-ui/core/styles";
+import Switch from "@mui/material/Switch";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import { styled } from "@mui/material/styles";
 
 // const Item = styled(Paper)(({ theme }) => ({
 //   ...theme.typography.body2,

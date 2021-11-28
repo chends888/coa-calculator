@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import "../App.css";
-// import { styled } from "@material-ui/core/styles";
+// import { styled } from "@mui/material/styles";
 // import Slider from "./components/Slider";
 import Attribute from "../components/Attribute";
 import Display from "../components/Display";
@@ -11,7 +11,7 @@ import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
 import CustomSwitch from "../components/CustomSwitch";
 import BoostCheckbox from "../components/Checkbox";
-// import { CodeSharp } from "@material-ui/icons";
+// import { CodeSharp } from "@mui/icons-material";
 
 // Max bar input: 567.019.187
 const Smithing = () => {
@@ -41,7 +41,7 @@ const Smithing = () => {
     setMaterial(material);
   };
 
-  // Person's target material
+  // Smithing data
   const [artisanData, setArtisanData] = useState({});
 
   // Exp boosts
@@ -52,7 +52,9 @@ const Smithing = () => {
     { name: "Infernal Hammer", value: 1.04, active: false },
   ]);
   const updateBoosts = (boosts) => {
+    // const tempBoosts = moment(boosts);
     setBoosts(boosts);
+    // this.forceUpdate();
     setBoostDidUpdate(!boostsDidUpdate);
     // console.log("Boosts update", updatedBoostName);
   };
@@ -62,7 +64,7 @@ const Smithing = () => {
     // console.log(applyBoostOnSmelt);
     setApplyBoostOnSmelt(applyBoostOnSmelt);
   };
-  // Smelt or buy bars controll
+  // Smelt or buy bars control
   const [buyOrSmeltBars, setBuyOrSmeltBars] = useState(false);
   const updateBuyOrSmeltBars = (buyOrSmeltBars) => {
     // console.log(buyOrSmeltBars);
@@ -134,6 +136,7 @@ const Smithing = () => {
         applyBoostOnSmelt={applyBoostOnSmelt}
         buyOrSmeltBars={buyOrSmeltBars}
         skill="Smithing"
+        boostsDidUpdate={boostsDidUpdate}
       />
       {/* <Slider sliderName={"Your Smithing XP"}/>
       <Slider sliderName={"Ore 1"}/>

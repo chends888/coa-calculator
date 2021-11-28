@@ -1,9 +1,9 @@
 import React from "react";
-// import { styled } from "@material-ui/core/styles";
-// import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
-import Box from "@material-ui/core/Box";
-import InputAdornment from "@material-ui/core/InputAdornment";
+// import { styled } from "@mui/material/styles";
+// import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import InputAdornment from "@mui/material/InputAdornment";
 
 const Attribute = ({
   maxValue,

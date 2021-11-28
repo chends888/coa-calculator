@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import "../App.css";
-// import { styled } from "@material-ui/core/styles";
+// import { styled } from "@mui/material/styles";
 // import Slider from "./components/Slider";
 import Attribute from "../components/Attribute";
 import Display from "../components/Display";
@@ -37,17 +37,17 @@ const Crafting = () => {
     setMaterial(material);
   };
 
-  // Person's target material
+  // Crafting data
   const [artisanData, setArtisanData] = useState({});
 
   // Exp boosts
-  const [boostsDidUpdate, setBoostDidUpdate] = useState(["Boost name", false]);
+  const [boostsDidUpdate, setBoostDidUpdate] = useState(false);
   const [boosts, setBoosts] = useState([
     { name: "World Boost", value: 1.5, active: false },
   ]);
   const updateBoosts = (boosts, updatedBoostName) => {
     setBoosts(boosts);
-    setBoostDidUpdate([updatedBoostName, !boostsDidUpdate[1]]);
+    setBoostDidUpdate(!boostsDidUpdate);
     // console.log("Boosts update", updatedBoostName);
   };
 

@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Tabs, Tab, Box } from "@material-ui/core";
-// import { ThemeProvider, createTheme } from "@material-ui/core/styles";
+import { Tabs, Tab, Box } from "@mui/material";
+// import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 import Header from "./components/Header";
 import Smithing from "./tabs/Smithing";
@@ -10,9 +10,10 @@ import Crafting from "./tabs/Crafting";
 import Mining from "./tabs/Mining";
 import Woodcutting from "./tabs/Woodcutting";
 import Fishing from "./tabs/Fishing";
+import Combat from "./tabs/Combat";
 
-// import Brightness4Icon from '@material-ui/icons/Brightness4';
-// import Brightness7Icon from '@material-ui/icons/Brightness7';
+// import Brightness4Icon from '@mui/icons-material/Brightness4';
+// import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 const Home = (props) => {
   const { match, history, currentTheme, updateCurrentTheme } = props;
@@ -28,6 +29,7 @@ const Home = (props) => {
     3: "mining",
     4: "woodcutting",
     5: "fishing",
+    6: "combat",
   };
 
   const indexToTabName = {
@@ -37,6 +39,7 @@ const Home = (props) => {
     mining: 3,
     woodcutting: 4,
     fishing: 5,
+    combat: 6,
   };
 
   const [selectedTab, setSelectedTab] = React.useState(indexToTabName[page]);
@@ -82,14 +85,15 @@ const Home = (props) => {
             <Tab label="Mining" />
             <Tab label="Woodcutting" />
             <Tab label="Fishing" />
+            <Tab label="Combat"/>
           </Tabs>
-          <Tabs
-            // value={selectedTab}
-            // onChange={handleChange}
+          {/* <Tabs
+            value={selectedTab}
+            onChange={handleChange}
             variant="scrollable"
           >
-          <Tab label="Combat (Coming Soon)" disabled/>
-          </Tabs>
+          <Tab label="Combat"/>
+          </Tabs> */}
         </Box>
       </Box>
       {selectedTab === 0 && <Smithing />}
@@ -98,6 +102,7 @@ const Home = (props) => {
       {selectedTab === 3 && <Mining />}
       {selectedTab === 4 && <Woodcutting />}
       {selectedTab === 5 && <Fishing />}
+      {selectedTab === 6 && <Combat />}
     </>
   );
 };

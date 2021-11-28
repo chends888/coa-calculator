@@ -1,7 +1,7 @@
 import React from "react";
-import { styled } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Slider from "@material-ui/core/Slider";
+import { styled } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
+import Slider from "@mui/material/Slider";
 
 const useStyles = styled((theme) => ({
   slider: {

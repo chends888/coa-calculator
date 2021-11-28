@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import App from "./App";
 
 
-import { ThemeProvider, createTheme } from "@material-ui/core/styles";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const AppContainer = () => {
   const [currentTheme, setCurrentTheme] = useState("dark");

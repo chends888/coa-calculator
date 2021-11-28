@@ -1,10 +1,10 @@
 import React from "react";
 
-// import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Box from "@material-ui/core/Box";
-import { ToggleButton } from "@material-ui/core";
-import ToggleButtonGroup from "@material-ui/core/ToggleButtonGroup";
-import { styled } from "@material-ui/core/styles";
+// import FormControlLabel from "@mui/material/FormControlLabel";
+import Box from "@mui/material/Box";
+import { ToggleButton } from "@mui/material";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import { styled } from "@mui/material/styles";
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   "& .Mui-selected": {
@@ -68,7 +68,7 @@ const Boosts = ({ boosts, updateBoosts }) => {
           value={selectedBoost}
           // exclusive
           onChange={handleChange}
-          // sx={{ border: 1, borderColor: "#c4c4c4", padding: 1 }}
+        // sx={{ border: 1, borderColor: "#c4c4c4", padding: 1 }}
         >
           {boosts !== undefined ? (
             boosts.map((boost) => (
@@ -88,33 +88,32 @@ const Boosts = ({ boosts, updateBoosts }) => {
                     marginRight: 0.4,
                   }}
                 >
-                  <img
-                    src={`/images/Boosts/${boost.name}.png`}
-                    width="22"
-                    height="22"
-                    value={boost.name}
-                    onClick={handleChange}
-                    alt="Icon"
-                  />
+                  {boost.name === 'Small or Medium Exp Pot' ? (
+                    <img
+                      src={`/images/Boosts/${boost.name}.gif`}
+                      width="27"
+                      height="22"
+                      value={boost.name}
+                      onClick={handleChange}
+                      alt=""
+                    />
+                  ) : (
+                    <img
+                      src={`/images/Boosts/${boost.name}.gif`}
+                      width="22"
+                      height="22"
+                      value={boost.name}
+                      onClick={handleChange}
+                      alt=""
+                    />
+                  )}
                 </Box>
                 {boost.name +
                   " (+" +
                   Math.floor((boost.value - 1) * 100) +
                   "%)"}
               </ToggleButton>
-              // <FormControlLabel
-              //   control={
-              //     <Checkbox
-              //       // checked={boost.active}
-              //       onChange={() => {
-              //         handleChange(boost.name);
-              //       }}
-              //     />
-              //   }
-              //   label={
-              //     boost.name + "(+" + Math.floor((boost.value - 1) * 100) + "%)"
-              //   }
-              // />
+
             ))
           ) : (
             <></>

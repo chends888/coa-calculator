@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import "../App.css";
-// import { styled } from "@material-ui/core/styles";
+// import { styled } from "@mui/material/styles";
 // import Slider from "./components/Slider";
 import Attribute from "../components/Attribute";
 import Display from "../components/Display";
@@ -10,7 +10,7 @@ import ToggleButtons from "../components/ToggleButtons";
 import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
 
-const Mining = () => {
+const Woodcutting = () => {
   // Person's current level
   const [currentLevel, setCurrentLevel] = useState(1);
   const updateCurrentLevel = (currentLevel) => {
@@ -37,17 +37,17 @@ const Mining = () => {
     setMaterial(material);
   };
 
-  // Person's target material
+  // Woodcutting data
   const [gatheringData, setGatheringData] = useState({});
 
   // Exp boosts
-  const [boostsDidUpdate, setBoostDidUpdate] = useState(["Boost name", false]);
+  const [boostsDidUpdate, setBoostDidUpdate] = useState(false);
   const [boosts, setBoosts] = useState([
     { name: "World Boost", value: 1.5, active: false },
   ]);
   const updateBoosts = (boosts, updatedBoostName) => {
     setBoosts(boosts);
-    setBoostDidUpdate([updatedBoostName, !boostsDidUpdate[1]]);
+    setBoostDidUpdate(!boostsDidUpdate);
     // console.log("Boosts update", updatedBoostName);
   };
 
@@ -73,7 +73,7 @@ const Mining = () => {
   return (
     <>
       <Attribute
-        
+
         maxValue={120}
         attributeName={"Your Woodcutting Level"}
         updateAttribute={updateCurrentLevel}
@@ -81,7 +81,7 @@ const Mining = () => {
         isCurrentLevel={true}
       />
       <Attribute
-        
+
         maxValue={120}
         attributeName={"Target Woodcutting Level"}
         updateAttribute={updateTargetLevel}
@@ -116,4 +116,4 @@ const Mining = () => {
   );
 };
 
-export default Mining;
+export default Woodcutting;

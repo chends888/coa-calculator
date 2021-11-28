@@ -10,3 +10,9 @@ This is the front end of a calculator built with React to support calculating Sk
 
 ## Run on develop server:
 `npm run start`
+
+## Dependencies
+
+`npm install @mui/material --save`
+
+`npm install @mui/icons-material --save`

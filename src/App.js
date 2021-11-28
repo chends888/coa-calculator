@@ -4,7 +4,7 @@ import Home from "./Home";
 import { Route, Switch, Redirect } from "react-router-dom";
 import HttpsRedirect from "react-https-redirect";
 
-// import { ThemeProvider, createTheme } from "@material-ui/core/styles";
+// import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const App = ({currentTheme, updateCurrentTheme}) => {
   // const [currentTheme, setCurrentTheme] = useState("dark");

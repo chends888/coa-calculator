@@ -1,12 +1,12 @@
 import React from "react";
-// import Paper from '@material-ui/core/Paper';
+// import Paper from '@mui/material/Paper';
 
-// import { styled } from "@material-ui/core/styles";
-// import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
+// import { styled } from "@mui/material/styles";
+// import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
 
 const Display = ({
   level,
@@ -70,7 +70,7 @@ const Display = ({
       const currentLevelExp =
         parseInt(expData[level]) +
         (parseInt(expData[level + 1]) - parseInt(expData[level])) *
-          levelPercentage;
+        levelPercentage;
       // ((expData[level + 1] - expData[level]) * levelPercentage) + expData[level];
       // console.log("level XP: ", currentLevelExp);
       const targetLevelExp = expData[targetLevel];
@@ -107,9 +107,22 @@ const Display = ({
               {material[0] === "material" ? (
                 // Render empty component in case no material was selected
                 <></>
+              ) : skill === "Combat" ? (
+                <ListItemText
+                  primary={
+                    "Total " +
+                    material[0] +
+                    ": " +
+                    addCommas(
+                      Math.ceil(
+                        expGap /
+                        (calculateMaterialXpBoost(material[1]["xp"]))
+                      )
+                    )
+                  }
+                />
               ) : skill === "Smithing" ? (
                 // Render results for Smithing
-                // TODO: instead of if-else, try if-elif-elif-else
                 buyOrSmeltBars ? (
                   // Don't include smelting XP
                   <ListItemText
@@ -122,7 +135,7 @@ const Display = ({
                       addCommas(
                         Math.ceil(
                           expGap /
-                            calculateMaterialXpBoost(material[1]["xp-forge"])
+                          calculateMaterialXpBoost(material[1]["xp-forge"])
                         )
                       )
                     }
@@ -139,8 +152,8 @@ const Display = ({
                       addCommas(
                         Math.ceil(
                           expGap /
-                            (calculateMaterialXpBoost(material[1]["xp-forge"]) +
-                              calculateMaterialXpBoost(material[1]["xp-smelt"]))
+                          (calculateMaterialXpBoost(material[1]["xp-forge"]) +
+                            calculateMaterialXpBoost(material[1]["xp-smelt"]))
                         )
                       )
                     }
@@ -157,32 +170,49 @@ const Display = ({
                       addCommas(
                         Math.ceil(
                           expGap /
-                            (calculateMaterialXpBoost(material[1]["xp-forge"]) +
-                              parseFloat(material[1]["xp-smelt"]))
+                          (calculateMaterialXpBoost(material[1]["xp-forge"]) +
+                            parseFloat(material[1]["xp-smelt"]))
                         )
                       )
                     }
                   />
                 )
               ) : // ) : keywords[0] === "Relics of" ? (
-              skill === "Crafting" ? (
-                // Render results for Crafting
-                // Cursed relics exception
-                material[0] === "Cursed" ? (
-                  <ListItemText
-                    primary={
-                      "Total " +
-                      material[0] +
-                      " Relics: " +
-                      addCommas(
-                        Math.ceil(
-                          expGap / calculateMaterialXpBoost(material[1]["xp"])
+                skill === "Crafting" ? (
+                  // Render results for Crafting
+                  // Cursed relics exception
+                  material[0] === "Cursed" ? (
+                    <ListItemText
+                      primary={
+                        "Total " +
+                        material[0] +
+                        " Relics: " +
+                        addCommas(
+                          Math.ceil(
+                            expGap / calculateMaterialXpBoost(material[1]["xp"])
+                          )
                         )
-                      )
-                      // addCommas(Math.ceil(expGap / calculateMaterialXpBoost(material[1]["xp"])))
-                    }
-                  />
+                        // addCommas(Math.ceil(expGap / calculateMaterialXpBoost(material[1]["xp"])))
+                      }
+                    />
+                  ) : (
+                    <ListItemText
+                      primary={
+                        "Total " +
+                        keywords[0] +
+                        " " +
+                        material[0] +
+                        ": " +
+                        addCommas(
+                          Math.ceil(
+                            expGap / calculateMaterialXpBoost(material[1]["xp"])
+                          )
+                        )
+                      }
+                    />
+                  )
                 ) : (
+                  // Render results for Cooking
                   <ListItemText
                     primary={
                       "Total " +
@@ -197,121 +227,108 @@ const Display = ({
                       )
                     }
                   />
-                )
-              ) : (
-                // Render results for Cooking
-                <ListItemText
-                  primary={
-                    "Total " +
-                    keywords[0] +
-                    " " +
-                    material[0] +
-                    ": " +
-                    addCommas(
-                      Math.ceil(
-                        expGap / calculateMaterialXpBoost(material[1]["xp"])
-                      )
-                    )
-                  }
-                />
-              )}
+                )}
             </ListItem>
 
             {/* Render submaterials */}
-            {Object.keys(material[1]["submaterials"]).map((submaterial) => (
-              <ListItem>
-                {skill === "Smithing" ? (
-                  // Smithing exception
-                  applyBoostOnSmelt ? (
-                    // Apply Boosts on bar Smelting
-                    buyOrSmeltBars ? (
-                      // Don't include smelting XP
-                      <ListItemText
-                        primary={
-                          "Total " +
-                          submaterial +
-                          ": " +
-                          addCommas(
-                            Math.ceil(
-                              expGap /
+
+            {skill === "Combat" ? (
+              <></>
+            ) : (
+              Object.keys(material[1]["submaterials"]).map((submaterial) => (
+                <ListItem>
+                  {skill === "Smithing" ? (
+                    // Smithing exception
+                    applyBoostOnSmelt ? (
+                      // Apply Boosts on bar Smelting
+                      buyOrSmeltBars ? (
+                        // Don't include smelting XP
+                        <ListItemText
+                          primary={
+                            "Total " +
+                            submaterial +
+                            ": " +
+                            addCommas(
+                              Math.ceil(
+                                expGap /
                                 calculateMaterialXpBoost(
                                   material[1]["xp-forge"]
                                 )
-                            ) * material[1]["submaterials"][submaterial]
-                          )
-                        }
-                      />
-                    ) : (
-                      // Include smelting XP
-                      <ListItemText
-                        primary={
-                          "Total " +
-                          submaterial +
-                          ": " +
-                          addCommas(
-                            Math.ceil(
-                              expGap /
+                              ) * material[1]["submaterials"][submaterial]
+                            )
+                          }
+                        />
+                      ) : (
+                        // Include smelting XP
+                        <ListItemText
+                          primary={
+                            "Total " +
+                            submaterial +
+                            ": " +
+                            addCommas(
+                              Math.ceil(
+                                expGap /
                                 (calculateMaterialXpBoost(
                                   material[1]["xp-forge"]
                                 ) +
                                   calculateMaterialXpBoost(
                                     material[1]["xp-smelt"]
                                   ))
-                            ) * material[1]["submaterials"][submaterial]
-                          )
-                        }
-                      />
-                    )
-                  ) : // Don't apply Boosts on bar Smelting
-                  buyOrSmeltBars ? (
-                    // Don't include smelting XP
-                    <ListItemText
-                      primary={
-                        "Total " +
-                        submaterial +
-                        ": " +
-                        addCommas(
-                          Math.ceil(
-                            expGap /
-                              calculateMaterialXpBoost(material[1]["xp-forge"])
-                          ) * material[1]["submaterials"][submaterial]
-                        )
-                      }
-                    />
-                  ) : (
-                    <ListItemText
-                      primary={
-                        "Total " +
-                        submaterial +
-                        ": " +
-                        addCommas(
-                          Math.ceil(
-                            expGap /
-                              (calculateMaterialXpBoost(
-                                material[1]["xp-forge"]
-                              ) +
-                                parseFloat(material[1]["xp-smelt"]))
-                          ) * material[1]["submaterials"][submaterial]
-                        )
-                      }
-                    />
-                  )
-                ) : (
-                  <ListItemText
-                    primary={
-                      "Total " +
-                      submaterial +
-                      ": " +
-                      addCommas(
-                        Math.ceil(
-                          expGap / calculateMaterialXpBoost(material[1]["xp"])
-                        ) * material[1]["submaterials"][submaterial]
+                              ) * material[1]["submaterials"][submaterial]
+                            )
+                          }
+                        />
                       )
-                    }
-                  />
-                )}
-              </ListItem>
-            ))}
+                    ) : // Don't apply Boosts on bar Smelting
+                      buyOrSmeltBars ? (
+                        // Don't include smelting XP
+                        <ListItemText
+                          primary={
+                            "Total " +
+                            submaterial +
+                            ": " +
+                            addCommas(
+                              Math.ceil(
+                                expGap /
+                                calculateMaterialXpBoost(material[1]["xp-forge"])
+                              ) * material[1]["submaterials"][submaterial]
+                            )
+                          }
+                        />
+                      ) : (
+                        <ListItemText
+                          primary={
+                            "Total " +
+                            submaterial +
+                            ": " +
+                            addCommas(
+                              Math.ceil(
+                                expGap /
+                                (calculateMaterialXpBoost(
+                                  material[1]["xp-forge"]
+                                ) +
+                                  parseFloat(material[1]["xp-smelt"]))
+                              ) * material[1]["submaterials"][submaterial]
+                            )
+                          }
+                        />
+                      )
+                  ) : skill === "Crafting" || skill === "Cooking" || skill === "Mining" || skill === "Woodcutting" || skill === "Fishing"(
+                    <ListItemText
+                      primary={
+                        "Total " +
+                        submaterial +
+                        ": " +
+                        addCommas(
+                          Math.ceil(
+                            expGap / calculateMaterialXpBoost(material[1]["xp"])
+                          ) * material[1]["submaterials"][submaterial]
+                        )
+                      }
+                    />
+                  )}
+                </ListItem>
+              )))}
             {/* Render number of inventories */}
             <ListItem>
               {/* Render empty component if not material is selected */}
@@ -325,8 +342,8 @@ const Display = ({
                       addCommas(
                         Math.ceil(
                           expGap /
-                            calculateMaterialXpBoost(material[1]["xp"]) /
-                            16
+                          calculateMaterialXpBoost(material[1]["xp"]) /
+                          16
                         )
                       )
                     }
@@ -338,8 +355,8 @@ const Display = ({
                       addCommas(
                         Math.ceil(
                           expGap /
-                            calculateMaterialXpBoost(material[1]["xp"]) /
-                            36
+                          calculateMaterialXpBoost(material[1]["xp"]) /
+                          36
                         )
                       )
                     }
@@ -352,8 +369,8 @@ const Display = ({
                     addCommas(
                       Math.ceil(
                         expGap /
-                          calculateMaterialXpBoost(material[1]["xp"]) /
-                          16
+                        calculateMaterialXpBoost(material[1]["xp"]) /
+                        16
                       )
                     )
                   }
@@ -365,8 +382,8 @@ const Display = ({
                     addCommas(
                       Math.ceil(
                         expGap /
-                          calculateMaterialXpBoost(material[1]["xp"]) /
-                          36
+                        calculateMaterialXpBoost(material[1]["xp"]) /
+                        36
                       )
                     )
                   }

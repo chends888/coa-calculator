@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import "../App.css";
-// import { styled } from "@material-ui/core/styles";
+// import { styled } from "@mui/material/styles";
 // import Slider from "./components/Slider";
 import Attribute from "../components/Attribute";
 import Display from "../components/Display";
@@ -37,18 +37,18 @@ const Mining = () => {
     setMaterial(material);
   };
 
-  // Person's target material
+  // Mining data
   const [gatheringData, setGatheringData] = useState({});
 
   // Exp boosts
-  const [boostsDidUpdate, setBoostDidUpdate] = useState(["Boost name", false]);
+  const [boostsDidUpdate, setBoostDidUpdate] = useState(false);
   const [boosts, setBoosts] = useState([
     { name: "World Boost", value: 1.5, active: false },
     { name: "Prospector's Necklace", value: 1.05, active: false },
   ]);
   const updateBoosts = (boosts, updatedBoostName) => {
     setBoosts(boosts);
-    setBoostDidUpdate([updatedBoostName, !boostsDidUpdate[1]]);
+    setBoostDidUpdate(!boostsDidUpdate);
     // console.log("Boosts update", updatedBoostName);
   };
 
@@ -74,7 +74,7 @@ const Mining = () => {
   return (
     <>
       <Attribute
-        
+
         maxValue={120}
         attributeName={"Your Mining Level"}
         updateAttribute={updateCurrentLevel}
@@ -82,7 +82,7 @@ const Mining = () => {
         isCurrentLevel={true}
       />
       <Attribute
-        
+
         maxValue={120}
         attributeName={"Target Mining Level"}
         updateAttribute={updateTargetLevel}
