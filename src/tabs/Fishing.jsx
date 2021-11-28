@@ -4,7 +4,6 @@ import "../App.css";
 // import Slider from "./components/Slider";
 import Attribute from "../components/Attribute";
 import Display from "../components/Display";
-// import Dropdown from "./components/Dropdown";
 import ToggleButtons from "../components/ToggleButtons";
 import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
@@ -57,8 +56,13 @@ const Fishing = () => {
   };
 
   React.useEffect(() => {
-    // fetch("http://localhost:8000/gathering")
-    fetch("https://coa-calculator-backend.herokuapp.com/gathering")
+    // Custom url depending if on develop or prod server
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+      var url = "http://localhost:8000/gathering";
+    } else {
+      var url = "https://coa-calculator-backend.herokuapp.com/gathering";
+    }
+    fetch(url)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -71,7 +75,7 @@ const Fishing = () => {
         // console.log("set busy");
       })
       .catch((error) => {
-        // console.log("Error:", error);
+        console.log("Error on fetch Gathering Skills data:", error);
       });
   }, []);
 

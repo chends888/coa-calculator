@@ -5,10 +5,11 @@ import "../App.css";
 // import Slider from "./components/Slider";
 import Attribute from "../components/Attribute";
 import Display from "../components/Display";
-// import Dropdown from "./components/Dropdown";
 import ToggleButtons from "../components/ToggleButtons";
 import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
+import Alert from '@mui/material/Alert';
+
 
 
 
@@ -54,8 +55,13 @@ const Combat = () => {
   };
 
   React.useEffect(() => {
-    // fetch("http://localhost:8000/monsters")
-    fetch("https://coa-calculator-backend.herokuapp.com/monsters")
+    // Custom url depending if on develop or prod server
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+      var url = "http://localhost:8000/monsters";
+    } else {
+      var url = "https://coa-calculator-backend.herokuapp.com/monsters";
+    }
+    fetch(url)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -64,18 +70,18 @@ const Combat = () => {
       })
       .then((data) => {
         // setBusy(false);
-        console.log("got data", data);
         setMonsterData(data);
       })
       .catch((error) => {
-        // console.log("Error:", error);
+        console.log("Error on fetch Monsters data:", error);
       });
   }, []);
 
   return (
     <>
-      <Attribute
+      <Alert severity="info">Missing or bugged icons will be updated once new sprites are released</Alert>
 
+      <Attribute
         maxValue={120}
         attributeName={"Your Combat Level"}
         updateAttribute={updateCurrentLevel}
@@ -92,12 +98,6 @@ const Combat = () => {
           alignItems: "center",
         }}
       />
-      {/* <Dropdown
-        updateAttribute={updateMonster}
-        data={monsterData}
-        skill="Combat"
-        // currentLevel={currentLevel}
-      /> */}
       <ToggleButtons
         updateElement={updateMonster}
         skillsData={monsterData}

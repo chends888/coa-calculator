@@ -54,8 +54,13 @@ const Cooking = () => {
   };
 
   React.useEffect(() => {
-    // fetch("http://localhost:8000/artisan")
-    fetch("https://coa-calculator-backend.herokuapp.com/artisan")
+    // Custom url depending if on develop or prod server
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+      var url = "http://localhost:8000/artisan";
+    } else {
+      var url = "https://coa-calculator-backend.herokuapp.com/artisan";
+    }
+    fetch(url)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -68,7 +73,7 @@ const Cooking = () => {
         // console.log("set busy");
       })
       .catch((error) => {
-        // console.log("Error:", error);
+        console.log("Error on fetch Artisan Skills data:", error);
       });
   }, []);
 

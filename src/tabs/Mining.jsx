@@ -4,7 +4,6 @@ import "../App.css";
 // import Slider from "./components/Slider";
 import Attribute from "../components/Attribute";
 import Display from "../components/Display";
-// import Dropdown from "./components/Dropdown";
 import ToggleButtons from "../components/ToggleButtons";
 import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
@@ -49,13 +48,10 @@ const Mining = () => {
   };
 
   React.useEffect(() => {
+    // Custom url depending if on develop or prod server
     if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-      // development build code
-      console.log('develop');
       var url = "http://localhost:8000/gathering";
     } else {
-      // production build code
-      console.log('prod');
       var url = "https://coa-calculator-backend.herokuapp.com/gathering";
     }
     fetch(url)
@@ -71,7 +67,7 @@ const Mining = () => {
         // console.log("set busy");
       })
       .catch((error) => {
-        // console.log("Error:", error);
+        console.log("Error on fetch Gathering Skills data:", error);
       });
   }, []);
 

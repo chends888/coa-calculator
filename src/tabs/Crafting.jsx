@@ -4,7 +4,6 @@ import "../App.css";
 // import Slider from "./components/Slider";
 import Attribute from "../components/Attribute";
 import Display from "../components/Display";
-// import Dropdown from "./components/Dropdown";
 import ToggleButtons from "../components/ToggleButtons";
 import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
@@ -48,8 +47,13 @@ const Crafting = () => {
   };
 
   React.useEffect(() => {
-    // fetch("http://localhost:8000/artisan")
-    fetch("https://coa-calculator-backend.herokuapp.com/artisan")
+    // Custom url depending if on develop or prod server
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+      var url = "http://localhost:8000/artisan";
+    } else {
+      var url = "https://coa-calculator-backend.herokuapp.com/artisan";
+    }
+    fetch(url)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -62,7 +66,7 @@ const Crafting = () => {
         // console.log("set busy");
       })
       .catch((error) => {
-        // console.log("Error:", error);
+        console.log("Error on fetch Artisan Skills data:", error);
       });
   }, []);
 
