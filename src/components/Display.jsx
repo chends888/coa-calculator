@@ -293,7 +293,7 @@ const Display = ({
                       }
                     />
                   )
-                ) : skill === "Crafting" || skill === "Cooking" || skill === "Mining" || skill === "Woodcutting" || skill === "Fishing"(
+                ) : (
                   <ListItemText
                     primary={
                       "Total " +
