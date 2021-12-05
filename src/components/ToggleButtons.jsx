@@ -53,6 +53,7 @@ const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
       }
     }
   };
+
   const createButtons = (levelRange) => {
     return (
       <Box
@@ -67,18 +68,7 @@ const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
         }}
       >
 
-        <Accordion
-        // sx={{
-        //   // display: "flex",
-        //   // flexWrap: "wrap",
-        //   // justifyContent: "center",
-        //   // maxWidth: 450,
-        //   maxWidth: 200,
-        //   marginBottom: 1,
-        //   marginLeft: "auto",
-        //   marginRight: "auto",
-        // }}
-        >
+        <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
@@ -119,7 +109,6 @@ const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
                         width="22"
                         height="22"
                         value={attribute}
-                        // onClick={handleChange}
                         alt=""
                       />
                     </Box>
@@ -135,6 +124,7 @@ const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
       </Box>
     )
   }
+
   return (
     <Box
       sx={{
@@ -150,6 +140,7 @@ const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
       }}
     >
       {skillsData[skill] !== undefined ? (
+        // Custom accordion for Combat
         skill === 'Combat' ? (
           <Box
             sx={{
@@ -163,7 +154,7 @@ const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
             {createButtons([91, 150])}
           </Box>
         ) : (
-
+          // All of other skill's buttons
           <StyledToggleButtonGroup
             size="small"
             value={selectedElement}
@@ -191,14 +182,12 @@ const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
                     sx={{
                       marginRight: 0.4,
                     }}
-                  // onClick={handleChange}
                   >
                     <img
                       src={`/images/${skill}/${element}.gif`}
                       width="22"
                       height="22"
                       value={element}
-                      // onClick={handleChange}
                       alt=""
                     />
                   </Box>
@@ -220,14 +209,12 @@ const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
                     sx={{
                       marginRight: 0.4,
                     }}
-                  // onClick={handleChange}
                   >
                     <img
                       src={`/images/${skill}/Gray ${element}.gif`}
                       width="22"
                       height="22"
                       value={element}
-                      // onClick={handleChange}
                       alt=""
                     />
                   </Box>
@@ -237,7 +224,7 @@ const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
             )}
           </StyledToggleButtonGroup>
         )) : (
-        <ToggleButton value="loading" > Loading...</ToggleButton>
+        <ToggleButton value="loading" >Loading...</ToggleButton>
       )
       }
     </Box >

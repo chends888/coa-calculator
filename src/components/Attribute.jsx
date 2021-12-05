@@ -17,8 +17,6 @@ const Attribute = ({
 
   const checkAndUpdateValue = (currentValue, newValue) => {
     let finalValue;
-    // console.log('maxValue:', maxValue);
-    // console.log('maxValue:', maxValue);
     newValue = Math.floor(newValue);
     // console.log(currentValue, newValue);
     // Check if value is above minimum or equal to undefined (when input is empty)

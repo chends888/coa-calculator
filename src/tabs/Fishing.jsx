@@ -33,6 +33,10 @@ const Fishing = () => {
   const updateElement = (element) => {
     setElement(element);
   };
+  const [lolliPrice, setLolliPrice] = useState(0);
+  const updateLolliPrice = (lolliPrice) => {
+    setLolliPrice(lolliPrice);
+  };
 
   // Fishing data
   const [gatheringData, setGatheringData] = useState({});
@@ -82,7 +86,6 @@ const Fishing = () => {
   return (
     <>
       <Attribute
-        
         maxValue={120}
         attributeName={"Your Fishing Level"}
         updateAttribute={updateCurrentLevel}
@@ -90,7 +93,6 @@ const Fishing = () => {
         isCurrentLevel={true}
       />
       <Attribute
-        
         maxValue={120}
         attributeName={"Target Fishing Level"}
         updateAttribute={updateTargetLevel}
@@ -124,6 +126,20 @@ const Fishing = () => {
       />
       <Boosts boosts={boosts} updateBoosts={updateBoosts} />
 
+      { element[0] === 'Bass bait' ? (
+        <Attribute
+          maxValue={9999999999}
+          attributeName={"Current Lolli Price"}
+          updateAttribute={updateLolliPrice}
+          sx={{
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        />
+      ): (
+        <></>
+      )}
+
       <Display
         level={currentLevel}
         levelPercentage={currentPercentage}
@@ -133,6 +149,7 @@ const Fishing = () => {
         boosts={boosts}
         boostsDidUpdate={boostsDidUpdate}
         skill="Fishing"
+        lolliPrice={lolliPrice}
       />
       {/* <Slider sliderName={"Your Smithing XP"}/>
       <Slider sliderName={"Ore 1"}/>

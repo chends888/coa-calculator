@@ -9,6 +9,7 @@ import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
 import CustomSwitch from "../components/CustomSwitch";
 import BoostCheckbox from "../components/Checkbox";
+// import StickyHeadTable from "../components/Table";
 
 // Max bar input: 567.019.187
 const Smithing = () => {
@@ -59,7 +60,7 @@ const Smithing = () => {
     setApplyBoostOnSmelt(applyBoostOnSmelt);
   };
   // Smelt or buy bars control
-  const [buyOrSmeltBars, setBuyOrSmeltBars] = useState(false);
+  const [buyOrSmeltBars, setBuyOrSmeltBars] = useState(true);
   const updateBuyOrSmeltBars = (buyOrSmeltBars) => {
     // console.log(buyOrSmeltBars);
     // console.log(buyOrSmeltBars);
@@ -117,8 +118,8 @@ const Smithing = () => {
       <CustomSwitch
         value={buyOrSmeltBars}
         updateValue={updateBuyOrSmeltBars}
-        falseText="Smelt Bars"
-        trueText="Buy Bars"
+        trueText="Smelt Bars"
+        falseText="Buy Bars"
       />
       <BoostCheckbox
         applyBoostOnSmelt={applyBoostOnSmelt}
@@ -137,9 +138,7 @@ const Smithing = () => {
         skill="Smithing"
         boostsDidUpdate={boostsDidUpdate}
       />
-      {/* <Slider sliderName={"Your Smithing XP"}/>
-      <Slider sliderName={"Ore 1"}/>
-      <Slider sliderName={"Ore 2"}/> */}
+      {/* <StickyHeadTable/> */}
       <Footer />
     </>
   );

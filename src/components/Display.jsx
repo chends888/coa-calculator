@@ -18,6 +18,7 @@ const Display = ({
   applyBoostOnSmelt,
   buyOrSmeltBars,
   skill,
+  lolliPrice,
 }) => {
   const [expData, setExp] = React.useState({});
   const [expGap, setExpGap] = React.useState(0);
@@ -35,6 +36,24 @@ const Display = ({
     }
     return Math.floor(elementXP);
   };
+
+  const addIcon = (skillName, elementName) => {
+    return (
+      // <Box
+      //   sx={{
+      //     // marginRight: 4,
+      //   }}
+      // >
+        <img
+          src={`/images/${skillName}/${elementName}.gif`}
+          width="22"
+          height="22"
+          value={elementName}
+          alt=""
+        />
+      // </Box>
+    )
+  }
 
   // Request Exp data from back end
   React.useEffect(() => {
@@ -72,6 +91,7 @@ const Display = ({
       <Box
         sx={{
           display: "flex",
+          // flexDirection: "row",
           flexWrap: "wrap",
           justifyContent: "center",
           // border: 1,
@@ -167,20 +187,26 @@ const Display = ({
                 // Render results for Crafting
                 // Cursed relics exception
                 element[0] === "Cursed" ? (
-                  <ListItemText
-                    primary={
-                      "Total " +
-                      element[0] +
-                      " Relics: " +
-                      addCommas(
-                        Math.ceil(
-                          expGap / calculateElementXpBoost(element[1]["xp"])
+                  // <>
+                    <ListItemText
+                      primary={
+                        "Total " +
+                        element[0] +
+                        " Relics: " +
+                        addCommas(
+                          Math.ceil(
+                            expGap / calculateElementXpBoost(element[1]["xp"])
+                          )
                         )
-                      )
-                      // addCommas(Math.ceil(expGap / calculateElementXpBoost(element[1]["xp"])))
-                    }
-                  />
+                        // addCommas(Math.ceil(expGap / calculateElementXpBoost(element[1]["xp"])))
+                      }
+                    />
+                    // {/* {addIcon(skill, element[0])} */}
+                    // {/* <ListItem> */}
+                      // {/* </ListItem> */}
+                  // {/* </> */}
                 ) : (
+                  // <>
                   <ListItemText
                     primary={
                       "Total " +
@@ -195,6 +221,10 @@ const Display = ({
                       )
                     }
                   />
+                  // {/* <ListItem> */}
+                  // {/* {addIcon(skill, element[0])} */}
+                  // {/* </ListItem> */}
+                  // {/* </> */}
                 )
               ) : (
                 // Render results for Cooking
@@ -294,6 +324,7 @@ const Display = ({
                     />
                   )
                 ) : (
+                  <>
                   <ListItemText
                     primary={
                       "Total " +
@@ -306,17 +337,19 @@ const Display = ({
                       )
                     }
                   />
+                  {/* {addIcon("Woodcutting", subelement)} */}
+                  </>
                 )}
               </ListItem>
             ))))}
 
             {/* Render number of inventories */}
-            <ListItem>
-              {/* Render empty component if no element is selected */}
-              {element[0] === "loading" ? (
-                <></>
-              ) : skill === "Crafting" ? (
-                element[0] === "Cursed" || element[0] === "Experience" ? (
+            {/* Render empty component if no element is selected */}
+            {element[0] === "loading" ? (
+              <></>
+            ) : skill === "Crafting" ? (
+              element[0] === "Cursed" || element[0] === "Experience" ? (
+                <ListItem>
                   <ListItemText
                     primary={
                       "Inventories (16 per inventory): " +
@@ -329,7 +362,9 @@ const Display = ({
                       )
                     }
                   />
-                ) : (
+                </ListItem>
+              ) : (
+                <ListItem>
                   <ListItemText
                     primary={
                       "Inventories (36 per inventory): " +
@@ -342,8 +377,10 @@ const Display = ({
                       )
                     }
                   />
-                )
-              ) : skill === "Cooking" ? (
+                </ListItem>
+              )
+            ) : skill === "Cooking" ? (
+              <ListItem>
                 <ListItemText
                   primary={
                     "Inventories (16 fish and 16 salt): " +
@@ -356,7 +393,9 @@ const Display = ({
                     )
                   }
                 />
-              ) : skill === "Mining" || skill === "Woodcutting" ? (
+              </ListItem>
+            ) : skill === "Mining" || skill === "Woodcutting" ? (
+              <ListItem>
                 <ListItemText
                   primary={
                     "Inventories (36 per inventory): " +
@@ -369,10 +408,41 @@ const Display = ({
                     )
                   }
                 />
-              ) : (
-                <></>
-              )}
-            </ListItem>
+              </ListItem>
+            ) : skill === "Fishing" && element[0] === "Bass bait" ? (
+              <>
+                <ListItem>
+                  <ListItemText
+                    primary={
+                      "Total Remote Bank (34 bass per inventory): " +
+                      addCommas(
+                        Math.ceil(
+                          expGap /
+                          calculateElementXpBoost(element[1]["xp"]) /
+                          34
+                        )
+                      )
+                    }
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary={
+                      "Total Remote Bank price: " +
+                      addCommas(
+                        Math.ceil(
+                          expGap /
+                          calculateElementXpBoost(element[1]["xp"]) /
+                          34
+                          * parseInt(lolliPrice) * 0.4)
+                      ) + " Gold"
+                    }
+                  />
+                </ListItem>
+              </>
+            ) : (
+              <></>
+            )}
           </List>
         )}
       </Box>
