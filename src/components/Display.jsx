@@ -352,12 +352,12 @@ const Display = ({
                 <ListItem>
                   <ListItemText
                     primary={
-                      "Inventories (16 per inventory): " +
+                      "Inventories (18 per inventory): " +
                       addCommas(
                         Math.ceil(
                           expGap /
                           calculateElementXpBoost(element[1]["xp"]) /
-                          16
+                          18
                         )
                       )
                     }
@@ -383,12 +383,12 @@ const Display = ({
               <ListItem>
                 <ListItemText
                   primary={
-                    "Inventories (16 fish and 16 salt): " +
+                    "Inventories (18 fish and 18 salt): " +
                     addCommas(
                       Math.ceil(
                         expGap /
                         calculateElementXpBoost(element[1]["xp"]) /
-                        16
+                        18
                       )
                     )
                   }

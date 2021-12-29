@@ -9,9 +9,8 @@ import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
 import CustomSwitch from "../components/CustomSwitch";
 import BoostCheckbox from "../components/Checkbox";
-// import StickyHeadTable from "../components/Table";
+import StickyHeadTable from "../components/Table";
 
-// Max bar input: 567.019.187
 const Smithing = () => {
   // Person's current level
   const [currentLevel, setCurrentLevel] = useState(1);

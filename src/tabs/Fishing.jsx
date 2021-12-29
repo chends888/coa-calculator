@@ -33,6 +33,7 @@ const Fishing = () => {
   const updateElement = (element) => {
     setElement(element);
   };
+  // Lollipop price input, to calculate Remote Bank price
   const [lolliPrice, setLolliPrice] = useState(0);
   const updateLolliPrice = (lolliPrice) => {
     setLolliPrice(lolliPrice);
