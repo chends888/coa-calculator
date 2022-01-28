@@ -16,11 +16,11 @@ const Footer = () => {
           Bugs? Suggestions? DM me on Discord:{" "}
           <Link
             color="inherit"
-            href="https://discordapp.com/users/chends#7176"
+            href="https://discordapp.com/users/aeaea#1361"
             rel="noopener"
             target="_blank"
           >
-            chends#7176
+            aeaea#1361
           </Link>
         </Typography>
         <Typography variant="body2" color="text.secondary" align="center">
