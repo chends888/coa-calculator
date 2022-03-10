@@ -54,7 +54,7 @@ const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
     }
   };
 
-  const createButtons = (levelRange) => {
+  const createCombatButtons = (levelRange) => {
     return (
       <Box
         sx={{
@@ -148,10 +148,10 @@ const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
               marginBottom: 3
             }}
           >
-            {createButtons([1, 50])}
-            {createButtons([51, 70])}
-            {createButtons([71, 90])}
-            {createButtons([91, 150])}
+            {createCombatButtons([1, 50])}
+            {createCombatButtons([51, 70])}
+            {createCombatButtons([71, 90])}
+            {createCombatButtons([91, 150])}
           </Box>
         ) : (
           // All of other skill's buttons
