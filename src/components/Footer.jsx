@@ -23,6 +23,22 @@ const Footer = () => {
             chends#7176
           </Link>
         </Typography>
+        <Typography
+          variant="body2"
+          align="center"
+          color="text.secondary"
+          component="p"
+        >
+          Huge thanks to the contributor:{" "}
+          <Link
+            color="inherit"
+            href="https://discordapp.com/users/KaMaL#9365"
+            rel="noopener"
+            target="_blank"
+          >
+            KaMaL#9365
+          </Link>
+        </Typography>
         <Typography variant="body2" color="text.secondary" align="center">
           {"All data from "}
           <Link
