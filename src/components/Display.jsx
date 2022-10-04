@@ -37,23 +37,23 @@ const Display = ({
     return Math.floor(elementXP);
   };
 
-  const addIcon = (skillName, elementName) => {
-    return (
-      // <Box
-      //   sx={{
-      //     // marginRight: 4,
-      //   }}
-      // >
-        <img
-          src={`/images/${skillName}/${elementName}.gif`}
-          width="22"
-          height="22"
-          value={elementName}
-          alt=""
-        />
-      // </Box>
-    )
-  }
+  // const addIcon = (skillName, elementName) => {
+  //   return (
+  //     // <Box
+  //     //   sx={{
+  //     //     // marginRight: 4,
+  //     //   }}
+  //     // >
+  //       <img
+  //         src={`/images/${skillName}/${elementName}.gif`}
+  //         width="22"
+  //         height="22"
+  //         value={elementName}
+  //         alt=""
+  //       />
+  //     // </Box>
+  //   )
+  // }
 
   // Request Exp data from back end
   React.useEffect(() => {
