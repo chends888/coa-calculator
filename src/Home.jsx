@@ -5,8 +5,9 @@ import { Tabs, Tab, Box } from "@mui/material";
 
 import Header from "./components/Header";
 import Smithing from "./tabs/Smithing";
-import Cooking from "./tabs/Cooking";
 import Crafting from "./tabs/Crafting";
+import Cooking from "./tabs/Cooking";
+import Tailoring from "./tabs/Tailoring";
 import Mining from "./tabs/Mining";
 import Woodcutting from "./tabs/Woodcutting";
 import Fishing from "./tabs/Fishing";
@@ -26,25 +27,28 @@ const Home = (props) => {
     0: "smithing",
     1: "crafting",
     2: "cooking",
-    3: "mining",
-    4: "woodcutting",
-    5: "fishing",
-    6: "combat",
+    3: "tailoring",
+    4: "mining",
+    5: "woodcutting",
+    6: "fishing",
+    7: "combat",
   };
 
   const indexToTabName = {
     smithing: 0,
     crafting: 1,
     cooking: 2,
-    mining: 3,
-    woodcutting: 4,
-    fishing: 5,
-    combat: 6,
+    tailoring: 3,
+    mining: 4,
+    woodcutting: 5,
+    fishing: 6,
+    combat: 7,
   };
 
   const [selectedTab, setSelectedTab] = React.useState(indexToTabName[page]);
 
   const handleChange = (event, newValue) => {
+    console.log(newValue);
     history.push(`/${tabNameToIndex[newValue]}`);
     setSelectedTab(newValue);
   };
@@ -82,6 +86,7 @@ const Home = (props) => {
             <Tab label="Smithing" />
             <Tab label="Crafting" />
             <Tab label="Cooking" />
+            <Tab label="Tailoring" />
             <Tab label="Mining" />
             <Tab label="Woodcutting" />
             <Tab label="Fishing" />
@@ -99,10 +104,11 @@ const Home = (props) => {
       {selectedTab === 0 && <Smithing />}
       {selectedTab === 1 && <Crafting />}
       {selectedTab === 2 && <Cooking />}
-      {selectedTab === 3 && <Mining />}
-      {selectedTab === 4 && <Woodcutting />}
-      {selectedTab === 5 && <Fishing />}
-      {selectedTab === 6 && <Combat />}
+      {selectedTab === 3 && <Tailoring />}
+      {selectedTab === 4 && <Mining />}
+      {selectedTab === 5 && <Woodcutting />}
+      {selectedTab === 6 && <Fishing />}
+      {selectedTab === 7 && <Combat />}
     </>
   );
 };
