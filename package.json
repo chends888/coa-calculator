@@ -1,12 +1,13 @@
 {
-  "name": "frontend",
+  "name": "calculator",
   "version": "0.1.0",
+  "homepage": "http://KamalElShazly.github.io/coa-calculator",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
-    "@mui/icons-material": "^5.2.0",
-    "@mui/material": "^5.2.1",
+    "@mui/icons-material": "^5.10.6",
+    "@mui/material": "^5.10.7",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -18,9 +19,11 @@
     "web-vitals": "^1.1.2"
   },
   "engines": {
-    "node": "12.21.x"
+    "node": "14.15.x"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -43,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }
