@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 
 import "../App.css";
-// import Slider from "./components/Slider";
 import Attribute from "../components/Attribute";
 import Display from "../components/Display";
 import ToggleButtons from "../components/ToggleButtons";
 import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
+
+import gatheringData from "../data/gathering_data.json";
 
 const Woodcutting = () => {
   // Person's current level
@@ -18,7 +19,6 @@ const Woodcutting = () => {
   const [currentPercentage, setCurrentPercentage] = useState(0);
   const updateCurrentPercentage = (currentPercentage) => {
     currentPercentage = currentPercentage / 100;
-    // console.log("update %", currentPercentage);
     setCurrentPercentage(currentPercentage);
   };
   // Person's target level
@@ -32,9 +32,6 @@ const Woodcutting = () => {
     setElement(element);
   };
 
-  // Woodcutting data
-  const [gatheringData, setGatheringData] = useState({});
-
   // Exp boosts
   const [boostsDidUpdate, setBoostDidUpdate] = useState(false);
   const [boosts, setBoosts] = useState([
@@ -43,32 +40,7 @@ const Woodcutting = () => {
   const updateBoosts = (boosts, updatedBoostName) => {
     setBoosts(boosts);
     setBoostDidUpdate(!boostsDidUpdate);
-    // console.log("Boosts update", updatedBoostName);
   };
-
-  React.useEffect(() => {
-    // Custom url depending if on develop or prod server
-    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-      var url = "http://localhost:8000/gathering";
-    } else {
-      var url = "https://coa-calculator-backend.herokuapp.com/gathering";
-    }
-    fetch(url)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw response;
-      })
-      .then((data) => {
-        // setBusy(false);
-        setGatheringData(data);
-        // console.log("set busy");
-      })
-      .catch((error) => {
-        console.log("Error on fetch Gathering Skills data:", error);
-      });
-  }, []);
 
   return (
     <>
@@ -108,9 +80,6 @@ const Woodcutting = () => {
         boostsDidUpdate={boostsDidUpdate}
         skill="Woodcutting"
       />
-      {/* <Slider sliderName={"Your Smithing XP"}/>
-      <Slider sliderName={"Ore 1"}/>
-      <Slider sliderName={"Ore 2"}/> */}
       <Footer />
     </>
   );

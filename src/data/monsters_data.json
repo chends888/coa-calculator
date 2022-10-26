@@ -1,0 +1,229 @@
+{
+  "Combat": {
+    "Bat": {
+      "level": "1",
+      "xp": "8",
+      "gold": "1"
+    },
+    "Slime": {
+      "level": "4",
+      "xp": "16",
+      "gold": "3"
+    },
+    "Fishing Spider": {
+      "level": "8",
+      "xp": "38",
+      "gold": "6"
+    },
+    "Mushroom": {
+      "level": "10",
+      "xp": "46",
+      "gold": "7"
+    },
+    "Forest Spider": {
+      "level": "12",
+      "xp": "55",
+      "gold": "8"
+    },
+    "Forest Bat": {
+      "level": "15",
+      "xp": "60",
+      "gold": "10"
+    },
+    "Snow Bat": {
+      "level": "18",
+      "xp": "125",
+      "gold": "35"
+    },
+    "Ice Slime": {
+      "level": "21",
+      "xp": "165",
+      "gold": "45"
+    },
+    "Snowman": {
+      "level": "25",
+      "xp": "210",
+      "gold": "59"
+    },
+    "Ice Spider": {
+      "level": "28",
+      "xp": "250",
+      "gold": "80"
+    },
+    "Skeletal Snake": {
+      "level": "30",
+      "xp": "300",
+      "gold": "110"
+    },
+    "Cave Spider": {
+      "level": "34",
+      "xp": "350",
+      "gold": "145"
+    },
+    "Skeletal Bat": {
+      "level": "35",
+      "xp": "385",
+      "gold": "170"
+    },
+    "Sapphire Scarab": {
+      "level": "40",
+      "xp": "400",
+      "gold": "150"
+    },
+    "Cave Bat": {
+      "level": "43",
+      "xp": "560",
+      "gold": "220"
+    },
+    "Scorpion": {
+      "level": "45",
+      "xp": "700",
+      "gold": "100"
+    },
+    "Ice Fiend": {
+      "level": "47",
+      "xp": "850",
+      "gold": "280"
+    },
+    "Raptor": {
+      "level": "49",
+      "xp": "900",
+      "gold": "315"
+    },
+    "Ruby Scarab": {
+      "level": "50",
+      "xp": "1000",
+      "gold": "315"
+    },
+    "Shadow Fiend": {
+      "level": "50",
+      "xp": "1500",
+      "gold": "225"
+    },
+    "Forest Fiend": {
+      "level": "53",
+      "xp": "1080",
+      "gold": "325"
+    },
+    "Desert Raptor": {
+      "level": "57",
+      "xp": "1850",
+      "gold": "415"
+    },
+    "Rock Fiend": {
+      "level": "60",
+      "xp": "2000",
+      "gold": "390"
+    },
+    "Giant Hornet": {
+      "level": "62",
+      "xp": "2100",
+      "gold": "400"
+    },
+    "Luminant Slime": {
+      "level": "65",
+      "xp": "2200",
+      "gold": "420"
+    },
+    "Ancient Bat": {
+      "level": "70",
+      "xp": "2400",
+      "gold": "434"
+    },
+    "Ice Raptor": {
+      "level": "73",
+      "xp": "2750",
+      "gold": "450"
+    },
+    "Arosite Scarab": {
+      "level": "75",
+      "xp": "2850",
+      "gold": "600"
+    },
+    "Spectral Flame": {
+      "level": "75",
+      "xp": "2700",
+      "gold": "484"
+    },
+    "Shadow Flame": {
+      "level": "78",
+      "xp": "2800",
+      "gold": "490"
+    },
+    "Cactus Soldier": {
+      "level": "80",
+      "xp": "2800",
+      "gold": "490"
+    },
+    "Phantom Flame": {
+      "level": "80",
+      "xp": "2900",
+      "gold": "500"
+    },
+    "Spectral Fiend": {
+      "level": "85",
+      "xp": "3100",
+      "gold": "520"
+    },
+    "Phantom Fiend": {
+      "level": "88",
+      "xp": "3600",
+      "gold": "580"
+    },
+    "Ancient Cyclops": {
+      "level": "90",
+      "xp": "4000",
+      "gold": "650"
+    },
+    "Anubis": {
+      "level": "90",
+      "xp": "4000",
+      "gold": "285"
+    },
+    "Magnetite Scarab": {
+      "level": "90",
+      "xp": "4250",
+      "gold": "600"
+    },
+    "Golemite Bat": {
+      "level": "95",
+      "xp": "4400",
+      "gold": "675"
+    },
+    "Golemite Fiend": {
+      "level": "100",
+      "xp": "5270",
+      "gold": "700"
+    },
+    "Poltergeist": {
+      "level": "100",
+      "xp": "250",
+      "gold": "100"
+    },
+    "Anubis Elite": {
+      "level": "110",
+      "xp": "7500",
+      "gold": "750"
+    },
+    "Baby Dragon": {
+      "level": "110",
+      "xp": "5750",
+      "gold": "800"
+    },
+    "Brown Snake": {
+      "level": "120",
+      "xp": "1000",
+      "gold": "300"
+    },
+    "Purple Snake": {
+      "level": "135",
+      "xp": "900",
+      "gold": "400"
+    },
+    "Sandstone Golem": {
+      "level": "150",
+      "xp": "11500",
+      "gold": "650"
+    }
+  }
+}

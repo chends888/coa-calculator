@@ -1,0 +1,495 @@
+{
+  "Smithing": {
+    "Bronze": {
+      "level": "1",
+      "xp-forge": "5",
+      "xp-smelt": "3",
+      "submaterials": {
+        "Copper": "2",
+        "Tin Ore": "2"
+      }
+    },
+    "Iron": {
+      "level": "10",
+      "xp-forge": "14",
+      "xp-smelt": "8",
+      "submaterials": {
+        "Iron Ore": "3"
+      }
+    },
+    "Steel": {
+      "level": "20",
+      "xp-forge": "20",
+      "xp-smelt": "14",
+      "submaterials": {
+        "Iron Ore": "2",
+        "Coal": "1"
+      }
+    },
+    "Crimsteel": {
+      "level": "30",
+      "xp-forge": "130",
+      "xp-smelt": "25",
+      "submaterials": {
+        "Crimsteel Ore": "2",
+        "Coal": "2"
+      }
+    },
+    "Gold": {
+      "level": "40",
+      "xp-forge": "20000",
+      "xp-smelt": "60",
+      "submaterials": {
+        "Gold Ore": "320"
+      }
+    },
+    "Mythan": {
+      "level": "50",
+      "xp-forge": "5000",
+      "xp-smelt": "100",
+      "submaterials": {
+        "Mythan Ore": "10",
+        "Coal": "5"
+      }
+    },
+    "Cobalt": {
+      "level": "60",
+      "xp-forge": "15000",
+      "xp-smelt": "200",
+      "submaterials": {
+        "Cobalt Ore": "8",
+        "Coal": "5"
+      }
+    },
+    "Varaxite": {
+      "level": "70",
+      "xp-forge": "20000",
+      "xp-smelt": "350",
+      "submaterials": {
+        "Varaxium": "6",
+        "Cobalt Ore": "3"
+      }
+    },
+    "Magic": {
+      "level": "80",
+      "xp-forge": "26000",
+      "xp-smelt": "400",
+      "submaterials": {
+        "Magic Ore": "9"
+      }
+    }
+  },
+  "Cooking": {
+    "Anchovies": {
+      "level": "1",
+      "xp": "10",
+      "submaterials": {
+        "Anchovies": "1",
+        "Salt": "1"
+      }
+    },
+    "Mackerel": {
+      "level": "10",
+      "xp": "50",
+      "submaterials": {
+        "Mackerel": "1",
+        "Salt": "1"
+      }
+    },
+    "Squid": {
+      "level": "20",
+      "xp": "115",
+      "submaterials": {
+        "Squid": "1",
+        "Salt": "1"
+      }
+    },
+    "Sardine": {
+      "level": "20",
+      "xp": "375",
+      "submaterials": {
+        "Sardine": "1",
+        "Salt": "1"
+      }
+    },
+    "Eel": {
+      "level": "40",
+      "xp": "500",
+      "submaterials": {
+        "Eel": "1",
+        "Salt": "1"
+      }
+    },
+    "Anglerfish": {
+      "level": "45",
+      "xp": "625",
+      "submaterials": {
+        "Anglerfish": "1",
+        "Salt": "1"
+      }
+    },
+    "Trout": {
+      "level": "50",
+      "xp": "750",
+      "submaterials": {
+        "Trout": "1",
+        "Salt": "1"
+      }
+    },
+    "Bass": {
+      "level": "60",
+      "xp": "1350",
+      "submaterials": {
+        "Bass": "1",
+        "Pink Salt": "1"
+      }
+    },
+    "Tuna": {
+      "level": "70",
+      "xp": "2000",
+      "submaterials": {
+        "Tuna": "1",
+        "Pink Salt": "1"
+      }
+    },
+    "Lobster": {
+      "level": "75",
+      "xp": "3500",
+      "submaterials": {
+        "Lobster": "1",
+        "Pink Salt": "1"
+      }
+    },
+    "Sea Turtle": {
+      "level": "80",
+      "xp": "6500",
+      "submaterials": {
+        "Sea Turtle": "1",
+        "Pink Salt": "1"
+      }
+    },
+    "Manta Ray": {
+      "level": "85",
+      "xp": "9500",
+      "submaterials": {
+        "Manta Ray": "1",
+        "Pink Salt": "1"
+      }
+    },
+    "Shark": {
+      "level": "90",
+      "xp": "13500",
+      "submaterials": {
+        "Shark": "1",
+        "Black Salt": "1"
+      }
+    },
+    "Orca": {
+      "level": "95",
+      "xp": "22500",
+      "submaterials": {
+        "Orca": "1",
+        "Black Salt": "1"
+      }
+    },
+    "Giant Squid": {
+      "level": "100",
+      "xp": "41500",
+      "submaterials": {
+        "Giant Squid": "1",
+        "Black Salt": "1"
+      }
+    }
+  },
+  "Cooking-Baits": {
+    "Earthworm": {
+      "level": "1",
+      "xp": "5",
+      "submaterials": {
+        "Salt": "1"
+      }
+    },
+    "Iceworm": {
+      "level": "10",
+      "xp": "82.5",
+      "submaterials": {
+        "Salt": "1"
+      }
+    },
+    "Corpseworm": {
+      "level": "30",
+      "xp": "375",
+      "submaterials": {
+        "Salt": "1"
+      }
+    },
+    "Toxic Worm": {
+      "level": "40",
+      "xp": "500",
+      "submaterials": {
+        "Salt": "1"
+      }
+    },
+    "Sandworm": {
+      "level": "45",
+      "xp": "625",
+      "submaterials": {
+        "Salt": "1"
+      }
+    },
+    "Beetle": {
+      "level": "50",
+      "xp": "375",
+      "submaterials": {
+        "Salt": "1"
+      }
+    },
+    "Grasshopper": {
+      "level": "60",
+      "xp": "675",
+      "submaterials": {
+        "Pink Salt": "1"
+      }
+    },
+    "Wasp": {
+      "level": "70",
+      "xp": "2000",
+      "submaterials": {
+        "Pink Salt": "1"
+      }
+    },
+    "Scallop": {
+      "level": "75",
+      "xp": "5000",
+      "submaterials": {
+        "Pink Salt": "1"
+      }
+    },
+    "Crab": {
+      "level": "85",
+      "xp": "9500",
+      "submaterials": {
+        "Pink Salt": "1"
+      }
+    },
+    "Bass bait": {
+      "level": "90",
+      "xp": "25833.33",
+      "submaterials": {
+        "Black Salt": "1"
+      }
+    }
+  },
+  "Crafting": {
+    "Accuracy": {
+      "level": "1",
+      "xp": "3",
+      "submaterials": {
+        "Pine Logs": "1"
+      }
+    },
+    "Guarding": {
+      "level": "5",
+      "xp": "8",
+      "submaterials": {
+        "Dead Logs": "1"
+      }
+    },
+    "Healing": {
+      "level": "10",
+      "xp": "18",
+      "submaterials": {
+        "Birch Logs": "1"
+      }
+    },
+    "Wealth": {
+      "level": "20",
+      "xp": "40",
+      "submaterials": {
+        "Applewood": "1"
+      }
+    },
+    "Power": {
+      "level": "30",
+      "xp": "105",
+      "submaterials": {
+        "Willow Logs": "1"
+      }
+    },
+    "Nature": {
+      "level": "40",
+      "xp": "200",
+      "submaterials": {
+        "Oak Logs": "1"
+      }
+    },
+    "Fire": {
+      "level": "50",
+      "xp": "425",
+      "submaterials": {
+        "Chestnut Logs": "1"
+      }
+    },
+    "Damage": {
+      "level": "60",
+      "xp": "900",
+      "submaterials": {
+        "Maple Logs": "1"
+      }
+    },
+    "Leeching": {
+      "level": "70",
+      "xp": "1400",
+      "submaterials": {
+        "Olive Logs": "1"
+      }
+    },
+    "Experience": {
+      "level": "75",
+      "xp": "1850",
+      "submaterials": {
+        "Maple Logs": "1",
+        "Olive Logs": "1"
+      }
+    },
+    "Ice": {
+      "level": "80",
+      "xp": "2750",
+      "submaterials": {
+        "Magic Logs": "2"
+      }
+    },
+    "Cursed": {
+      "level": "88",
+      "xp": "4120",
+      "submaterials": {
+        "Palm Wood": "2"
+      }
+    }
+  },
+  "Tailoring": {
+    "Paper": {
+      "level": "1",
+      "xp": "1",
+      "submaterials": {
+        "Pine Logs": "1"
+      }
+    },
+    "Book": {
+      "level": "3",
+      "xp": "5",
+      "submaterials": {
+        "Paper": "5",
+        "Leather": "1"
+      }
+    },
+    "Ember Tome": {
+      "level": "5",
+      "xp": "12",
+      "submaterials": {
+        "Book": "1",
+        "Relic of Fire": "1",
+        "Magic Essence": "1"
+      }
+    },
+    "Leech Tome": {
+      "level": "9",
+      "xp": "20",
+      "submaterials": {
+        "Book": "1",
+        "Relic of Nature": "1",
+        "Magic Essence": "1"
+      }
+    },
+    "Icicle Tome": {
+      "level": "15",
+      "xp": "28",
+      "submaterials": {
+        "Book": "1",
+        "Ice Relic": "1",
+        "Magic Essence": "1"
+      }
+    },
+    "Haunt Tome": {
+      "level": "20",
+      "xp": "40",
+      "submaterials": {
+        "Book": "1",
+        "Cursed Relic": "1",
+        "Magic Essence": "1"
+      }
+    },
+    "Ignite Tome": {
+      "level": "29",
+      "xp": "100",
+      "submaterials": {
+        "Book": "1",
+        "Relic of Fire": "1",
+        "Magic Essence": "5"
+      }
+    },
+    "Drain Tome": {
+      "level": "33",
+      "xp": "115",
+      "submaterials": {
+        "Book": "1",
+        "Relic of Nature": "1",
+        "Magic Essence": "3"
+      }
+    },
+    "Freeze Tome": {
+      "level": "40",
+      "xp": "200",
+      "submaterials": {
+        "Book": "1",
+        "Ice Relic": "1",
+        "Magic Essence": "3"
+      }
+    },
+    "Curse Tome": {
+      "level": "60",
+      "xp": "900",
+      "submaterials": {
+        "Book": "1",
+        "Cursed Relic": "1",
+        "Magic Essence": "3"
+      }
+    },
+    "Inferno Tome": {
+      "level": "68",
+      "xp": "1380",
+      "submaterials": {
+        "Book": "1",
+        "Relic of Fire": "1",
+        "Magic Essence": "10"
+      }
+    },
+    "Consume Tome": {
+      "level": "76",
+      "xp": "2110",
+      "submaterials": {
+        "Book": "1",
+        "Relic of Nature": "1",
+        "Magic Essence": "6"
+      }
+    },
+    "Blizzard Tome": {
+      "level": "80",
+      "xp": "2750",
+      "submaterials": {
+        "Book": "1",
+        "Ice Relic": "1",
+        "Magic Essence": "6"
+      }
+    },
+    "Torture Tome": {
+      "level": "92",
+      "xp": "4300",
+      "submaterials": {
+        "Book": "1",
+        "Cursed Relic": "1",
+        "Magic Essence": "6"
+      }
+    }
+  }
+}

@@ -1,12 +1,11 @@
 import React from "react";
-// import Paper from '@mui/material/Paper';
 
-// import { styled } from "@mui/material/styles";
-// import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
+
+import expData from "../data/exp_data.json";
 
 const Display = ({
   level,
@@ -20,9 +19,7 @@ const Display = ({
   skill,
   lolliPrice,
 }) => {
-  const [expData, setExp] = React.useState({});
   const [expGap, setExpGap] = React.useState(0);
-  const [isBusy, setBusy] = React.useState(true);
 
   const addCommas = (num) => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -37,52 +34,13 @@ const Display = ({
     return Math.floor(elementXP);
   };
 
-  // const addIcon = (skillName, elementName) => {
-  //   return (
-  //     // <Box
-  //     //   sx={{
-  //     //     // marginRight: 4,
-  //     //   }}
-  //     // >
-  //       <img
-  //         src={`/images/${skillName}/${elementName}.gif`}
-  //         width="22"
-  //         height="22"
-  //         value={elementName}
-  //         alt=""
-  //       />
-  //     // </Box>
-  //   )
-  // }
-
-  // Request Exp data from back end
   React.useEffect(() => {
-    // fetch("http://localhost:8000/exp")
-    fetch("https://coa-calculator-backend.herokuapp.com/exp")
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw response;
-      })
-      .then((data) => {
-        setBusy(false);
-        setExp(data);
-      })
-      .catch((error) => {
-        console.log("Error on fetch exp data:", error);
-      });
-  }, []);
-
-  React.useEffect(() => {
-    if (!isBusy) {
-      const currentLevelExp =
-        parseInt(expData[level]) +
-        (parseInt(expData[level + 1]) - parseInt(expData[level])) *
-        levelPercentage;
-      const targetLevelExp = expData[targetLevel];
-      setExpGap(Math.ceil(targetLevelExp - currentLevelExp));
-    }
+    const currentLevelExp =
+      parseInt(expData[level]) +
+      (parseInt(expData[level + 1]) - parseInt(expData[level])) *
+      levelPercentage;
+    const targetLevelExp = expData[targetLevel];
+    setExpGap(Math.ceil(targetLevelExp - currentLevelExp));
     // eslint-disable-next-line
   }, [expData, level, targetLevel, levelPercentage]);
 
@@ -91,11 +49,8 @@ const Display = ({
       <Box
         sx={{
           display: "flex",
-          // flexDirection: "row",
           flexWrap: "wrap",
           justifyContent: "center",
-          // border: 1,
-          // maxWidth: 1000,
         }}
       >
         {expGap <= 0 || isNaN(parseFloat(expGap)) ? (
@@ -188,23 +143,18 @@ const Display = ({
                 // Cursed relics exception
                 element[0] === "Cursed" ? (
                   // <>
-                    <ListItemText
-                      primary={
-                        "Total " +
-                        element[0] +
-                        " Relics: " +
-                        addCommas(
-                          Math.ceil(
-                            expGap / calculateElementXpBoost(element[1]["xp"])
-                          )
+                  <ListItemText
+                    primary={
+                      "Total " +
+                      element[0] +
+                      " Relics: " +
+                      addCommas(
+                        Math.ceil(
+                          expGap / calculateElementXpBoost(element[1]["xp"])
                         )
-                        // addCommas(Math.ceil(expGap / calculateElementXpBoost(element[1]["xp"])))
-                      }
-                    />
-                    // {/* {addIcon(skill, element[0])} */}
-                    // {/* <ListItem> */}
-                      // {/* </ListItem> */}
-                  // {/* </> */}
+                      )
+                    }
+                  />
                 ) : (
                   // <>
                   <ListItemText
@@ -221,10 +171,6 @@ const Display = ({
                       )
                     }
                   />
-                  // {/* <ListItem> */}
-                  // {/* {addIcon(skill, element[0])} */}
-                  // {/* </ListItem> */}
-                  // {/* </> */}
                 )
               ) : (
                 // Render results for Cooking
@@ -325,19 +271,19 @@ const Display = ({
                   )
                 ) : (
                   <>
-                  <ListItemText
-                    primary={
-                      "Total " +
-                      subelement +
-                      ": " +
-                      addCommas(
-                        Math.ceil(
-                          expGap / calculateElementXpBoost(element[1]["xp"])
-                        ) * element[1]["submaterials"][subelement]
-                      )
-                    }
-                  />
-                  {/* {addIcon("Woodcutting", subelement)} */}
+                    <ListItemText
+                      primary={
+                        "Total " +
+                        subelement +
+                        ": " +
+                        addCommas(
+                          Math.ceil(
+                            expGap / calculateElementXpBoost(element[1]["xp"])
+                          ) * element[1]["submaterials"][subelement]
+                        )
+                      }
+                    />
+                    {/* {addIcon("Woodcutting", subelement)} */}
                   </>
                 )}
               </ListItem>

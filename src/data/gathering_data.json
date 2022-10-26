@@ -1,0 +1,285 @@
+{
+  "Mining": {
+    "Tin": {
+      "level": "1",
+      "xp": "10",
+      "submaterials": {}
+    },
+    "Copper": {
+      "level": "1",
+      "xp": "10",
+      "submaterials": {}
+    },
+    "Iron": {
+      "level": "10",
+      "xp": "50",
+      "submaterials": {}
+    },
+    "Salt": {
+      "level": "15",
+      "xp": "80",
+      "submaterials": {}
+    },
+    "Coal": {
+      "level": "20",
+      "xp": "115",
+      "submaterials": {}
+    },
+    "Silver": {
+      "level": "25",
+      "xp": "135",
+      "submaterials": {}
+    },
+    "Crimsteel": {
+      "level": "30",
+      "xp": "350",
+      "submaterials": {}
+    },
+    "Gold": {
+      "level": "40",
+      "xp": "400",
+      "submaterials": {}
+    },
+    "Pink Salt": {
+      "level": "45",
+      "xp": "500",
+      "submaterials": {}
+    },
+    "Mythan": {
+      "level": "50",
+      "xp": "650",
+      "submaterials": {}
+    },
+    "Sandstone": {
+      "level": "55",
+      "xp": "1100",
+      "submaterials": {}
+    },
+    "Cobalt": {
+      "level": "60",
+      "xp": "1200",
+      "submaterials": {}
+    },
+    "Varaxium": {
+      "level": "70",
+      "xp": "1800",
+      "submaterials": {}
+    },
+    "Black Salt": {
+      "level": "75",
+      "xp": "2500",
+      "submaterials": {}
+    },
+    "Magic": {
+      "level": "80",
+      "xp": "3200",
+      "submaterials": {}
+    }
+  },
+  "Woodcutting": {
+    "Pine Logs": {
+      "level": "1",
+      "xp": "10",
+      "submaterials": {}
+    },
+    "Dead Logs": {
+      "level": "5",
+      "xp": "20",
+      "submaterials": {}
+    },
+    "Birch Logs": {
+      "level": "10",
+      "xp": "50",
+      "submaterials": {}
+    },
+    "Applewood": {
+      "level": "20",
+      "xp": "115",
+      "submaterials": {}
+    },
+    "Willow Logs": {
+      "level": "30",
+      "xp": "350",
+      "submaterials": {}
+    },
+    "Oak Logs": {
+      "level": "40",
+      "xp": "475",
+      "submaterials": {}
+    },
+    "Chestnut Logs": {
+      "level": "50",
+      "xp": "650",
+      "submaterials": {}
+    },
+    "Maple Logs": {
+      "level": "60",
+      "xp": "1200",
+      "submaterials": {}
+    },
+    "Olive Logs": {
+      "level": "70",
+      "xp": "1800",
+      "submaterials": {}
+    },
+    "Magic Logs": {
+      "level": "80",
+      "xp": "2600",
+      "submaterials": {}
+    },
+    "Palm Wood": {
+      "level": "90",
+      "xp": "4000",
+      "submaterials": {}
+    }
+  },
+  "Fishing": {
+    "Anchovies": {
+      "level": "1",
+      "xp": "10",
+      "submaterials": { "Earthworm": "1" }
+    },
+    "Goldfish": {
+      "level": "5",
+      "xp": "20",
+      "submaterials": { "Earthworm": "1" }
+    },
+    "Mackerel": {
+      "level": "10",
+      "xp": "50",
+      "submaterials": { "Iceworm": "1" }
+    },
+    "Squid": {
+      "level": "20",
+      "xp": "115",
+      "submaterials": { "Iceworm": "1" }
+    },
+    "Sardine": {
+      "level": "30",
+      "xp": "375",
+      "submaterials": { "Corpseworm": "1" }
+    },
+    "Eel": {
+      "level": "40",
+      "xp": "500",
+      "submaterials": { "Toxic Worm": "1" }
+    },
+    "Anglerfish": {
+      "level": "45",
+      "xp": "625",
+      "submaterials": { "Sandworm": "1" }
+    },
+    "Trout": {
+      "level": "50",
+      "xp": "750",
+      "submaterials": { "Beetle": "1" }
+    },
+    "Jellyfish": {
+      "level": "55",
+      "xp": "900",
+      "submaterials": { "Beetle": "1" }
+    },
+    "Bass": {
+      "level": "60",
+      "xp": "1350",
+      "submaterials": { "Grasshopper": "1" }
+    },
+    "Herringbone": {
+      "level": "65",
+      "xp": "1700",
+      "submaterials": { "Grasshopper": "1" }
+    },
+    "Tuna": {
+      "level": "70",
+      "xp": "2000",
+      "submaterials": { "Wasp": "1" }
+    },
+    "Lobster": {
+      "level": "75",
+      "xp": "3500",
+      "submaterials": { "Scallop": "1" }
+    },
+    "Sea Turtle": {
+      "level": "80",
+      "xp": "6500",
+      "submaterials": { "Scallop": "1" }
+    },
+    "Manta Ray": {
+      "level": "85",
+      "xp": "9500",
+      "submaterials": { "Crab": "1" }
+    },
+    "Shark": {
+      "level": "90",
+      "xp": "14500",
+      "submaterials": { "Bass": "1" }
+    },
+    "Orca": {
+      "level": "95",
+      "xp": "29500",
+      "submaterials": { "Bass": "1" }
+    },
+    "Giant Squid": {
+      "level": "100",
+      "xp": "55000",
+      "submaterials": { "Bass": "1" }
+    }
+  },
+  "Fishing-Baits": {
+    "Earthworm": {
+      "level": "1",
+      "xp": "15",
+      "submaterials": {}
+    },
+    "Iceworm": {
+      "level": "10",
+      "xp": "82.5",
+      "submaterials": {}
+    },
+    "Corpseworm": {
+      "level": "30",
+      "xp": "375",
+      "submaterials": {}
+    },
+    "Toxic Worm": {
+      "level": "40",
+      "xp": "500",
+      "submaterials": {}
+    },
+    "Sandworm": {
+      "level": "45",
+      "xp": "625",
+      "submaterials": {}
+    },
+    "Beetle": {
+      "level": "50",
+      "xp": "825",
+      "submaterials": {}
+    },
+    "Grasshopper": {
+      "level": "60",
+      "xp": "1525",
+      "submaterials": {}
+    },
+    "Wasp": {
+      "level": "70",
+      "xp": "2000",
+      "submaterials": {}
+    },
+    "Scallop": {
+      "level": "75",
+      "xp": "5000",
+      "submaterials": {}
+    },
+    "Crab": {
+      "level": "85",
+      "xp": "9500",
+      "submaterials": {}
+    },
+    "Bass bait": {
+      "level": "90",
+      "xp": "33000",
+      "submaterials": {}
+    }
+  }
+}
