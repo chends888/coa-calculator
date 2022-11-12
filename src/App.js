@@ -24,7 +24,6 @@ const App = ({currentTheme, updateCurrentTheme}) => {
   // });
 
   return (
-    // <ThemeProvider theme={theme}>
       <HttpsRedirect>
         <Switch>
           <Redirect exact from="/" to="/smithing" />
@@ -41,7 +40,6 @@ const App = ({currentTheme, updateCurrentTheme}) => {
           />
         </Switch>
       </HttpsRedirect>
-    // </ThemeProvider>
   );
 };
 
