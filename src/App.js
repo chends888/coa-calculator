@@ -4,27 +4,25 @@ import Home from "./Home";
 import { Route, Switch, Redirect } from "react-router-dom";
 import HttpsRedirect from "react-https-redirect";
 
-// import { ThemeProvider, createTheme } from "@mui/material/styles";
-
-const App = ({currentTheme, updateCurrentTheme}) => {
+const App = ({ currentTheme, updateCurrentTheme }) => {
 
   return (
-      <HttpsRedirect>
-        <Switch>
-          <Redirect exact from="/" to="/smithing" />
-          <Route
-            exact
-            path="/:page?"
-            render={(props) => (
-              <Home
-                {...props}
-                currentTheme={currentTheme}
-                updateCurrentTheme={updateCurrentTheme}
-              />
-            )}
-          />
-        </Switch>
-      </HttpsRedirect>
+    <HttpsRedirect>
+      <Switch>
+        <Redirect exact from="/" to="/smithing" />
+        <Route
+          exact
+          path="/:page?"
+          render={(props) => (
+            <Home
+              {...props}
+              currentTheme={currentTheme}
+              updateCurrentTheme={updateCurrentTheme}
+            />
+          )}
+        />
+      </Switch>
+    </HttpsRedirect>
   );
 };
 
