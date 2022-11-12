@@ -1,7 +1,7 @@
 {
   "name": "calculator",
   "version": "0.1.0",
-  "homepage": "https://chends888.github.io/coa-calculator",
+  "homepage": "https://chends888.github.io/coa-calculator-frontend",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.4.0",
