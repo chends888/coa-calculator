@@ -57,17 +57,8 @@ const rows = [
 ];
 
 export default function StickyHeadTable() {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
-  // const handleChangePage = (event, newPage) => {
-  //   setPage(newPage);
-  // };
-
-  // const handleChangeRowsPerPage = (event) => {
-  //   setRowsPerPage(+event.target.value);
-  //   setPage(0);
-  // };
+  const page = React.useState(0);
+  const rowsPerPage = React.useState(10);
 
   return (
     <Paper
@@ -76,7 +67,7 @@ export default function StickyHeadTable() {
         overflow: 'hidden',
         marginLeft: "auto",
         marginRight: "auto",
-      }}  
+      }}
     >
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">

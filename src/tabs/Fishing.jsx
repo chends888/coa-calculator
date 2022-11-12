@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import "../App.css";
-// import Slider from "./components/Slider";
 import Attribute from "../components/Attribute";
 import Display from "../components/Display";
 import ToggleButtons from "../components/ToggleButtons";
@@ -9,6 +8,7 @@ import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
 import CustomSwitch from "../components/CustomSwitch";
 
+import gatheringData from "../data/gathering_data.json";
 
 const Fishing = () => {
   // Person's current level
@@ -20,7 +20,6 @@ const Fishing = () => {
   const [currentPercentage, setCurrentPercentage] = useState(0);
   const updateCurrentPercentage = (currentPercentage) => {
     currentPercentage = currentPercentage / 100;
-    console.log("update %", currentPercentage);
     setCurrentPercentage(currentPercentage);
   };
   // Person's target level
@@ -39,9 +38,6 @@ const Fishing = () => {
     setLolliPrice(lolliPrice);
   };
 
-  // Fishing data
-  const [gatheringData, setGatheringData] = useState({});
-
   // Exp boosts
   const [boostsDidUpdate, setBoostDidUpdate] = useState(false);
   const [boosts, setBoosts] = useState([
@@ -50,39 +46,13 @@ const Fishing = () => {
   const updateBoosts = (boosts, updatedBoostName) => {
     setBoosts(boosts);
     setBoostDidUpdate(!boostsDidUpdate);
-    // console.log("Boosts update", updatedBoostName);
   };
 
-//   Select fished or baits
+  //   Select fished or baits
   const [selectFishOrBait, setSelectFishOrBait] = useState(false);
   const updateselectFishOrBait = (selectFishOrBait) => {
-    // console.log(selectFishOrBait);
     setSelectFishOrBait(selectFishOrBait);
   };
-
-  React.useEffect(() => {
-    // Custom url depending if on develop or prod server
-    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-      var url = "http://localhost:8000/gathering";
-    } else {
-      var url = "https://coa-calculator-backend.herokuapp.com/gathering";
-    }
-    fetch(url)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw response;
-      })
-      .then((data) => {
-        // setBusy(false);
-        setGatheringData(data);
-        // console.log("set busy");
-      })
-      .catch((error) => {
-        console.log("Error on fetch Gathering Skills data:", error);
-      });
-  }, []);
 
   return (
     <>
@@ -127,7 +97,7 @@ const Fishing = () => {
       />
       <Boosts boosts={boosts} updateBoosts={updateBoosts} />
 
-      { element[0] === 'Bass bait' ? (
+      {element[0] === 'Bass bait' ? (
         <Attribute
           maxValue={9999999999}
           attributeName={"Current Lolli Price"}
@@ -137,7 +107,7 @@ const Fishing = () => {
             alignItems: "center",
           }}
         />
-      ): (
+      ) : (
         <></>
       )}
 
@@ -152,9 +122,6 @@ const Fishing = () => {
         skill="Fishing"
         lolliPrice={lolliPrice}
       />
-      {/* <Slider sliderName={"Your Smithing XP"}/>
-      <Slider sliderName={"Ore 1"}/>
-      <Slider sliderName={"Ore 2"}/> */}
       <Footer />
     </>
   );

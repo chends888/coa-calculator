@@ -105,7 +105,7 @@ const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
                       }}
                     >
                       <img
-                        src={`/images/${skill}/${attribute}.gif`}
+                        src={`./images/${skill}/${attribute}.gif`}
                         width="22"
                         height="22"
                         value={attribute}
@@ -184,7 +184,7 @@ const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
                     }}
                   >
                     <img
-                      src={`/images/${skill}/${element}.gif`}
+                      src={`./images/${skill}/${element}.gif`}
                       width="22"
                       height="22"
                       value={element}
@@ -211,7 +211,7 @@ const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
                     }}
                   >
                     <img
-                      src={`/images/${skill}/Gray ${element}.gif`}
+                      src={`./images/${skill}/Gray ${element}.gif`}
                       width="22"
                       height="22"
                       value={element}
