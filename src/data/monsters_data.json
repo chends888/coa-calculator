@@ -125,6 +125,11 @@
       "xp": "2200",
       "gold": "420"
     },
+    "Juvenile Venomling": {
+      "level": "65",
+      "xp": "2300",
+      "gold": "430"
+    },
     "Ancient Bat": {
       "level": "70",
       "xp": "2400",
@@ -185,6 +190,11 @@
       "xp": "4250",
       "gold": "600"
     },
+    "Corrupted Venomling": {
+      "level": "92",
+      "xp": "4150",
+      "gold": "500"
+    },
     "Golemite Bat": {
       "level": "95",
       "xp": "4400",
@@ -194,6 +204,11 @@
       "level": "100",
       "xp": "5270",
       "gold": "700"
+    },
+    "Tormented Venomling": {
+      "level": "100",
+      "xp": "7600",
+      "gold": "650"
     },
     "Poltergeist": {
       "level": "100",
@@ -210,10 +225,20 @@
       "xp": "5750",
       "gold": "800"
     },
+    "Rageful Venomling": {
+      "level": "110",
+      "xp": "9500",
+      "gold": "700"
+    },
     "Brown Snake": {
       "level": "120",
       "xp": "1000",
       "gold": "300"
+    },
+    "Disdained Venomling": {
+      "level": "125",
+      "xp": "15000",
+      "gold": "850"
     },
     "Purple Snake": {
       "level": "135",
