@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/coa-calculator-frontend/static/css/main.c5ca51ec.chunk.css",
-    "main.js": "/coa-calculator-frontend/static/js/main.023c6b64.chunk.js",
-    "main.js.map": "/coa-calculator-frontend/static/js/main.023c6b64.chunk.js.map",
-    "runtime-main.js": "/coa-calculator-frontend/static/js/runtime-main.f9321561.js",
-    "runtime-main.js.map": "/coa-calculator-frontend/static/js/runtime-main.f9321561.js.map",
-    "static/js/2.8e77dd99.chunk.js": "/coa-calculator-frontend/static/js/2.8e77dd99.chunk.js",
-    "static/js/2.8e77dd99.chunk.js.map": "/coa-calculator-frontend/static/js/2.8e77dd99.chunk.js.map",
-    "index.html": "/coa-calculator-frontend/index.html",
-    "static/css/main.c5ca51ec.chunk.css.map": "/coa-calculator-frontend/static/css/main.c5ca51ec.chunk.css.map",
-    "static/js/2.8e77dd99.chunk.js.LICENSE.txt": "/coa-calculator-frontend/static/js/2.8e77dd99.chunk.js.LICENSE.txt"
+    "main.css": "/coa-calculator/static/css/main.c5ca51ec.chunk.css",
+    "main.js": "/coa-calculator/static/js/main.a36aa1a5.chunk.js",
+    "main.js.map": "/coa-calculator/static/js/main.a36aa1a5.chunk.js.map",
+    "runtime-main.js": "/coa-calculator/static/js/runtime-main.2bba10c0.js",
+    "runtime-main.js.map": "/coa-calculator/static/js/runtime-main.2bba10c0.js.map",
+    "static/js/2.e90ad653.chunk.js": "/coa-calculator/static/js/2.e90ad653.chunk.js",
+    "static/js/2.e90ad653.chunk.js.map": "/coa-calculator/static/js/2.e90ad653.chunk.js.map",
+    "index.html": "/coa-calculator/index.html",
+    "static/css/main.c5ca51ec.chunk.css.map": "/coa-calculator/static/css/main.c5ca51ec.chunk.css.map",
+    "static/js/2.e90ad653.chunk.js.LICENSE.txt": "/coa-calculator/static/js/2.e90ad653.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.f9321561.js",
-    "static/js/2.8e77dd99.chunk.js",
+    "static/js/runtime-main.2bba10c0.js",
+    "static/js/2.e90ad653.chunk.js",
     "static/css/main.c5ca51ec.chunk.css",
-    "static/js/main.023c6b64.chunk.js"
+    "static/js/main.a36aa1a5.chunk.js"
   ]
 }
