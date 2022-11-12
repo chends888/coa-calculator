@@ -16,3 +16,9 @@ This is the front end of a calculator built with React to support calculating Sk
 `npm install @mui/material --save`
 
 `npm install @mui/icons-material --save`
+
+## Deploy on Github Pages:
+
+`npm install gh-pages --save-dev`
+
+`npm run deploy`
