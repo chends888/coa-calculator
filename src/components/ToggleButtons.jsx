@@ -184,7 +184,7 @@ const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
                     }}
                   >
                     <img
-                      src={`./images/${skill}/${element}.gif`}
+                      src={process.env.PUBLIC_URL + `/images/${skill}/${element}.gif`}
                       width="22"
                       height="22"
                       value={element}
