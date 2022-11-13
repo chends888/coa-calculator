@@ -72,7 +72,7 @@ const Boosts = ({ boosts, updateBoosts }) => {
                 >
                   {boost.name === 'Small or Medium Exp Pot' ? (
                     <img
-                      src={`./images/Boosts/${boost.name}.gif`}
+                      src={process.env.PUBLIC_URL + `/images/Boosts/${boost.name}.gif`}
                       width="27"
                       height="22"
                       value={boost.name}
@@ -81,7 +81,7 @@ const Boosts = ({ boosts, updateBoosts }) => {
                     />
                   ) : (
                     <img
-                      src={`./images/Boosts/${boost.name}.gif`}
+                      src={process.env.PUBLIC_URL + `/images/Boosts/${boost.name}.gif`}
                       width="22"
                       height="22"
                       value={boost.name}
