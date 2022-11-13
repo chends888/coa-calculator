@@ -1,8 +1,8 @@
----
 name: Build and Deploy React App to GitHub Pages
 on:
   push:
     branches: [ main ]
+
 jobs:
   build-and-deploy:
     name: Build and Deploy
@@ -14,9 +14,6 @@ jobs:
 
     - name: Build
       run: npm install
-
-    # - name: Test
-    #   run: npm run test
 
     - name: Deploy
       run: |
