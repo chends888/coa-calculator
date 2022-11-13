@@ -37,15 +37,10 @@ const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
 
   const handleChange = (event, newElement) => {
     if (event.currentTarget.value !== "loading") {
-      // setSelectedElement(event.currentTarget.value);
       setSelectedElement(newElement);
-      // console.log(newElement, selectedElement);
       if (newElement === null) {
         updateElement(['loading']);
       } else {
-        // console.log(currentLevel);
-        // console.log(skillsData['Crafting']['Wealth']['level']);
-        // console.log("Skills data: ", currentLevel >= parseInt(skillsData[skill]['Gold']['level']));
         updateElement([
           event.currentTarget.value,
           skillsData[skill][event.currentTarget.value],
