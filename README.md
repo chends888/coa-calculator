@@ -1,7 +1,7 @@
 # Curse of Aros (mobile MMORPG) Skills calculator
 https://chends888.github.io/coa-calculator-frontend/
 
-This is the front end of a calculator built with React to support calculating Skills XP on CoA.
+This is a calculator built with React to support calculating Skills XP on CoA.
 
 
 ## Setup (install `npm` dependencies):
