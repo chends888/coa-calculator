@@ -294,7 +294,7 @@ const Display = ({
             {element[0] === "loading" ? (
               <></>
             ) : skill === "Crafting" ? (
-              element[0] === "Cursed" || element[0] === "Experience" ? (
+              element[0] === "Cursed" || element[0] === "Experience" || element[0] === "Ice" ? (
                 <ListItem>
                   <ListItemText
                     primary={
