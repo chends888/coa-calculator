@@ -12,6 +12,7 @@ This is a calculator built with React to support calculating Skills XP on CoA.
 `npm run start`
 
 ## Dependencies
+(no need to run these on setup, they will be automatically installed upon running `npm install`)
 
 `npm install @mui/material --save`
 
