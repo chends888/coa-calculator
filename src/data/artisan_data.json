@@ -80,9 +80,10 @@
     },
       "Naturite": {
       "level": "85",
+      "xp-forge": "0",
       "xp-smelt": "5000",
       "submaterials": {
-        "Naturite Ore": "1"
+        "Naturite": "1"
        }
     } 
   },
