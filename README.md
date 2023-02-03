@@ -18,7 +18,7 @@ This is a calculator built with React to support calculating Skills XP on CoA.
 
 `npm install @mui/icons-material --save`
 
-## Deploy on Github Pages:
+## Deploy on GitHub Pages:
 
 This is not necessary because the project has a workflow that automates the deployment process and auto updates the gh-pages branch. (check `.github/workflows/node.js.yml`)
 
