@@ -88,21 +88,7 @@ const Display = ({
                   // Don't include smelting XP
                   element[1]["xp-forge"] === "0" ? (
                   // Exception for Naturite and other resources that don't forge
-                  <ListItemText
-                    primary={
-                      "Total " +
-                      element[0] +
-                      " " +
-                      keywords[0] +
-                      ": " +
-                      addCommas(
-                        Math.ceil(
-                          expGap /
-                          calculateElementXpBoost(element[1]["xp-smelt"])
-                        )
-                      )
-                    }
-                  />
+                  <></>
                   ) : (
                     <ListItemText
                       primary={
