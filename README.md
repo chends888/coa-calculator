@@ -8,6 +8,8 @@ This is a calculator built with React to support calculating Skills XP on CoA.
 
 `npm install`
 
+If npm is not installed, run `sudo apt install npm`
+
 ## Run on develop server:
 `npm run start`
 
