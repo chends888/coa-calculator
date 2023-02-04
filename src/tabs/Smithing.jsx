@@ -29,9 +29,13 @@ const Smithing = () => {
     setTargetLevel(targetLevel);
   };
   // Person's target element
-  const [element, setElement] = useState(['loading']);
+  const [element, setElement] = useState(["loading"]);
   const updateElement = (element) => {
     setElement(element);
+    // Exception for Naturite and others that might not forge
+    if (element[0] === "Naturite") {
+      setBuyOrSmeltBars(false);
+    }
   };
 
   // Exp boosts
@@ -54,6 +58,10 @@ const Smithing = () => {
   const [buyOrSmeltBars, setBuyOrSmeltBars] = useState(true);
   const updateBuyOrSmeltBars = (buyOrSmeltBars) => {
     setBuyOrSmeltBars(buyOrSmeltBars);
+    // Exception for Naturite and others that might not forge
+    if (element[0] === "Naturite") {
+      setBuyOrSmeltBars(true);
+    }
   };
 
   return (
@@ -83,12 +91,14 @@ const Smithing = () => {
       <CustomSwitch
         value={buyOrSmeltBars}
         updateValue={updateBuyOrSmeltBars}
+        element={element}
         trueText="Smelt Bars"
         falseText="Buy Bars"
       />
       <BoostCheckbox
         applyBoostOnSmelt={applyBoostOnSmelt}
         updateApplyBoostOnSmelt={updateApplyBoostOnSmelt}
+        element={element}
       />
       <Boosts boosts={boosts} updateBoosts={updateBoosts} />
       <Display

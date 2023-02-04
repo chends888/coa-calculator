@@ -89,9 +89,7 @@ const Display = ({
                 buyOrSmeltBars ? (
                   // Don't include smelting XP
                   // Exception for Naturite and other resources that don't forge
-                  element[1]["xp-forge"] === "0" ? (
-                    <></>
-                  ) : (
+                  
                     <ListItemText
                       primary={
                         "Total " +
@@ -107,7 +105,6 @@ const Display = ({
                         )
                       }
                     />
-                  )
                 ) : applyBoostOnSmelt ? (
                   // Include and apply Boosts on bar Smelting
                   // Exception for Naturite and other resources that don't forge
@@ -133,9 +130,7 @@ const Display = ({
                   )
                 ) : // Include but don't apply Boosts on bar Smelting
                 // Exception for Naturite and other resources that don't forge
-                element[1]["xp-forge"] === "0" ? (
-                  <></>
-                ) : (
+                (
                   <ListItemText
                     primary={
                       "Total " +

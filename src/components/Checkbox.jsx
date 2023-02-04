@@ -3,9 +3,17 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Box from "@mui/material/Box";
 
-const BoostCheckbox = ({ applyBoostOnSmelt, updateApplyBoostOnSmelt }) => {
+const BoostCheckbox = ({
+  applyBoostOnSmelt,
+  updateApplyBoostOnSmelt,
+  element,
+}) => {
   const handleChange = () => {
-    updateApplyBoostOnSmelt(!applyBoostOnSmelt);
+    if (element[0] === "Naturite") {
+      updateApplyBoostOnSmelt(true);
+    } else {
+      updateApplyBoostOnSmelt(!applyBoostOnSmelt);
+    }
   };
   return (
     <Box
@@ -17,15 +25,37 @@ const BoostCheckbox = ({ applyBoostOnSmelt, updateApplyBoostOnSmelt }) => {
         // maxWidth: "100",
       }}
     >
-      <FormGroup>
-        <FormControlLabel
-          control={
-            <Checkbox checked={applyBoostOnSmelt} onChange={handleChange} />
-          }
-          label="Apply Boosts on bar Smelting"
-        />
-        {/* <FormControlLabel disabled control={<Checkbox />} label="Disabled" /> */}
-      </FormGroup>
+      {element[0] === "Naturite" ? (
+        // Exception for Naturite
+        <FormGroup>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={true}
+                onChange={handleChange()}
+                disabled={true}
+                onLoad={handleChange()}
+              />
+            }
+            label="Apply Boosts on bar Smelting"
+          />
+          {/* <FormControlLabel disabled control={<Checkbox />} label="Disabled" /> */}
+        </FormGroup>
+      ) : (
+        <FormGroup>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={applyBoostOnSmelt}
+                onChange={handleChange}
+                disabled={false}
+              />
+            }
+            label="Apply Boosts on bar Smelting"
+          />
+          {/* <FormControlLabel disabled control={<Checkbox />} label="Disabled" /> */}
+        </FormGroup>
+      )}
     </Box>
   );
 };

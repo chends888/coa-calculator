@@ -17,7 +17,7 @@ const Div = styled("div")(({ theme }) => ({
   //   padding: theme.spacing(1),
 }));
 
-const CustomSwitch = ({ value, updateValue, falseText, trueText }) => {
+const CustomSwitch = ({ value, updateValue, falseText, trueText, element }) => {
   const handleChange = () => {
     updateValue(!value);
   };
@@ -48,11 +48,22 @@ const CustomSwitch = ({ value, updateValue, falseText, trueText }) => {
       >
         <Div>{falseText}</Div>
         <Grid item>
-          <Switch
-            // checked={} // relevant state for your case
-            onChange={handleChange} // relevant method to handle your change
-            color="default"
-          />
+          {element[0] === "Naturite" ? (
+            // Exception for Naturite
+            <Switch
+              checked={true}
+              disabled={true}
+              onChange={handleChange}
+              color="default"
+            />
+          ) : (
+            <Switch
+              checked={!value}
+              disabled={false}
+              onChange={handleChange}
+              color="default"
+            />
+          )}
         </Grid>
         <Div>{trueText}</Div>
       </Grid>
