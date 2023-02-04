@@ -86,6 +86,8 @@ const Display = ({
                 // Render results for Smithing
                 buyOrSmeltBars ? (
                   // Don't include smelting XP
+                  element[1]["xp-forge"] === "0" ? (
+                  // Exception for Naturite and other resources that don't forge
                   <ListItemText
                     primary={
                       "Total " +
@@ -96,11 +98,28 @@ const Display = ({
                       addCommas(
                         Math.ceil(
                           expGap /
-                          calculateElementXpBoost(element[1]["xp-forge"])
+                          calculateElementXpBoost(element[1]["xp-smelt"])
                         )
                       )
                     }
                   />
+                  ) : (
+                    <ListItemText
+                      primary={
+                        "Total " +
+                        element[0] +
+                        " " +
+                        keywords[0] +
+                        ": " +
+                        addCommas(
+                          Math.ceil(
+                            expGap /
+                            calculateElementXpBoost(element[1]["xp-forge"])
+                          )
+                        )
+                      }
+                    />
+                  )
                 ) : applyBoostOnSmelt ? (
                   // Include and apply Boosts on bar Smelting
                   <ListItemText
@@ -215,23 +234,42 @@ const Display = ({
                 {skill === "Smithing" ? (
                   // Don't include smelting XP
                   buyOrSmeltBars ? (
-                    <ListItemText
-                      primary={
-                        "Total " +
-                        subelement +
-                        ": " +
-                        addCommas(
-                          Math.ceil(
-                            expGap /
-                            calculateElementXpBoost(
-                              element[1]["xp-forge"]
-                            )
-                          ) * element[1]["submaterials"][subelement]
-                        )
-                      }
-                    />
+                    // Exception for Naturite and other resources that don't forge
+                    element[1]["xp-forge"] === "0" ? (
+                      <ListItemText
+                        primary={
+                          "Total " +
+                          subelement +
+                          ": " +
+                          addCommas(
+                            Math.ceil(
+                              expGap /
+                              calculateElementXpBoost(
+                                element[1]["xp-smelt"]
+                              )
+                            ) * element[1]["submaterials"][subelement]
+                          )
+                        }
+                      />
+                    ): (
+                      <ListItemText
+                        primary={
+                          "Total " +
+                          subelement +
+                          ": " +
+                          addCommas(
+                            Math.ceil(
+                              expGap /
+                              calculateElementXpBoost(
+                                element[1]["xp-forge"]
+                              )
+                            ) * element[1]["submaterials"][subelement]
+                          )
+                        }
+                      />
+                    )
                   ) : applyBoostOnSmelt ? (
-                    // Include AND boost smelting XP
+                    // Include AND boost Smelting XP
                     <ListItemText
                       primary={
                         "Total " +
