@@ -89,22 +89,22 @@ const Display = ({
                 buyOrSmeltBars ? (
                   // Don't include smelting XP
                   // Exception for Naturite and other resources that don't forge
-                  
-                    <ListItemText
-                      primary={
-                        "Total " +
-                        element[0] +
-                        " " +
-                        keywords[0] +
-                        ": " +
-                        addCommas(
-                          Math.ceil(
-                            expGap /
-                              calculateElementXpBoost(element[1]["xp-forge"])
-                          )
+
+                  <ListItemText
+                    primary={
+                      "Total " +
+                      element[0] +
+                      " " +
+                      keywords[0] +
+                      ": " +
+                      addCommas(
+                        Math.ceil(
+                          expGap /
+                            calculateElementXpBoost(element[1]["xp-forge"])
                         )
-                      }
-                    />
+                      )
+                    }
+                  />
                 ) : applyBoostOnSmelt ? (
                   // Include and apply Boosts on bar Smelting
                   // Exception for Naturite and other resources that don't forge
@@ -128,9 +128,9 @@ const Display = ({
                       }
                     />
                   )
-                ) : // Include but don't apply Boosts on bar Smelting
-                // Exception for Naturite and other resources that don't forge
-                (
+                ) : (
+                  // Include but don't apply Boosts on bar Smelting
+                  // Exception for Naturite and other resources that don't forge
                   <ListItemText
                     primary={
                       "Total " +
@@ -337,6 +337,21 @@ const Display = ({
                           expGap /
                             calculateElementXpBoost(element[1]["xp"]) /
                             18
+                        )
+                      )
+                    }
+                  />
+                </ListItem>
+              ) : element[0] === "Affliction" ? (
+                <ListItem>
+                  <ListItemText
+                    primary={
+                      "Inventories (35 per inventory): " +
+                      addCommas(
+                        Math.ceil(
+                          expGap /
+                            calculateElementXpBoost(element[1]["xp"]) /
+                            35
                         )
                       )
                     }
