@@ -386,7 +386,39 @@ const Display = ({
                   }
                 />
               </ListItem>
-            ) : skill === "Mining" || skill === "Woodcutting" ? (
+            ) : skill === "Mining" ? (
+              element[0] === "Naturite" ? (
+                <ListItem>
+                  <ListItemText
+                    primary={
+                      "Inventories (100 per inventory): " +
+                      addCommas(
+                        Math.ceil(
+                          expGap /
+                            calculateElementXpBoost(element[1]["xp"]) /
+                            100
+                        )
+                      )
+                    }
+                  />
+                </ListItem>
+              ) : (
+                <ListItem>
+                  <ListItemText
+                    primary={
+                      "Inventories (36 per inventory): " +
+                      addCommas(
+                        Math.ceil(
+                          expGap /
+                            calculateElementXpBoost(element[1]["xp"]) /
+                            36
+                        )
+                      )
+                    }
+                  />
+                </ListItem>
+              )
+            ) : skill === "Woodcutting" ? (
               <ListItem>
                 <ListItemText
                   primary={
