@@ -92,6 +92,7 @@ const Fishing = () => {
       <CustomSwitch
         value={selectFishOrBait}
         updateValue={updateselectFishOrBait}
+        element={element}
         falseText="Fish"
         trueText="Bait"
       />

@@ -88,6 +88,7 @@ const Cooking = () => {
       <CustomSwitch
         value={selectFoodOrBait}
         updateValue={updateselectFoodOrBait}
+        element={element}
         falseText="Food"
         trueText="Bait"
       />
