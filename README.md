@@ -22,7 +22,7 @@ If npm is not installed, run `sudo apt install npm`
 
 ## Deploy on GitHub Pages:
 
-This is not necessary because the project has a workflow that automates the deployment process and auto updates the gh-pages branch. (check `.github/workflows/node.js.yml`)
+This is not necessary because the project has a workflow that automates the deployment process and auto updates the gh-pages branch. (check `.github/workflows/node.js.yml`).
 
 `npm install gh-pages --save-dev`
 
