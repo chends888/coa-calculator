@@ -52,6 +52,17 @@ const Footer = () => {
           {new Date().getFullYear()}
           {"."}
         </Typography>
+        <Typography variant="body2" color="text.secondary" align="center">
+          {"Feel free to donate here "}
+          <Link
+            color="inherit"
+            href="https://www.patreon.com/CoACalculator"
+            rel="noopener"
+            target="_blank"
+          >
+            CoA Calculator Patreon
+          </Link>{" "}
+        </Typography>
       </Container>
     </Box>
   );
