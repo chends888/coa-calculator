@@ -5,8 +5,8 @@
       "xp-forge": "5",
       "xp-smelt": "3",
       "submaterials": {
-        "Copper": "2",
-        "Tin Ore": "2"
+        "Copper": "1",
+        "Tin Ore": "1"
       }
     },
     "Iron": {
