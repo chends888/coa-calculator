@@ -13,14 +13,14 @@ const Footer = () => {
           color="text.secondary"
           component="p"
         >
-          Bugs? Suggestions? DM me on Discord:{" "}
+          Made by:{" "}
           <Link
             color="inherit"
-            href="https://discordapp.com/users/chends#7176"
+            href="https://discordapp.com/users/chends"
             rel="noopener"
             target="_blank"
           >
-            chends#7176
+            chends
           </Link>
         </Typography>
         <Typography
@@ -32,11 +32,11 @@ const Footer = () => {
           Huge thanks to the contributor:{" "}
           <Link
             color="inherit"
-            href="https://discordapp.com/users/KaMaL#9365"
+            href="https://discordapp.com/users/kamal9365"
             rel="noopener"
             target="_blank"
           >
-            KaMaL#9365
+            kamal9365
           </Link>
         </Typography>
         <Typography variant="body2" color="text.secondary" align="center">
