@@ -6,7 +6,7 @@ import Display from "../components/Display";
 import ToggleButtons from "../components/ToggleButtons";
 import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
-import Alert from '@mui/material/Alert';
+// import Alert from '@mui/material/Alert';
 
 import monsterData from "../data/monsters_data.json";
 

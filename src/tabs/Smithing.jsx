@@ -44,6 +44,8 @@ const Smithing = () => {
     { name: "World Boost", value: 1.5, active: false },
     { name: "Infernal Ring", value: 1.04, active: false },
     { name: "Infernal Hammer", value: 1.04, active: false },
+    // { name: "Smith's Set I, II and III", value: 1.06, active: false },
+    // { name: "Elite Set", value: 1.12, active: false },
   ]);
   const updateBoosts = (boosts) => {
     setBoosts(boosts);

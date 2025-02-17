@@ -70,25 +70,13 @@ const Boosts = ({ boosts, updateBoosts }) => {
                     marginRight: 0.4,
                   }}
                 >
-                  {boost.name === 'Small or Medium Exp Pot' ? (
-                    <img
-                      src={process.env.PUBLIC_URL + `/images/Boosts/${boost.name}.gif`}
-                      width="27"
-                      height="22"
-                      value={boost.name}
-                      onClick={handleChange}
-                      alt=""
-                    />
-                  ) : (
-                    <img
-                      src={process.env.PUBLIC_URL + `/images/Boosts/${boost.name}.gif`}
-                      width="22"
-                      height="22"
-                      value={boost.name}
-                      onClick={handleChange}
-                      alt=""
-                    />
-                  )}
+                  <img
+                    src={process.env.PUBLIC_URL + `/images/Boosts/${boost.name}.gif`}
+                    style={{ width: 'auto', height: '22px' }}
+                    value={boost.name}
+                    onClick={handleChange}
+                    alt=""
+                  />
                 </Box>
                 {boost.name +
                   " (+" +
