@@ -48,7 +48,7 @@ const Combat = () => {
 
   return (
     <>
-      <Alert severity="info">Missing or bugged icons will be updated once new sprites are released</Alert>
+      {/* <Alert severity="info">Missing or bugged icons will be updated once new sprites are released</Alert> */}
 
       <Attribute
         maxValue={120}
