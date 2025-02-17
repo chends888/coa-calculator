@@ -38,11 +38,14 @@ const Mining = () => {
     { name: "World Boost", value: 1.5, active: false },
     { name: "Prospector's Necklace", value: 1.05, active: false },
   ]);
-  const updateBoosts = (boosts, updatedBoostName) => {
-    setBoosts(boosts);
+  const [boostsEquipSets, setBoostsEquipSets] = useState([
+    { name: "Golem's Set I, II and III", value: 1.06, active: false },
+    { name: "Seismic (Elite) Set", value: 1.12, active: false },
+  ]);
+  const updateBoosts = (boosts, isEquipSet = false) => {
+    isEquipSet ? setBoostsEquipSets(boosts) : setBoosts(boosts);
     setBoostDidUpdate(!boostsDidUpdate);
   };
-
   return (
     <>
       <Attribute
@@ -67,7 +70,8 @@ const Mining = () => {
         skill="Mining"
         currentLevel={currentLevel}
       />
-      <Boosts boosts={boosts} updateBoosts={updateBoosts} />
+      <Boosts boosts={boosts} updateBoosts={(boosts) => updateBoosts(boosts, false)} exclusive={false} />
+      <Boosts boosts={boostsEquipSets} updateBoosts={(boosts) => updateBoosts(boosts, true)} exclusive={true} />
 
       <Display
         level={currentLevel}
@@ -76,6 +80,7 @@ const Mining = () => {
         element={element}
         keywords={[""]}
         boosts={boosts}
+        boostsEquipSets={boostsEquipSets}
         boostsDidUpdate={boostsDidUpdate}
         skill="Mining"
       />

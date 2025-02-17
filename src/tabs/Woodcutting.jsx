@@ -37,8 +37,12 @@ const Woodcutting = () => {
   const [boosts, setBoosts] = useState([
     { name: "World Boost", value: 1.5, active: false },
   ]);
-  const updateBoosts = (boosts, updatedBoostName) => {
-    setBoosts(boosts);
+  const [boostsEquipSets, setBoostsEquipSets] = useState([
+    { name: "Ent's Set I, II ad III", value: 1.06, active: false },
+    { name: "Dryad's (Elite) Set", value: 1.12, active: false },
+  ]);
+  const updateBoosts = (boosts, isEquipSet = false) => {
+    isEquipSet ? setBoostsEquipSets(boosts) : setBoosts(boosts);
     setBoostDidUpdate(!boostsDidUpdate);
   };
 
@@ -68,7 +72,8 @@ const Woodcutting = () => {
         skill="Woodcutting"
         currentLevel={currentLevel}
       />
-      <Boosts boosts={boosts} updateBoosts={updateBoosts} />
+      <Boosts boosts={boosts} updateBoosts={(boosts) => updateBoosts(boosts, false)} exclusive={false} />
+      <Boosts boosts={boostsEquipSets} updateBoosts={(boosts) => updateBoosts(boosts, true)} exclusive={true} />
 
       <Display
         level={currentLevel}
@@ -77,6 +82,7 @@ const Woodcutting = () => {
         element={element}
         keywords={[""]}
         boosts={boosts}
+        boostsEquipSets={boostsEquipSets}
         boostsDidUpdate={boostsDidUpdate}
         skill="Woodcutting"
       />

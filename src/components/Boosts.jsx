@@ -22,17 +22,22 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   },
 }));
 
-const Boosts = ({ boosts, updateBoosts }) => {
+const Boosts = ({ boosts, updateBoosts, exclusive = false }) => {
   const [selectedBoost, setSelectedBoost] = React.useState([]);
 
-  const handleChange = (event, boostName) => {
-    setSelectedBoost(boostName);
-    let boostsCopy = boosts;
-    for (let i = 0; i < boostsCopy.length; i++) {
-      if (boostsCopy[i].name === event.currentTarget.value) {
-        boostsCopy[i].active = !boosts[i].active;
-      }
-    }
+  const handleChange = (event, newBoost) => {
+    // Update the selectedBoost state with the new selected boost(s)
+    setSelectedBoost(newBoost);
+
+    // Create a copy of the boosts array and update the active property
+    let boostsCopy = boosts.map(boost => ({
+      ...boost,
+      // If exclusive is true, only the selected boost is active
+      // If exclusive is false, check if the boost's name is in the newBoost array
+      active: exclusive ? boost.name === newBoost : newBoost.includes(boost.name)
+    }));
+
+    // Call updateBoosts with the updated boostsCopy array
     updateBoosts(boostsCopy);
   };
 
@@ -50,12 +55,13 @@ const Boosts = ({ boosts, updateBoosts }) => {
         <StyledToggleButtonGroup
           size="small"
           value={selectedBoost}
-          // exclusive
-          onChange={handleChange}
+          exclusive={exclusive}
+          onChange={(event, newBoost) => handleChange(event, newBoost)}
         >
           {boosts !== undefined ? (
             boosts.map((boost) => (
               <ToggleButton
+                key={boost.name}
                 value={boost.name}
                 sx={{
                   "& > :not(style)": {
@@ -74,7 +80,6 @@ const Boosts = ({ boosts, updateBoosts }) => {
                     src={process.env.PUBLIC_URL + `/images/Boosts/${boost.name}.gif`}
                     style={{ width: 'auto', height: '22px' }}
                     value={boost.name}
-                    onClick={handleChange}
                     alt=""
                   />
                 </Box>

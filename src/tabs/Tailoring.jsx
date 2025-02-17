@@ -37,8 +37,12 @@ const Tailoring = () => {
   const [boosts, setBoosts] = useState([
     { name: "World Boost", value: 1.5, active: false },
   ]);
-  const updateBoosts = (boosts, updatedBoostName) => {
-    setBoosts(boosts);
+  const [boostsEquipSets, setBoostsEquipSets] = useState([
+    { name: "Binder's Set I, II and III", value: 1.06, active: false },
+    { name: "Weaver's (Elite) Set", value: 1.12, active: false },
+  ]);
+  const updateBoosts = (boosts, isEquipSet = false) => {
+    isEquipSet ? setBoostsEquipSets(boosts) : setBoosts(boosts);
     setBoostDidUpdate(!boostsDidUpdate);
   };
 
@@ -66,7 +70,8 @@ const Tailoring = () => {
         skill="Tailoring"
         currentLevel={currentLevel}
       />
-      <Boosts boosts={boosts} updateBoosts={updateBoosts} />
+      <Boosts boosts={boosts} updateBoosts={(boosts) => updateBoosts(boosts, false)} exclusive={false} />
+      <Boosts boosts={boostsEquipSets} updateBoosts={(boosts) => updateBoosts(boosts, true)} exclusive={true} />
 
       <Display
         level={currentLevel}
@@ -75,6 +80,7 @@ const Tailoring = () => {
         element={element}
         keywords={[""]}
         boosts={boosts}
+        boostsEquipSets={boostsEquipSets}
         boostsDidUpdate={boostsDidUpdate}
         skill="Tailoring"
       />

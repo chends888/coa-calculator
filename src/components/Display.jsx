@@ -13,6 +13,7 @@ const Display = ({
   targetLevel,
   element,
   boosts,
+  boostsEquipSets,
   keywords,
   applyBoostOnSmelt,
   buyOrSmeltBars,
@@ -29,6 +30,11 @@ const Display = ({
     for (let i = 0; i < boosts.length; i++) {
       if (boosts[i].active) {
         elementXP *= boosts[i].value;
+      }
+    }
+    for (let i = 0; i < boostsEquipSets.length; i++) {
+      if (boostsEquipSets[i].active) {
+        elementXP *= boostsEquipSets[i].value;
       }
     }
     return Math.floor(elementXP);

@@ -43,8 +43,12 @@ const Fishing = () => {
   const [boosts, setBoosts] = useState([
     { name: "World Boost", value: 1.5, active: false },
   ]);
-  const updateBoosts = (boosts, updatedBoostName) => {
-    setBoosts(boosts);
+  const [boostsEquipSets, setBoostsEquipSets] = useState([
+    { name: "Shark's Set I, II and III", value: 1.06, active: false },
+    { name: "Megalodon's (Elite) Set", value: 1.12, active: false },
+  ]);
+  const updateBoosts = (boosts, isEquipSet = false) => {
+    isEquipSet ? setBoostsEquipSets(boosts) : setBoosts(boosts);
     setBoostDidUpdate(!boostsDidUpdate);
   };
 
@@ -96,7 +100,8 @@ const Fishing = () => {
         falseText="Fish"
         trueText="Bait"
       />
-      <Boosts boosts={boosts} updateBoosts={updateBoosts} />
+      <Boosts boosts={boosts} updateBoosts={(boosts) => updateBoosts(boosts, false)} exclusive={false} />
+      <Boosts boosts={boostsEquipSets} updateBoosts={(boosts) => updateBoosts(boosts, true)} exclusive={true} />
 
       {element[0] === 'Bass bait' ? (
         <Attribute
@@ -119,6 +124,7 @@ const Fishing = () => {
         element={element}
         keywords={[""]}
         boosts={boosts}
+        boostsEquipSets={boostsEquipSets}
         boostsDidUpdate={boostsDidUpdate}
         skill="Fishing"
         lolliPrice={lolliPrice}

@@ -37,8 +37,12 @@ const Crafting = () => {
   const [boosts, setBoosts] = useState([
     { name: "World Boost", value: 1.5, active: false },
   ]);
-  const updateBoosts = (boosts, updatedBoostName) => {
-    setBoosts(boosts);
+  const [boostsEquipSets, setBoostsEquipSets] = useState([
+    { name: "Crafter's Set I, II and III", value: 1.06, active: false },
+    { name: "Artisan's (Elite) Set", value: 1.12, active: false },
+  ]);
+  const updateBoosts = (boosts, isEquipSet = false) => {
+    isEquipSet ? setBoostsEquipSets(boosts) : setBoosts(boosts);
     setBoostDidUpdate(!boostsDidUpdate);
   };
 
@@ -66,7 +70,8 @@ const Crafting = () => {
         skill="Crafting"
         currentLevel={currentLevel}
       />
-      <Boosts boosts={boosts} updateBoosts={updateBoosts} />
+      <Boosts boosts={boosts} updateBoosts={(boosts) => updateBoosts(boosts, false)} exclusive={false} />
+      <Boosts boosts={boostsEquipSets} updateBoosts={(boosts) => updateBoosts(boosts, true)} exclusive={true} />
 
       <Display
         level={currentLevel}
@@ -75,6 +80,7 @@ const Crafting = () => {
         element={element}
         keywords={["Relics of"]}
         boosts={boosts}
+        boostsEquipSets={boostsEquipSets}
         boostsDidUpdate={boostsDidUpdate}
         skill="Crafting"
       />

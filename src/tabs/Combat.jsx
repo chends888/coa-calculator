@@ -6,7 +6,7 @@ import Display from "../components/Display";
 import ToggleButtons from "../components/ToggleButtons";
 import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
-// import Alert from '@mui/material/Alert';
+import Alert from '@mui/material/Alert';
 
 import monsterData from "../data/monsters_data.json";
 
@@ -48,7 +48,7 @@ const Combat = () => {
 
   return (
     <>
-      {/* <Alert severity="info">Missing or bugged icons will be updated once new sprites are released</Alert> */}
+      <Alert severity="info">Missing or bugged icons will be updated once new sprites are released</Alert>
 
       <Attribute
         maxValue={120}

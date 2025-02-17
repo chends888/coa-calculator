@@ -39,8 +39,12 @@ const Cooking = () => {
   const [boosts, setBoosts] = useState([
     { name: "World Boost", value: 1.5, active: false },
   ]);
-  const updateBoosts = (boosts, updatedBoostName) => {
-    setBoosts(boosts);
+  const [boostsEquipSets, setBoostsEquipSets] = useState([
+    { name: "Cook's Set I, II and III", value: 1.06, active: false },
+    { name: "Chef's (Elite) Set", value: 1.12, active: false },
+  ]);
+  const updateBoosts = (boosts, isEquipSet = false) => {
+    isEquipSet ? setBoostsEquipSets(boosts) : setBoosts(boosts);
     setBoostDidUpdate(!boostsDidUpdate);
   };
 
@@ -92,7 +96,8 @@ const Cooking = () => {
         falseText="Food"
         trueText="Bait"
       />
-      <Boosts boosts={boosts} updateBoosts={updateBoosts} />
+      <Boosts boosts={boosts} updateBoosts={(boosts) => updateBoosts(boosts, false)} exclusive={false} />
+      <Boosts boosts={boostsEquipSets} updateBoosts={(boosts) => updateBoosts(boosts, true)} exclusive={true} />
 
       {selectFoodOrBait === true ? (
         // Results for food
@@ -115,6 +120,7 @@ const Cooking = () => {
           element={element}
           keywords={["Cooked"]}
           boosts={boosts}
+          boostsEquipSets={boostsEquipSets}
           boostsDidUpdate={boostsDidUpdate}
           skill="Cooking"
         />

@@ -44,11 +44,13 @@ const Smithing = () => {
     { name: "World Boost", value: 1.5, active: false },
     { name: "Infernal Ring", value: 1.04, active: false },
     { name: "Infernal Hammer", value: 1.04, active: false },
-    // { name: "Smith's Set I, II and III", value: 1.06, active: false },
-    // { name: "Elite Set", value: 1.12, active: false },
   ]);
-  const updateBoosts = (boosts) => {
-    setBoosts(boosts);
+  const [boostsEquipSets, setBoostsEquipSets] = useState([
+    { name: "Smith's Set I, II and III", value: 1.06, active: false },
+    { name: "Infernal (Elite) Set", value: 1.12, active: false },
+  ]);
+  const updateBoosts = (boosts, isEquipSet = false) => {
+    isEquipSet ? setBoostsEquipSets(boosts) : setBoosts(boosts);
     setBoostDidUpdate(!boostsDidUpdate);
   };
   // Apply Boosts on bar smelting control
@@ -102,7 +104,8 @@ const Smithing = () => {
         updateApplyBoostOnSmelt={updateApplyBoostOnSmelt}
         element={element}
       />
-      <Boosts boosts={boosts} updateBoosts={updateBoosts} />
+      <Boosts boosts={boosts} updateBoosts={(boosts) => updateBoosts(boosts, false)} exclusive={false} />
+      <Boosts boosts={boostsEquipSets} updateBoosts={(boosts) => updateBoosts(boosts, true)} exclusive={true} />
       <Display
         level={currentLevel}
         levelPercentage={currentPercentage}
@@ -110,6 +113,7 @@ const Smithing = () => {
         element={element}
         keywords={["Bars"]}
         boosts={boosts}
+        boostsEquipSets={boostsEquipSets}
         applyBoostOnSmelt={applyBoostOnSmelt}
         buyOrSmeltBars={buyOrSmeltBars}
         skill="Smithing"
