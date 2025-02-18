@@ -13,7 +13,7 @@ const Display = ({
   targetLevel,
   element,
   boosts,
-  boostsEquipSets,
+  boostsEquipSets = [],
   keywords,
   applyBoostOnSmelt,
   buyOrSmeltBars,
