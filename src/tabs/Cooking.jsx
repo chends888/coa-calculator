@@ -72,7 +72,7 @@ const Cooking = () => {
           alignItems: "center",
         }}
       />
-      {selectFoodOrBait === true ? (
+      {selectFoodOrBait === false ? (
         // Render food buttons
         <ToggleButtons
           updateElement={updateElement}
@@ -99,7 +99,7 @@ const Cooking = () => {
       <Boosts boosts={boosts} updateBoosts={(boosts) => updateBoosts(boosts, false)} exclusive={false} />
       <Boosts boosts={boostsEquipSets} updateBoosts={(boosts) => updateBoosts(boosts, true)} exclusive={true} />
 
-      {selectFoodOrBait === true ? (
+      {selectFoodOrBait === false ? (
         // Results for food
         <Display
           level={currentLevel}
