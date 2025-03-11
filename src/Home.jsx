@@ -7,7 +7,7 @@ import Header from "./components/Header";
 import Smithing from "./tabs/Smithing";
 import Crafting from "./tabs/Crafting";
 import Cooking from "./tabs/Cooking";
-import Tailoring from "./tabs/Tailoring";
+import Spellbinding from "./tabs/Spellbinding";
 import Mining from "./tabs/Mining";
 import Woodcutting from "./tabs/Woodcutting";
 import Fishing from "./tabs/Fishing";
@@ -27,7 +27,7 @@ const Home = (props) => {
     0: "smithing",
     1: "crafting",
     2: "cooking",
-    3: "tailoring",
+    3: "spellbinding",
     4: "mining",
     5: "woodcutting",
     6: "fishing",
@@ -38,7 +38,7 @@ const Home = (props) => {
     smithing: 0,
     crafting: 1,
     cooking: 2,
-    tailoring: 3,
+    spellbinding: 3,
     mining: 4,
     woodcutting: 5,
     fishing: 6,
@@ -86,7 +86,7 @@ const Home = (props) => {
             <Tab label="Smithing" />
             <Tab label="Crafting" />
             <Tab label="Cooking" />
-            <Tab label="Tailoring" />
+            <Tab label="Spellbinding" />
             <Tab label="Mining" />
             <Tab label="Woodcutting" />
             <Tab label="Fishing" />
@@ -104,7 +104,7 @@ const Home = (props) => {
       {selectedTab === 0 && <Smithing />}
       {selectedTab === 1 && <Crafting />}
       {selectedTab === 2 && <Cooking />}
-      {selectedTab === 3 && <Tailoring />}
+      {selectedTab === 3 && <Spellbinding />}
       {selectedTab === 4 && <Mining />}
       {selectedTab === 5 && <Woodcutting />}
       {selectedTab === 6 && <Fishing />}

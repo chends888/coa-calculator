@@ -9,7 +9,7 @@ import Footer from "../components/Footer";
 
 import artisanData from "../data/artisan_data.json";
 
-const Tailoring = () => {
+const Spellbinding = () => {
   // Person's current level
   const [currentLevel, setCurrentLevel] = useState(1);
   const updateCurrentLevel = (currentLevel) => {
@@ -50,14 +50,14 @@ const Tailoring = () => {
     <>
       <Attribute
         maxValue={120}
-        attributeName={"Your Tailoring Level"}
+        attributeName={"Your Spellbinding Level"}
         updateAttribute={updateCurrentLevel}
         updateAttribute2={updateCurrentPercentage}
         isCurrentLevel={true}
       />
       <Attribute
         maxValue={120}
-        attributeName={"Target Tailoring Level"}
+        attributeName={"Target Spellbinding Level"}
         updateAttribute={updateTargetLevel}
         sx={{
           justifyContent: "center",
@@ -67,7 +67,7 @@ const Tailoring = () => {
       <ToggleButtons
         updateElement={updateElement}
         skillsData={artisanData}
-        skill="Tailoring"
+        skill="Spellbinding"
         currentLevel={currentLevel}
       />
       <Boosts boosts={boosts} updateBoosts={(boosts) => updateBoosts(boosts, false)} exclusive={false} />
@@ -82,11 +82,11 @@ const Tailoring = () => {
         boosts={boosts}
         boostsEquipSets={boostsEquipSets}
         boostsDidUpdate={boostsDidUpdate}
-        skill="Tailoring"
+        skill="Spellbinding"
       />
       <Footer />
     </>
   );
 };
 
-export default Tailoring;
+export default Spellbinding;
