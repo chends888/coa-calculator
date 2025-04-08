@@ -18,11 +18,7 @@ const Combat = ({
   currentPercentage, // Add currentPercentage prop
   updateCurrentPercentage, // Add updateCurrentPercentage prop
 }) => {
-  // Person's target element
-  const [element, setElement] = useState(['loading']);
-  const updateElement = (element) => {
-    setElement(element);
-  };
+
   // Person's target monster
   const [monster, setMonster] = useState(['loading']);
   const updateMonster = (monster) => {

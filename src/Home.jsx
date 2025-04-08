@@ -76,7 +76,6 @@ const Home = (props) => {
   };
 
   const [username, setUsername] = useState("");
-  const [userLevel, setUserLevel] = useState(null);
 
   const fetchUserLevel = async () => {
     try {
@@ -106,14 +105,11 @@ const Home = (props) => {
         });
 
         setSkillLevels(updatedSkillLevels); // Update the state
-        setUserLevel("Skill levels updated successfully!"); // Optional success message
       } else {
         console.error("No records found for the given username.");
-        setUserLevel("No records found.");
       }
     } catch (error) {
       console.error("Error fetching user level:", error);
-      setUserLevel("Error fetching data.");
     }
   };
 
