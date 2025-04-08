@@ -67,21 +67,15 @@ const Spellbinding = ({
             alignItems: "center",
           }}
         />
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
+        <img
+          src={process.env.PUBLIC_URL + `/images/Mining/mining.gif`}
+          alt="Spellbinding Animation"
           style={{
             width: 'auto',
             height: "55px",
             marginLeft: "16px",
           }}
-        >
-          <source src={`${process.env.PUBLIC_URL}/images/Mining/mining.webm`} type="video/webm" />
-          <source src={`${process.env.PUBLIC_URL}/images/Mining/mining.mp4`} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        />
       </Box>
       <ToggleButtons
         updateElement={updateElement}
