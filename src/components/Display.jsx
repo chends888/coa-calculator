@@ -41,10 +41,7 @@ const Display = ({
   };
 
   React.useEffect(() => {
-    const currentLevelExp =
-      parseInt(expData[level]) +
-      (parseInt(expData[level + 1]) - parseInt(expData[level])) *
-        levelPercentage;
+    const currentLevelExp = parseInt(expData[level]) + (parseInt(expData[level + 1]) - parseInt(expData[level])) * (levelPercentage/100);
     const targetLevelExp = expData[targetLevel];
     setExpGap(Math.ceil(targetLevelExp - currentLevelExp));
     // eslint-disable-next-line

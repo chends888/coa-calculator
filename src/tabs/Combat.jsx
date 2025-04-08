@@ -10,22 +10,18 @@ import Footer from "../components/Footer";
 
 import monsterData from "../data/monsters_data.json";
 
-const Combat = () => {
-  // Person's current level
-  const [currentLevel, setCurrentLevel] = useState(1);
-  const updateCurrentLevel = (currentLevel) => {
-    setCurrentLevel(currentLevel);
-  };
-  // Person's current level percentage
-  const [currentPercentage, setCurrentPercentage] = useState(0);
-  const updateCurrentPercentage = (currentPercentage) => {
-    currentPercentage = currentPercentage / 100;
-    setCurrentPercentage(currentPercentage);
-  };
-  // Person's target level
-  const [targetLevel, setTargetLevel] = useState(1);
-  const updateTargetLevel = (targetLevel) => {
-    setTargetLevel(targetLevel);
+const Combat = ({
+  currentLevel,
+  updateCurrentLevel,
+  targetLevel,
+  updateTargetLevel,
+  currentPercentage, // Add currentPercentage prop
+  updateCurrentPercentage, // Add updateCurrentPercentage prop
+}) => {
+  // Person's target element
+  const [element, setElement] = useState(['loading']);
+  const updateElement = (element) => {
+    setElement(element);
   };
   // Person's target monster
   const [monster, setMonster] = useState(['loading']);
@@ -53,6 +49,8 @@ const Combat = () => {
       <Attribute
         maxValue={120}
         attributeName={"Your Combat Level"}
+        value={currentLevel} // Pass the currentLevel as the value
+        percentageValue={currentPercentage} // Pass the percentage value directly
         updateAttribute={updateCurrentLevel}
         updateAttribute2={updateCurrentPercentage}
         isCurrentLevel={true}
@@ -60,6 +58,7 @@ const Combat = () => {
       <Attribute
         maxValue={120}
         attributeName={"Target Combat Level"}
+        value={targetLevel} // Pass the targetLevel as the value
         updateAttribute={updateTargetLevel}
         sx={{
           justifyContent: "center",

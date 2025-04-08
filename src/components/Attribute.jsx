@@ -1,6 +1,4 @@
 import React from "react";
-// import { styled } from "@mui/material/styles";
-// import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -8,185 +6,130 @@ import InputAdornment from "@mui/material/InputAdornment";
 const Attribute = ({
   maxValue,
   attributeName,
+  value, // Value for the main level field
+  percentageValue, // Value for the percentage field
   updateAttribute,
   updateAttribute2,
   isCurrentLevel,
 }) => {
-  const [attribute, setAttribute] = React.useState(null);
-  const [attribute2, setAttribute2] = React.useState(0);
-
-  const checkAndUpdateValue = (currentValue, newValue) => {
+  const checkAndUpdateValue = (newValue) => {
     let finalValue;
     newValue = Math.floor(newValue);
-    // console.log(currentValue, newValue);
-    // Check if value is above minimum or equal to undefined (when input is empty)
+
     if (newValue > 0 || newValue === null) {
-      // Check if value is less than maximum
-      if (currentValue > maxValue || newValue >= maxValue) {
+      if (newValue >= maxValue) {
         finalValue = maxValue;
-        setAttribute(maxValue);
       } else {
         finalValue = newValue;
-        setAttribute(finalValue);
       }
     } else if (newValue < 0) {
-      // console.log(newValue);
       finalValue = 0;
-      setAttribute(0);
     } else {
-      setAttribute(newValue);
       finalValue = newValue;
     }
-    // Update parent component attribute and attribute 2
+    // Update parent component attribute
     updateAttribute(finalValue);
   };
 
-  const checkAndUpdateValue2 = (currentValue, newValue, maxValue) => {
+  const checkAndUpdateValue2 = (newValue) => {
     let finalValue;
-    // console.log('maxValue:', maxValue);
-    // console.log('maxValue:', maxValue);
     newValue = Math.floor(newValue);
-    // console.log(currentValue, newValue);
-    // Check if value is above minimum or equal to undefined (when input is empty)
+
     if (newValue > 0 || newValue === null) {
-      // Check if value is less than maximum
-      if (currentValue > maxValue || newValue >= maxValue) {
-        finalValue = maxValue;
-        setAttribute2(maxValue);
+      if (newValue >= 99) {
+        finalValue = 99; // Cap percentage at 99
       } else {
         finalValue = newValue;
-        setAttribute2(finalValue);
       }
     } else if (newValue < 0) {
-      // console.log(newValue);
       finalValue = 0;
-      setAttribute2(0);
     } else {
-      setAttribute2(newValue);
       finalValue = newValue;
     }
-    // Update parent component attribute 2
+    // Update parent component attribute2
     updateAttribute2(finalValue);
   };
 
   const checkIfNaN = (value) => {
-    console.log("Value: ", value);
     if (Number.isNaN(value)) {
-      // Update attribute 2
-      setAttribute2(0);
-      // Update parent component attribute 2
       updateAttribute2(0);
     }
-    // else {
-    //   // Update parent component attribute 2
-    //   updateAttribute2(value);
-    // }
   };
 
   return (
-    <>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <TextField
+        label={attributeName}
+        type="text" // Change to "text" to fully control input
+        value={value || ""} // Ensure value is a valid string
+        onFocus={(event) => {
+          event.target.select();
         }}
-      >
-        {/* <Button
-          variant="outlined"
-          color="primary"
-          className={styles.button}
-          // href="#outlined-buttons"
-          onClick={() => {
-            checkAndUpdateValue(attribute, attribute - 1, true);
-            // setAttribute(newAttribute);
-            // updateAttribute(newAttribute);
-          }}
-        >
-          -
-        </Button> */}
+        onChange={(event) => {
+          const input = event.target.value;
+          const sanitizedValue = input.replace(/[^0-9]/g, ""); // Remove non-numeric characters
+          const numericValue = sanitizedValue === "" ? 0 : parseInt(sanitizedValue, 10);
+          checkAndUpdateValue(numericValue);
+        }}
+        inputProps={{
+          inputMode: "numeric", // Use numeric input mode
+        }}
+        sx={{
+          "& > :not(style)": {
+            margin: 1,
+            maxWidth: "25ch",
+            minWidth: "25ch",
+          },
+        }}
+      />
+      {isCurrentLevel ? (
         <TextField
-          label={attributeName}
           type="number"
-          // defaultValue="1"
-          value={attribute}
+          value={percentageValue.toString()} // Ensure the value is always a string
+          InputProps={{
+            endAdornment: <InputAdornment>%</InputAdornment>,
+          }}
           onFocus={(event) => {
             event.target.select();
           }}
-          // Remove initial zero
-          // value={('' + attribute).replace(/^0+/, '')}
-          onChange={function (event) {
-            checkAndUpdateValue(attribute, event.target.valueAsNumber);
-            // updateAttribute(newAttribute);
+          onBlur={(event) => {
+            checkIfNaN(event.target.valueAsNumber);
+          }}
+          onChange={(event) => {
+            let newValue = event.target.value;
+
+            // Prevent multiple leading zeros
+            if (newValue.length > 1 && newValue.startsWith("0")) {
+              newValue = newValue.replace(/^0+/, "0"); // Replace multiple leading zeros with a single "0"
+            }
+
+            // Ensure the value is numeric
+            const numericValue = parseInt(newValue, 10);
+            if (!Number.isNaN(numericValue)) {
+              checkAndUpdateValue2(numericValue); // Update the percentage value in the parent state
+            } else {
+              updateAttribute2(0); // Default to 0 if the input is invalid
+            }
+          }}
+          inputProps={{
+            inputMode: "numeric", // Use numeric input mode
           }}
           sx={{
             "& > :not(style)": {
               margin: 1,
-              // marginTop: 3,
-              maxWidth: "25ch",
-              minWidth: "25ch",
+              minWidth: "8ch",
+              maxWidth: "8ch",
             },
-            // display: flex,
-            // "justify-content": center,
-            // "align-items": center,
-            // alignItems: "center",
           }}
         />
-        {isCurrentLevel ? (
-          <TextField
-            // label=""
-            type="number"
-            // defaultValue="0"
-            value={attribute2}
-            InputProps={{
-              endAdornment: <InputAdornment>%</InputAdornment>,
-            }}
-            onFocus={(event) => {
-              event.target.select();
-            }}
-            // onBlur={checkIfNaN(event.target.valueAsNumber)}
-            onBlur={function (event) {
-              checkIfNaN(event.target.valueAsNumber);
-              // updateAttribute(newAttribute);
-            }}
-            // Remove initial zero
-            // value={('' + attribute).replace(/^0+/, '')}
-            onChange={function (event) {
-              checkAndUpdateValue2(attribute2, event.target.valueAsNumber, 99);
-              // updateAttribute(newAttribute);
-            }}
-            sx={{
-              "& > :not(style)": {
-                margin: 1,
-                // marginTop: 3,
-                // width: "69ch",
-                minWidth: "8ch",
-                maxWidth: "8ch",
-              },
-              // display: flex,
-              // "justify-content": center,
-              // "align-items": center,
-              // alignItems: "center",
-            }}
-          />
-        ) : (
-          <></>
-        )}
-        {/* <Button
-          variant="outlined"
-          color="primary"
-          className={styles.button}
-          // href="#outlined-buttons"
-          onClick={() => {
-            checkAndUpdateValue(attribute, attribute + 1, true);
-            // setAttribute(newAttribute);
-            // updateAttribute(newAttribute);
-          }}
-        >
-          +
-        </Button> */}
-      </Box>
-    </>
+      ) : null}
+    </Box>
   );
 };
 

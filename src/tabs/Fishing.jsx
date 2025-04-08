@@ -10,23 +10,14 @@ import CustomSwitch from "../components/CustomSwitch";
 
 import gatheringData from "../data/gathering_data.json";
 
-const Fishing = () => {
-  // Person's current level
-  const [currentLevel, setCurrentLevel] = useState(1);
-  const updateCurrentLevel = (currentLevel) => {
-    setCurrentLevel(currentLevel);
-  };
-  // Person's current level percentage
-  const [currentPercentage, setCurrentPercentage] = useState(0);
-  const updateCurrentPercentage = (currentPercentage) => {
-    currentPercentage = currentPercentage / 100;
-    setCurrentPercentage(currentPercentage);
-  };
-  // Person's target level
-  const [targetLevel, setTargetLevel] = useState(1);
-  const updateTargetLevel = (targetLevel) => {
-    setTargetLevel(targetLevel);
-  };
+const Fishing = ({
+  currentLevel,
+  updateCurrentLevel,
+  targetLevel,
+  updateTargetLevel,
+  currentPercentage, // Add currentPercentage prop
+  updateCurrentPercentage, // Add updateCurrentPercentage prop
+}) => {
   // Person's target element
   const [element, setElement] = useState(['loading']);
   const updateElement = (element) => {
@@ -63,6 +54,8 @@ const Fishing = () => {
       <Attribute
         maxValue={120}
         attributeName={"Your Fishing Level"}
+        value={currentLevel} // Pass the currentLevel as the value
+        percentageValue={currentPercentage} // Pass the percentage value directly
         updateAttribute={updateCurrentLevel}
         updateAttribute2={updateCurrentPercentage}
         isCurrentLevel={true}
@@ -70,6 +63,7 @@ const Fishing = () => {
       <Attribute
         maxValue={120}
         attributeName={"Target Fishing Level"}
+        value={targetLevel} // Pass the targetLevel as the value
         updateAttribute={updateTargetLevel}
         sx={{
           justifyContent: "center",
