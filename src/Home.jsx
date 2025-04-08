@@ -94,9 +94,12 @@ const Home = (props) => {
               const currentLevel = data[skill].level;
               const currentExp = data[skill].xp;
               const nextLevelExp = expData[currentLevel + 1] || currentExp; // Handle max level
-              const percentage = Math.round(
-                ((currentExp - expData[currentLevel]) / (nextLevelExp - expData[currentLevel])) * 100
-              ); // Round to 0 decimal places
+              const percentage = 0;
+              if (nextLevelExp !== 0) {
+                percentage = Math.round(
+                  ((currentExp - expData[currentLevel]) / (nextLevelExp - expData[currentLevel])) * 100
+                ); // Round to 0 decimal places
+              }
 
               updatedSkillLevels[skill].currentLevel = currentLevel; // Assign the level
               updatedSkillLevels[skill].currentPercentage = Math.min(Math.max(percentage, 0), 99); // Cap percentage at 99
