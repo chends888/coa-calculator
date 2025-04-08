@@ -94,7 +94,8 @@ const Home = (props) => {
               const currentLevel = data[skill].level;
               const currentExp = data[skill].xp;
               const nextLevelExp = expData[currentLevel + 1] || currentExp; // Handle max level
-              const percentage = 0;
+
+              let percentage = 0; // Use let to allow reassignment
               if (nextLevelExp !== 0) {
                 percentage = Math.round(
                   ((currentExp - expData[currentLevel]) / (nextLevelExp - expData[currentLevel])) * 100
