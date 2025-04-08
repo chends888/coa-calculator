@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import { debounce } from "lodash"; // Import lodash for debouncing
 
 import { Tabs, Tab, Box, TextField } from "@mui/material";
@@ -110,14 +110,15 @@ const Home = (props) => {
     }
   };
 
-  // Debounced version of fetchUserLevel
-  const debouncedFetchUserLevel = useCallback(
-    debounce((username) => {
-      if (username.trim() !== "") {
-        fetchUserLevel(username);
-      }
-    }, 500), // Wait 500ms after the user stops typing
-    []
+  // Memoize the debounced function to ensure it doesn't change on re-renders
+  const debouncedFetchUserLevel = useMemo(
+    () =>
+      debounce((username) => {
+        if (username.trim() !== "") {
+          fetchUserLevel(username);
+        }
+      }, 500), // Wait 500ms after the user stops typing
+    [fetchUserLevel] // Add fetchUserLevel as a dependency
   );
 
   const handleUsernameChange = (e) => {
