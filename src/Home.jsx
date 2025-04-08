@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
+import { debounce } from "lodash"; // Import lodash for debouncing
 
-import { Tabs, Tab, Box, TextField, Button } from "@mui/material";
-// import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { Tabs, Tab, Box, TextField } from "@mui/material";
 
 import Header from "./components/Header";
 import Smithing from "./tabs/Smithing";
@@ -14,9 +14,6 @@ import Fishing from "./tabs/Fishing";
 import Combat from "./tabs/Combat";
 
 import expData from "./data/exp_data.json"; // Import your existing experience data
-
-// import Brightness4Icon from '@mui/icons-material/Brightness4';
-// import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 const Home = (props) => {
   const { match, history, currentTheme, updateCurrentTheme } = props;
@@ -77,7 +74,7 @@ const Home = (props) => {
 
   const [username, setUsername] = useState("");
 
-  const fetchUserLevel = async () => {
+  const fetchUserLevel = async (username) => {
     try {
       const response = await fetch(`https://curseofaros.com/highscores-personal.json?user=${username}`);
       if (!response.ok) {
@@ -113,6 +110,22 @@ const Home = (props) => {
     }
   };
 
+  // Debounced version of fetchUserLevel
+  const debouncedFetchUserLevel = useCallback(
+    debounce((username) => {
+      if (username.trim() !== "") {
+        fetchUserLevel(username);
+      }
+    }, 500), // Wait 500ms after the user stops typing
+    []
+  );
+
+  const handleUsernameChange = (e) => {
+    const newUsername = e.target.value;
+    setUsername(newUsername);
+    debouncedFetchUserLevel(newUsername); // Trigger the debounced fetch
+  };
+
   return (
     <>
       <Header
@@ -124,22 +137,9 @@ const Home = (props) => {
         <TextField
           label="Enter Username"
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              fetchUserLevel(); // Trigger fetchUserLevel on Enter key press
-            }
-          }}
+          onChange={handleUsernameChange} // Use the debounced handler
           sx={{ marginRight: 2 }}
         />
-        <Button
-          variant="contained" // Use Material-UI's contained button style
-          color="primary" // Match the primary color of the theme
-          onClick={fetchUserLevel}
-          sx={{ textTransform: "none" }} // Optional: Prevent uppercase text
-        >
-          Fetch Level
-        </Button>
       </Box>
       <Box sx={{ width: "100%" }}>
         <Box sx={{ borderBottom: 1, borderColor: "divider", marginBottom: 1 }}>
