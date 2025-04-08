@@ -6,6 +6,8 @@ import Display from "../components/Display";
 import ToggleButtons from "../components/ToggleButtons";
 import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
+import { Box } from "@mui/material";
+
 
 import artisanData from "../data/artisan_data.json";
 
@@ -48,16 +50,34 @@ const Crafting = ({
         updateAttribute2={updateCurrentPercentage}
         isCurrentLevel={true}
       />
-      <Attribute
-        maxValue={120}
-        attributeName={"Target Crafting Level"}
-        value={targetLevel} // Pass the targetLevel as the value
-        updateAttribute={updateTargetLevel}
+      <Box
         sx={{
-          justifyContent: "center",
+          display: "flex",
           alignItems: "center",
+          justifyContent: "center", // Center horizontally
+          height: "70px", // Set a height to center vertically
         }}
-      />
+      >
+        <Attribute
+          maxValue={120}
+          attributeName={"Target Crafting Level"}
+          value={targetLevel} // Pass the targetLevel as the value
+          updateAttribute={updateTargetLevel}
+          sx={{
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        />
+        <img
+          src={process.env.PUBLIC_URL + `/images/Mining/mining.gif`}
+          alt="Crafting Animation"
+          style={{
+            width: 'auto',
+            height: "55px",
+            marginLeft: "16px",
+          }}
+        />
+      </Box>
       <ToggleButtons
         updateElement={updateElement}
         skillsData={artisanData}
