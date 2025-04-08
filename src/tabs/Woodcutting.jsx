@@ -29,7 +29,7 @@ const Woodcutting = ({
     { name: "World Boost", value: 1.5, active: false },
   ]);
   const [boostsEquipSets, setBoostsEquipSets] = useState([
-    { name: "Ent's Set I, II ad III", value: 1.06, active: false },
+    { name: "Ent's Set I, II and III", value: 1.06, active: false },
     { name: "Dryad's (Elite) Set", value: 1.12, active: false },
   ]);
   const updateBoosts = (boosts, isEquipSet = false) => {

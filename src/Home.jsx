@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import { debounce } from "lodash"; // Import lodash for debouncing
 
 import { Tabs, Tab, Box, TextField } from "@mui/material";
@@ -74,7 +74,8 @@ const Home = (props) => {
 
   const [username, setUsername] = useState("");
 
-  const fetchUserLevel = async (username) => {
+  // Wrap fetchUserLevel in useCallback to stabilize its reference
+  const fetchUserLevel = useCallback(async (username) => {
     try {
       const response = await fetch(`https://curseofaros.com/highscores-personal.json?user=${username}`);
       if (!response.ok) {
@@ -84,31 +85,33 @@ const Home = (props) => {
       console.log("API Response:", data); // Log the full response
 
       if (data) {
-        const updatedSkillLevels = { ...skillLevels };
+        setSkillLevels((prevSkillLevels) => {
+          const updatedSkillLevels = { ...prevSkillLevels };
 
-        // Iterate over the keys in the response and update skillLevels
-        Object.keys(data).forEach((skill) => {
-          if (updatedSkillLevels[skill]) {
-            const currentLevel = data[skill].level;
-            const currentExp = data[skill].xp;
-            const nextLevelExp = expData[currentLevel + 1] || currentExp; // Handle max level
-            const percentage = Math.round(
-              ((currentExp - expData[currentLevel]) / (nextLevelExp - expData[currentLevel])) * 100
-            ); // Round to 0 decimal places
+          // Iterate over the keys in the response and update skillLevels
+          Object.keys(data).forEach((skill) => {
+            if (updatedSkillLevels[skill]) {
+              const currentLevel = data[skill].level;
+              const currentExp = data[skill].xp;
+              const nextLevelExp = expData[currentLevel + 1] || currentExp; // Handle max level
+              const percentage = Math.round(
+                ((currentExp - expData[currentLevel]) / (nextLevelExp - expData[currentLevel])) * 100
+              ); // Round to 0 decimal places
 
-            updatedSkillLevels[skill].currentLevel = currentLevel; // Assign the level
-            updatedSkillLevels[skill].currentPercentage = Math.min(Math.max(percentage, 0), 99); // Cap percentage at 99
-          }
+              updatedSkillLevels[skill].currentLevel = currentLevel; // Assign the level
+              updatedSkillLevels[skill].currentPercentage = Math.min(Math.max(percentage, 0), 99); // Cap percentage at 99
+            }
+          });
+
+          return updatedSkillLevels; // Return the updated state
         });
-
-        setSkillLevels(updatedSkillLevels); // Update the state
       } else {
         console.error("No records found for the given username.");
       }
     } catch (error) {
       console.error("Error fetching user level:", error);
     }
-  };
+  }, []); // No dependencies needed
 
   // Memoize the debounced function to ensure it doesn't change on re-renders
   const debouncedFetchUserLevel = useMemo(
