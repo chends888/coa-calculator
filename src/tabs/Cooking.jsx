@@ -43,6 +43,7 @@ const Cooking = ({
   const [selectFoodOrBait, setSelectFoodOrBait] = useState(false);
   const updateselectFoodOrBait = (selectFoodOrBait) => {
     setSelectFoodOrBait(selectFoodOrBait);
+    setElement(["loading"]); // Reset element to its original value
   };
 
   return (
@@ -83,8 +84,25 @@ const Cooking = ({
             marginLeft: "16px",
           }}
         />
+
       </Box>
-      {selectFoodOrBait === false ? (
+         <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                marginBottom: 2,
+              }}
+            >
+      <CustomSwitch
+        value={selectFoodOrBait}
+        updateValue={updateselectFoodOrBait}
+        options={[
+          { label: "Food", value: false },
+          { label: "Bait", value: true },
+        ]}
+        />
+        </Box>
+      {selectFoodOrBait === true ? (
         // Render food buttons
         <ToggleButtons
           updateElement={updateElement}
@@ -101,13 +119,7 @@ const Cooking = ({
           currentLevel={currentLevel}
         />
       )}
-      <CustomSwitch
-        value={selectFoodOrBait}
-        updateValue={updateselectFoodOrBait}
-        element={element}
-        falseText="Food"
-        trueText="Bait"
-      />
+
       <Boosts boosts={boosts} updateBoosts={(boosts) => updateBoosts(boosts, false)} exclusive={false} />
       <Boosts boosts={boostsEquipSets} updateBoosts={(boosts) => updateBoosts(boosts, true)} exclusive={true} />
 

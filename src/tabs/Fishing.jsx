@@ -49,6 +49,7 @@ const Fishing = ({
   const [selectFishOrBait, setSelectFishOrBait] = useState(false);
   const updateselectFishOrBait = (selectFishOrBait) => {
     setSelectFishOrBait(selectFishOrBait);
+    setElement(["loading"]); // Reset element to its original value
   };
 
   return (
@@ -90,6 +91,22 @@ const Fishing = ({
           }}
         />
       </Box>
+              <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: 2,
+        }}
+      >
+        <CustomSwitch
+          value={selectFishOrBait}
+          updateValue={updateselectFishOrBait}
+          options={[
+            { label: "Fish", value: false },
+            { label: "Bait", value: true },
+          ]}
+        />
+      </Box>
       {selectFishOrBait === true ? (
         // Render bait buttons
         <ToggleButtons
@@ -107,13 +124,7 @@ const Fishing = ({
           currentLevel={currentLevel}
         />
       )}
-      <CustomSwitch
-        value={selectFishOrBait}
-        updateValue={updateselectFishOrBait}
-        element={element}
-        falseText="Fish"
-        trueText="Bait"
-      />
+
       <Boosts boosts={boosts} updateBoosts={(boosts) => updateBoosts(boosts, false)} exclusive={false} />
       <Boosts boosts={boostsEquipSets} updateBoosts={(boosts) => updateBoosts(boosts, true)} exclusive={true} />
 

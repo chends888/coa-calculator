@@ -9,7 +9,7 @@ const App = ({ currentTheme, updateCurrentTheme }) => {
   return (
     <HttpsRedirect>
       <Switch>
-        <Redirect exact from="/" to="/smithing" />
+        <Redirect exact from="/" to="/alchemy" />
         <Route
           exact
           path="/:page?"

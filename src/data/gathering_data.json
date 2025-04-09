@@ -296,5 +296,465 @@
       "xp": "33000",
       "submaterials": {}
     }
+  },
+  "Alchemy-Gathering": {
+    "Brightrose": {
+      "level": "1",
+      "xp": "1",
+      "submaterials": {}
+    },
+    "Snowdrops": {
+      "level": "10",
+      "xp": "7",
+      "submaterials": {}
+    },
+    "Dewberries": {
+      "level": "20",
+      "xp": "43",
+      "submaterials": {}
+    },
+    "Duskbell": {
+      "level": "27",
+      "xp": "87",
+      "submaterials": {}
+    },
+    "Dunethorn": {
+      "level": "35",
+      "xp": "120",
+      "submaterials": {}
+    },
+    "Grimwood": {
+      "level": "42",
+      "xp": "166",
+      "submaterials": {}
+    },
+    "Dragon's Whisker": {
+      "level": "50",
+      "xp": "220",
+      "submaterials": {}
+    },
+    "Grotwort": {
+      "level": "56",
+      "xp": "313",
+      "submaterials": {}
+    },
+    "Sunspore": {
+      "level": "62",
+      "xp": "454",
+      "submaterials": {}
+    },
+    "Moonshade": {
+      "level": "68",
+      "xp": "577",
+      "submaterials": {}
+    },
+    "Witchweave": {
+      "level": "73",
+      "xp": "770",
+      "submaterials": {}
+    },
+    "Voidberries": {
+      "level": "77",
+      "xp": "1330",
+      "submaterials": {}
+    },
+    "Drakewing": {
+      "level": "81",
+      "xp": "2502",
+      "submaterials": {}
+    },
+    "Dustwind": {
+      "level": "85",
+      "xp": "4024",
+      "submaterials": {}
+    },
+    "Stonesage": {
+      "level": "91",
+      "xp": "5600",
+      "submaterials": {}
+    },
+    "Dawnblossom": {
+      "level": "96",
+      "xp": "9712",
+      "submaterials": {}
+    }
+  },
+  "Alchemy": {
+    "Potion": {
+      "level": "1",
+      "xp": "2",
+      "submaterials": {
+        "Brightrose": "1",
+        "Bat Eye": "1"
+      }
+    },
+    "Mining Potion": {
+      "level": "3",
+      "xp": "3",
+      "submaterials": {
+        "Brightrose": "1",
+        "Pink Gelatin": "1"
+      }
+    },
+    "Woodcutting Potion": {
+      "level": "7",
+      "xp": "6",
+      "submaterials": {
+        "Brightrose": "1",
+        "Fishing Spider Eye": "1"
+      }
+    },
+    "Fishing Potion": {
+      "level": "11",
+      "xp": "14",
+      "submaterials": {
+        "Snowdrops": "1",
+        "Brown Mushroom": "1"
+      }
+    },
+    "Smithing Potion": {
+      "level": "16",
+      "xp": "15",
+      "submaterials": {
+        "Snowdrops": "1",
+        "Forest Spider Eye": "1"
+      }
+    },
+    "Crafting Potion": {
+      "level": "19",
+      "xp": "14",
+      "submaterials": {
+        "Snowdrops": "1",
+        "Cow Skull": "1"
+      }
+    },
+    "Cooking Potion": {
+      "level": "22",
+      "xp": "52",
+      "submaterials": {
+        "Dewberries": "1",
+        "Forest Bat Eye": "1"
+      }
+    },
+    "Spellbinding Potion": {
+      "level": "25",
+      "xp": "68",
+      "submaterials": {
+        "Dewberries": "1",
+        "Frozen Gelatin": "1"
+      }
+    },
+    "Taskmaster's Brew": {
+      "level": "29",
+      "xp": "119",
+      "submaterials": {
+        "Duskbell": "1",
+        "Snow Core": "1"
+      }
+    },
+    "Prospector's Brew": {
+      "level": "32",
+      "xp": "105",
+      "submaterials": {
+        "Duskbell": "1",
+        "Sapling Leaf": "1"
+      }
+    },
+    "Lumberjack's Ale": {
+      "level": "34",
+      "xp": "126",
+      "submaterials": {
+        "Duskbell": "1",
+        "Ice Spider Eye": "1"
+      }
+    },
+    "Blacksmith's Stout": {
+      "level": "36",
+      "xp": "174",
+      "submaterials": {
+        "Dunethorn": "1",
+        "Cave Spider Eye": "1"
+      }
+    },
+    "Artisan's Syrup": {
+      "level": "37",
+      "xp": "180",
+      "submaterials": {
+        "Dunethorn": "1",
+        "Skeletal Bat Eye": "1"
+      }
+    },
+    "Angler's Elixir": {
+      "level": "39",
+      "xp": "182",
+      "submaterials": {
+        "Dunethorn": "1",
+        "Sapphire Scarab Leg": "1"
+      }
+    },
+    "Chef's Kiss": {
+      "level": "41",
+      "xp": "295",
+      "submaterials": {
+        "Dunethorn": "1",
+        "Cave Bat Eye": "1"
+      }
+    },
+    "Imbuer's Wine": {
+      "level": "43",
+      "xp": "384",
+      "submaterials": {
+        "Grimwood": "1",
+        "Envenomed Blood": "1"
+      }
+    },
+    "Spellpower Potion": {
+      "level": "45",
+      "xp": "447",
+      "submaterials": {
+        "Grimwood": "1",
+        "Raptor Claw": "1"
+      }
+    },
+    "Concentrated Elixir": {
+      "level": "47",
+      "xp": "634",
+      "submaterials": {
+        "Grimwood": "1",
+        "Ruby Scarab Leg": "1"
+      }
+    },
+    "Divine Clarity": {
+      "level": "50",
+      "xp": "726",
+      "submaterials": {
+        "Dragon's Whisker": "1",
+        "Forest Fiend Eye": "1"
+      }
+    },
+    "Titan's Strength": {
+      "level": "52",
+      "xp": "1376",
+      "submaterials": {
+        "Dragon's Whisker": "1",
+        "Desert Raptor Claw": "1"
+      }
+    },
+    "Duelist's Draft": {
+      "level": "53",
+      "xp": "1782",
+      "submaterials": {
+        "Dragon's Whisker": "1",
+        "Rock Fiend Eye": "1"
+      }
+    },
+    "Stonebound Salve": {
+      "level": "55",
+      "xp": "1860",
+      "submaterials": {
+        "Dragon's Whisker": "1",
+        "Hornet Antenna": "1"
+      }
+    },
+    "Backlash Balm": {
+      "level": "57",
+      "xp": "2031",
+      "submaterials": {
+        "Grotwort": "1",
+        "Luminant Gelatin": "1"
+      }
+    },
+    "Berserker Potion": {
+      "level": "58",
+      "xp": "2109",
+      "submaterials": {
+        "Grotwort": "1",
+        "Juvenile Eye": "1"
+      }
+    },
+    "Arcanist's Wrath": {
+      "level": "59",
+      "xp": "2188",
+      "submaterials": {
+        "Grotwort": "1",
+        "Ancient Bat Eye": "1"
+      }
+    },
+    "Forsworn Focus": {
+      "level": "61",
+      "xp": "3204",
+      "submaterials": {
+        "Grotwort": "2",
+        "Ice Raptor Claw": "1"
+      }
+    },
+    "Antidote": {
+      "level": "63",
+      "xp": "3439",
+      "submaterials": {
+        "Sunspore": "2",
+        "Spectral Flintstone": "1"
+      }
+    },
+    "Frostskin Potion": {
+      "level": "65",
+      "xp": "3579",
+      "submaterials": {
+        "Sunspore": "2",
+        "Arosite Scarab Leg": "1"
+      }
+    },
+    "Arctic Potion": {
+      "level": "66",
+      "xp": "3533",
+      "submaterials": {
+        "Sunspore": "2",
+        "Shadow Flintstone": "1"
+      }
+    },
+    "Scavenger's Balm": {
+      "level": "68",
+      "xp": "3872",
+      "submaterials": {
+        "Moonshade": "2",
+        "Phantom Flintstone": "1"
+      }
+    },
+    "Vampirism Potion": {
+      "level": "69",
+      "xp": "4544",
+      "submaterials": {
+        "Moonshade": "2",
+        "Spectral Fiend Eye": "1"
+      }
+    },
+    "Assassin's Tonic": {
+      "level": "72",
+      "xp": "5654",
+      "submaterials": {
+        "Moonshade": "2",
+        "Phantom Fiend Eye": "2"
+      }
+    },
+    "Auric Bloom": {
+      "level": "73",
+      "xp": "7516",
+      "submaterials": {
+        "Witchweave": "2",
+        "Magnetite Scarab Leg": "2"
+      }
+    },
+    "Mirrorback Brew": {
+      "level": "75",
+      "xp": "7375",
+      "submaterials": {
+        "Witchweave": "2",
+        "Corrupted Eye": "2"
+      }
+    },
+    "Golem's Power": {
+      "level": "76",
+      "xp": "7727",
+      "submaterials": {
+        "Witchweave": "2",
+        "Golemite Bat Eye": "2"
+      }
+    },
+    "Guardian's Bulwark": {
+      "level": "77",
+      "xp": "13047",
+      "submaterials": {
+        "Voidberries": "3",
+        "Golemite Fiend Eye": "2"
+      }
+    },
+    "Quietus": {
+      "level": "78",
+      "xp": "22990",
+      "submaterials": {
+        "Voidberries": "3",
+        "Tormented Eye": "3"
+      }
+    },
+    "Midas Brew": {
+      "level": "79",
+      "xp": "76646",
+      "submaterials": {
+        "Voidberries": "3",
+        "Disdained Eye": "5"
+      }
+    },
+    "Featherwalk Potion": {
+      "level": "80",
+      "xp": "76646",
+      "submaterials": {
+        "Voidberries": "3",
+        "Disdained Eye": "5"
+      }
+    },
+    "Sanguine Oath": {
+      "level": "81",
+      "xp": "80162",
+      "submaterials": {
+        "Drakewing": "3",
+        "Disdained Eye": "5"
+      }
+    },
+    "Dance of the Undead": {
+      "level": "83",
+      "xp": "80162",
+      "submaterials": {
+        "Drakewing": "3",
+        "Disdained Eye": "5"
+      }
+    },
+    "Gilded Transmutation": {
+      "level": "84",
+      "xp": "18287",
+      "submaterials": {
+        "Drakewing": "3",
+        "Baby Dragon Spine": "2"
+      }
+    },
+    "Cloudwalk Potion": {
+      "level": "87",
+      "xp": "41759",
+      "submaterials": {
+        "Dustwind": "3",
+        "Rageful Eye": "3"
+      }
+    },
+    "Distilled Extract": {
+      "level": "90",
+      "xp": "84728",
+      "submaterials": {
+        "Dustwind": "3",
+        "Disdained Eye": "5"
+      }
+    },
+    "Provocation Potion": {
+      "level": "93",
+      "xp": "89456",
+      "submaterials": {
+        "Stonesage": "3",
+        "Disdained Eye": "5"
+      }
+    },
+    "Strigoi's Covenant": {
+      "level": "97",
+      "xp": "101792",
+      "submaterials": {
+        "Dawnblossom": "3",
+        "Disdained Eye": "5"
+      }
+    },
+    "Death's Rally": {
+      "level": "99",
+      "xp": "101792",
+      "submaterials": {
+        "Dawnblossom": "3",
+        "Disdained Eye": "5"
+      }
+    }
   }
 }

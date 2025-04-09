@@ -127,7 +127,7 @@ const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "center",
-          maxWidth: 450,
+          maxWidth: 600,
           // marginBottom: 1,
           marginLeft: "auto",
           marginRight: "auto",

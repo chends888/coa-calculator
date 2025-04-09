@@ -105,13 +105,23 @@ const Smithing = ({
         skill="Smithing"
         currentLevel={currentLevel}
       />
+      <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                marginBottom: 2,
+              }}
+            >
+
       <CustomSwitch
         value={buyOrSmeltBars}
         updateValue={updateBuyOrSmeltBars}
-        element={element}
-        trueText="Smelt Bars"
-        falseText="Buy Bars"
-      />
+        options={[
+          { label: "Buy Bars", value: true },
+          { label: "Smelt Bars", value: false },
+        ]}
+        />
+        </Box>
       <BoostCheckbox
         applyBoostOnSmelt={applyBoostOnSmelt}
         updateApplyBoostOnSmelt={updateApplyBoostOnSmelt}

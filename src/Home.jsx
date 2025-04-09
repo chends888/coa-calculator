@@ -8,6 +8,7 @@ import Smithing from "./tabs/Smithing";
 import Crafting from "./tabs/Crafting";
 import Cooking from "./tabs/Cooking";
 import Spellbinding from "./tabs/Spellbinding";
+import Alchemy from "./tabs/Alchemy"; // Import the new Alchemy tab
 import Mining from "./tabs/Mining";
 import Woodcutting from "./tabs/Woodcutting";
 import Fishing from "./tabs/Fishing";
@@ -25,10 +26,11 @@ const Home = (props) => {
     1: "crafting",
     2: "cooking",
     3: "spellbinding",
-    4: "mining",
-    5: "woodcutting",
-    6: "fishing",
-    7: "combat",
+    4: "alchemy",
+    5: "mining",
+    6: "woodcutting",
+    7: "fishing",
+    8: "combat",
   };
 
   const indexToTabName = {
@@ -36,10 +38,11 @@ const Home = (props) => {
     crafting: 1,
     cooking: 2,
     spellbinding: 3,
-    mining: 4,
-    woodcutting: 5,
-    fishing: 6,
-    combat: 7,
+    alchemy: 4,
+    mining: 5,
+    woodcutting: 6,
+    fishing: 7,
+    combat: 8,
   };
 
   const [selectedTab, setSelectedTab] = React.useState(indexToTabName[page]);
@@ -49,6 +52,7 @@ const Home = (props) => {
     crafting: { currentLevel: null, targetLevel: null, currentPercentage: 0 },
     cooking: { currentLevel: null, targetLevel: null, currentPercentage: 0 },
     spellbinding: { currentLevel: null, targetLevel: null, currentPercentage: 0 },
+    alchemy: { currentLevel: null, targetLevel: null, currentPercentage: 0 }, // Add Alchemy state
     mining: { currentLevel: null, targetLevel: null, currentPercentage: 0 },
     woodcutting: { currentLevel: null, targetLevel: null, currentPercentage: 0 },
     fishing: { currentLevel: null, targetLevel: null, currentPercentage: 0 },
@@ -161,6 +165,7 @@ const Home = (props) => {
             <Tab label="Crafting" />
             <Tab label="Cooking" />
             <Tab label="Spellbinding" />
+            <Tab label="Alchemy" /> {/* Move Alchemy tab after Spellbinding */}
             <Tab label="Mining" />
             <Tab label="Woodcutting" />
             <Tab label="Fishing" />
@@ -233,6 +238,22 @@ const Home = (props) => {
         />
       )}
       {selectedTab === 4 && (
+        <Alchemy
+          currentLevel={skillLevels.alchemy.currentLevel}
+          targetLevel={skillLevels.alchemy.targetLevel}
+          updateCurrentLevel={(value) =>
+            updateSkillLevel("alchemy", "currentLevel", value)
+          }
+          updateTargetLevel={(value) =>
+            updateSkillLevel("alchemy", "targetLevel", value)
+          }
+          currentPercentage={skillLevels.alchemy.currentPercentage}
+          updateCurrentPercentage={(value) =>
+            updateSkillLevel("alchemy", "currentPercentage", value)
+          }
+        />
+      )}
+      {selectedTab === 5 && (
         <Mining
           currentLevel={skillLevels.mining.currentLevel}
           targetLevel={skillLevels.mining.targetLevel}
@@ -248,7 +269,7 @@ const Home = (props) => {
           }
         />
       )}
-      {selectedTab === 5 && (
+      {selectedTab === 6 && (
         <Woodcutting
           currentLevel={skillLevels.woodcutting.currentLevel}
           targetLevel={skillLevels.woodcutting.targetLevel}
@@ -264,7 +285,7 @@ const Home = (props) => {
           }
         />
       )}
-      {selectedTab === 6 && (
+      {selectedTab === 7 && (
         <Fishing
           currentLevel={skillLevels.fishing.currentLevel}
           targetLevel={skillLevels.fishing.targetLevel}
@@ -280,7 +301,7 @@ const Home = (props) => {
           }
         />
       )}
-      {selectedTab === 7 && (
+      {selectedTab === 8 && (
         <Combat
           currentLevel={skillLevels.combat.currentLevel}
           targetLevel={skillLevels.combat.targetLevel}
