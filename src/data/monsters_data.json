@@ -249,6 +249,11 @@
       "level": "150",
       "xp": "11500",
       "gold": "650"
+    },
+    "Disciple of Nydarax": {
+      "level": "200",
+      "xp": "37500",
+      "gold": "200"
     }
   }
 }
