@@ -147,6 +147,7 @@ const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
             {createCombatButtons([51, 70])}
             {createCombatButtons([71, 90])}
             {createCombatButtons([91, 150])}
+            {createCombatButtons([151, 200])}
           </Box>
         ) : (
           // All of other skill's buttons
