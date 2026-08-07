@@ -103,16 +103,16 @@ const Cooking = ({
         />
         </Box>
       {selectFoodOrBait === true ? (
-        // Render food buttons
         <ToggleButtons
+          key="bait"
           updateElement={updateElement}
           skillsData={artisanData}
           skill="Cooking-Baits"
           currentLevel={currentLevel}
         />
       ) : (
-        // Render baits buttons
         <ToggleButtons
+          key="food"
           updateElement={updateElement}
           skillsData={artisanData}
           skill="Cooking"
@@ -132,6 +132,7 @@ const Cooking = ({
           element={element}
           keywords={[""]}
           boosts={boosts}
+          boostsEquipSets={boostsEquipSets}
           boostsDidUpdate={boostsDidUpdate}
           skill="Cooking"
         />

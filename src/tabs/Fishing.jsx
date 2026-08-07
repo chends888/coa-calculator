@@ -110,6 +110,7 @@ const Fishing = ({
       {selectFishOrBait === true ? (
         // Render bait buttons
         <ToggleButtons
+          key={selectFishOrBait}
           updateElement={updateElement}
           skillsData={gatheringData}
           skill="Fishing-Baits"
@@ -118,6 +119,7 @@ const Fishing = ({
       ) : (
         // Render fish buttons
         <ToggleButtons
+          key={selectFishOrBait}
           updateElement={updateElement}
           skillsData={gatheringData}
           skill="Fishing"

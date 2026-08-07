@@ -1,5 +1,5 @@
 import React from "react";
-  import { ToggleButtonGroup, ToggleButton } from "@mui/material";
+import { ToggleButtonGroup, ToggleButton } from "@mui/material";
 
 const CustomSwitch = ({ value, updateValue, options }) => {
   if (!options || options.length === 0) {
@@ -19,7 +19,12 @@ const CustomSwitch = ({ value, updateValue, options }) => {
       aria-label="Custom Switch"
     >
       {options.map((option) => (
-        <ToggleButton key={option.value} value={option.value} aria-label={option.label}>
+        <ToggleButton
+          key={option.value}
+          value={option.value}
+          aria-label={option.label}
+          disabled={!!option.disabled}
+        >
           {option.label}
         </ToggleButton>
       ))}

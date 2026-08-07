@@ -53,12 +53,18 @@ const Smithing = ({
   // Smelt or buy bars control
   const [buyOrSmeltBars, setBuyOrSmeltBars] = useState(true);
   const updateBuyOrSmeltBars = (buyOrSmeltBars) => {
-    setBuyOrSmeltBars(buyOrSmeltBars);
-    // Exception for Naturite and others that might not forge
+    // Exception for Naturite and others that might not forge:
+    // it can only be smelted, never bought as bars, so ignore any
+    // attempt to switch to "Buy Bars" while it's selected and lock
+    // the toggle to "Smelt Bars" instead.
     if (element[0] === "Naturite") {
-      setBuyOrSmeltBars(true);
+      setBuyOrSmeltBars(false);
+      return;
     }
+    setBuyOrSmeltBars(buyOrSmeltBars);
   };
+
+  const isNaturiteSelected = element[0] === "Naturite";
 
   return (
     <>
@@ -117,7 +123,7 @@ const Smithing = ({
         value={buyOrSmeltBars}
         updateValue={updateBuyOrSmeltBars}
         options={[
-          { label: "Buy Bars", value: true },
+          { label: "Buy Bars", value: true, disabled: isNaturiteSelected },
           { label: "Smelt Bars", value: false },
         ]}
         />
