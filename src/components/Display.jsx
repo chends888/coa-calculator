@@ -14,6 +14,7 @@ const Display = ({
   skill, lolliPrice,
 }) => {
   const [result, setResult] = React.useState(null);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const hidePrimaryLine = skill === "Smithing" && element?.[0] === "Naturite";
 
@@ -31,10 +32,12 @@ const Display = ({
   React.useEffect(() => {
     if (!element || element[0] === "loading") {
       setResult(null);
+      setIsLoading(false);
       return;
     }
 
     const controller = new AbortController();
+    setIsLoading(true);
 
     fetch(`${API_URL}/calculate`, {
       method: "POST",
@@ -55,9 +58,15 @@ const Display = ({
       }),
     })
       .then((res) => res.json())
-      .then(setResult)
+      .then((data) => {
+        setResult(data);
+        setIsLoading(false);
+      })
       .catch((err) => {
-        if (err.name !== "AbortError") console.error(err);
+        if (err.name !== "AbortError") {
+          console.error(err);
+          setIsLoading(false);
+        }
       });
 
     return () => controller.abort();
@@ -76,61 +85,70 @@ const Display = ({
     lolliPrice,
   ]);
 
-  if (!result || result.error || typeof result.exp_gap !== "number" || result.exp_gap <= 0) {
-    return <Box />;
-  }
+  const hasValidResult =
+    result && !result.error && typeof result.exp_gap === "number" && result.exp_gap > 0;
+
+  const expLine = isLoading
+    ? "Total exp: Loading..."
+    : hasValidResult
+    ? "Total exp: " + addCommas(result.exp_gap)
+    : "Total exp: -";
 
   return (
     <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
       <List dense={true}>
         <ListItem>
-          <ListItemText primary={"Total exp: " + addCommas(result.exp_gap)} />
+          <ListItemText primary={expLine} />
         </ListItem>
 
-        {result.primary && !hidePrimaryLine && (
-          <ListItem>
-            <ListItemText
-              primary={
-                result.primary.xp_per_unit != null
-                  ? `Total ${result.primary.label}: ${addCommas(result.primary.value)} (${result.primary.xp_per_unit} exp per kill)`
-                  : `Total ${result.primary.label}: ${addCommas(result.primary.value)}`
-              }
-            />
-          </ListItem>
-        )}
-
-        {result.gold && (
-          <ListItem>
-            <ListItemText
-              primary={`Total gold: ${addCommas(result.gold.total)} (${result.gold.per_kill} gold per kill)`}
-            />
-          </ListItem>
-        )}
-
-        {result.subelements?.map((sub) => (
-          <ListItem key={sub.name}>
-            <ListItemText primary={`Total ${sub.name}: ${addCommas(sub.value)}`} />
-          </ListItem>
-        ))}
-
-        {result.inventories && result.inventories.value != null && (
-          <ListItem>
-            <ListItemText
-              primary={`Inventories (${result.inventories.size} per inventory): ${addCommas(result.inventories.value)}`}
-            />
-          </ListItem>
-        )}
-
-        {result.remote_bank && (
+        {!isLoading && hasValidResult && (
           <>
-            <ListItem>
-              <ListItemText
-                primary={`Total Remote Bank (34 bass per inventory): ${addCommas(result.remote_bank.trips)}`}
-              />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary={`Total Remote Bank price: ${addCommas(result.remote_bank.price)} Gold`} />
-            </ListItem>
+            {result.primary && !hidePrimaryLine && (
+              <ListItem>
+                <ListItemText
+                  primary={
+                    result.primary.xp_per_unit != null
+                      ? `Total ${result.primary.label}: ${addCommas(result.primary.value)} (${result.primary.xp_per_unit} exp per kill)`
+                      : `Total ${result.primary.label}: ${addCommas(result.primary.value)}`
+                  }
+                />
+              </ListItem>
+            )}
+
+            {result.gold && (
+              <ListItem>
+                <ListItemText
+                  primary={`Total gold: ${addCommas(result.gold.total)} (${result.gold.per_kill} gold per kill)`}
+                />
+              </ListItem>
+            )}
+
+            {result.subelements?.map((sub) => (
+              <ListItem key={sub.name}>
+                <ListItemText primary={`Total ${sub.name}: ${addCommas(sub.value)}`} />
+              </ListItem>
+            ))}
+
+            {result.inventories && result.inventories.value != null && (
+              <ListItem>
+                <ListItemText
+                  primary={`Inventories (${result.inventories.size} per inventory): ${addCommas(result.inventories.value)}`}
+                />
+              </ListItem>
+            )}
+
+            {result.remote_bank && (
+              <>
+                <ListItem>
+                  <ListItemText
+                    primary={`Total Remote Bank (34 bass per inventory): ${addCommas(result.remote_bank.trips)}`}
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText primary={`Total Remote Bank price: ${addCommas(result.remote_bank.price)} Gold`} />
+                </ListItem>
+              </>
+            )}
           </>
         )}
       </List>

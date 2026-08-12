@@ -10,7 +10,8 @@ import CustomSwitch from "../components/CustomSwitch";
 import BoostCheckbox from "../components/Checkbox";
 import { Box } from "@mui/material";
 
-import artisanData from "../data/artisan_data.json";
+import LoadingIndicator from "../components/LoadingIndicator";
+import useSkillData from "../hooks/useSkillData";
 
 const Smithing = ({
   currentLevel,
@@ -20,6 +21,8 @@ const Smithing = ({
   currentPercentage, // Add currentPercentage prop
   updateCurrentPercentage, // Add updateCurrentPercentage prop
 }) => {
+  const { data: artisanData, isLoading: artisanLoading } = useSkillData("artisan");
+
   // Person's target element
   const [element, setElement] = useState(["loading"]);
   const updateElement = (element) => {
@@ -105,12 +108,16 @@ const Smithing = ({
           }}
         />
       </Box>
-      <ToggleButtons
-        updateElement={updateElement}
-        skillsData={artisanData}
-        skill="Smithing"
-        currentLevel={currentLevel}
-      />
+      {artisanLoading || !artisanData ? (
+        <LoadingIndicator text="Loading Smithing materials..." />
+      ) : (
+        <ToggleButtons
+          updateElement={updateElement}
+          skillsData={artisanData}
+          skill="Smithing"
+          currentLevel={currentLevel}
+        />
+      )}
       <Box
               sx={{
                 display: "flex",

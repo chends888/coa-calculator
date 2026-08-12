@@ -7,31 +7,29 @@ import ToggleButtons from "../components/ToggleButtons";
 import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
 import CustomSwitch from "../components/CustomSwitch";
+import LoadingIndicator from "../components/LoadingIndicator";
+import useSkillData from "../hooks/useSkillData";
 import { Box } from "@mui/material";
-
-
-import gatheringData from "../data/gathering_data.json";
 
 const Fishing = ({
   currentLevel,
   updateCurrentLevel,
   targetLevel,
   updateTargetLevel,
-  currentPercentage, // Add currentPercentage prop
-  updateCurrentPercentage, // Add updateCurrentPercentage prop
+  currentPercentage,
+  updateCurrentPercentage,
 }) => {
-  // Person's target element
+  const { data: gatheringData, isLoading: gatheringLoading } = useSkillData("gathering");
+
   const [element, setElement] = useState(['loading']);
   const updateElement = (element) => {
     setElement(element);
   };
-  // Lollipop price input, to calculate Remote Bank price
   const [lolliPrice, setLolliPrice] = useState(0);
   const updateLolliPrice = (lolliPrice) => {
     setLolliPrice(lolliPrice);
   };
 
-  // Exp boosts
   const [boostsDidUpdate, setBoostDidUpdate] = useState(false);
   const [boosts, setBoosts] = useState([
     { name: "World Boost", value: 1.5, active: false },
@@ -45,11 +43,10 @@ const Fishing = ({
     setBoostDidUpdate(!boostsDidUpdate);
   };
 
-  //   Select fished or baits
   const [selectFishOrBait, setSelectFishOrBait] = useState(false);
   const updateselectFishOrBait = (selectFishOrBait) => {
     setSelectFishOrBait(selectFishOrBait);
-    setElement(["loading"]); // Reset element to its original value
+    setElement(["loading"]);
   };
 
   return (
@@ -57,8 +54,8 @@ const Fishing = ({
       <Attribute
         maxValue={120}
         attributeName={"Your Fishing Level"}
-        value={currentLevel} // Pass the currentLevel as the value
-        percentageValue={currentPercentage} // Pass the percentage value directly
+        value={currentLevel}
+        percentageValue={currentPercentage}
         updateAttribute={updateCurrentLevel}
         updateAttribute2={updateCurrentPercentage}
         isCurrentLevel={true}
@@ -67,14 +64,14 @@ const Fishing = ({
         sx={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "center", // Center horizontally
-          height: "70px", // Set a height to center vertically
+          justifyContent: "center",
+          height: "70px",
         }}
       >
         <Attribute
           maxValue={120}
           attributeName={"Target Fishing Level"}
-          value={targetLevel} // Pass the targetLevel as the value
+          value={targetLevel}
           updateAttribute={updateTargetLevel}
           sx={{
             justifyContent: "center",
@@ -91,7 +88,7 @@ const Fishing = ({
           }}
         />
       </Box>
-              <Box
+      <Box
         sx={{
           display: "flex",
           justifyContent: "center",
@@ -107,8 +104,10 @@ const Fishing = ({
           ]}
         />
       </Box>
-      {selectFishOrBait === true ? (
-        // Render bait buttons
+
+      {gatheringLoading || !gatheringData ? (
+        <LoadingIndicator text="Loading Fishing resources..." />
+      ) : selectFishOrBait === true ? (
         <ToggleButtons
           key={selectFishOrBait}
           updateElement={updateElement}
@@ -117,7 +116,6 @@ const Fishing = ({
           currentLevel={currentLevel}
         />
       ) : (
-        // Render fish buttons
         <ToggleButtons
           key={selectFishOrBait}
           updateElement={updateElement}

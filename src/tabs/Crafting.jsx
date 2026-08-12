@@ -6,26 +6,25 @@ import Display from "../components/Display";
 import ToggleButtons from "../components/ToggleButtons";
 import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
+import LoadingIndicator from "../components/LoadingIndicator";
+import useSkillData from "../hooks/useSkillData";
 import { Box } from "@mui/material";
-
-
-import artisanData from "../data/artisan_data.json";
 
 const Crafting = ({
   currentLevel,
   updateCurrentLevel,
   targetLevel,
   updateTargetLevel,
-  currentPercentage, // Add currentPercentage prop
-  updateCurrentPercentage, // Add updateCurrentPercentage prop
+  currentPercentage,
+  updateCurrentPercentage,
 }) => {
-  // Person's target element
+  const { data: artisanData, isLoading: artisanLoading } = useSkillData("artisan");
+
   const [element, setElement] = useState(["loading"]);
   const updateElement = (element) => {
     setElement(element);
   };
 
-  // Exp boosts
   const [boostsDidUpdate, setBoostDidUpdate] = useState(false);
   const [boosts, setBoosts] = useState([
     { name: "World Boost", value: 1.5, active: false },
@@ -44,8 +43,8 @@ const Crafting = ({
       <Attribute
         maxValue={120}
         attributeName={"Your Crafting Level"}
-        value={currentLevel} // Pass the currentLevel as the value
-        percentageValue={currentPercentage} // Pass the percentage value directly
+        value={currentLevel}
+        percentageValue={currentPercentage}
         updateAttribute={updateCurrentLevel}
         updateAttribute2={updateCurrentPercentage}
         isCurrentLevel={true}
@@ -54,14 +53,14 @@ const Crafting = ({
         sx={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "center", // Center horizontally
-          height: "70px", // Set a height to center vertically
+          justifyContent: "center",
+          height: "70px",
         }}
       >
         <Attribute
           maxValue={120}
           attributeName={"Target Crafting Level"}
-          value={targetLevel} // Pass the targetLevel as the value
+          value={targetLevel}
           updateAttribute={updateTargetLevel}
           sx={{
             justifyContent: "center",
@@ -78,12 +77,18 @@ const Crafting = ({
           }}
         />
       </Box>
-      <ToggleButtons
-        updateElement={updateElement}
-        skillsData={artisanData}
-        skill="Crafting"
-        currentLevel={currentLevel}
-      />
+
+      {artisanLoading || !artisanData ? (
+        <LoadingIndicator text="Loading Crafting resources..." />
+      ) : (
+        <ToggleButtons
+          updateElement={updateElement}
+          skillsData={artisanData}
+          skill="Crafting"
+          currentLevel={currentLevel}
+        />
+      )}
+
       <Boosts boosts={boosts} updateBoosts={(boosts) => updateBoosts(boosts, false)} exclusive={false} />
       <Boosts boosts={boostsEquipSets} updateBoosts={(boosts) => updateBoosts(boosts, true)} exclusive={true} />
 

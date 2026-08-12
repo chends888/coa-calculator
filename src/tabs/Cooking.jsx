@@ -7,25 +7,25 @@ import ToggleButtons from "../components/ToggleButtons";
 import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
 import CustomSwitch from "../components/CustomSwitch";
+import LoadingIndicator from "../components/LoadingIndicator";
+import useSkillData from "../hooks/useSkillData";
 import { Box } from "@mui/material";
-
-import artisanData from "../data/artisan_data.json";
 
 const Cooking = ({
   currentLevel,
   updateCurrentLevel,
   targetLevel,
   updateTargetLevel,
-  currentPercentage, // Add currentPercentage prop
-  updateCurrentPercentage, // Add updateCurrentPercentage prop
+  currentPercentage,
+  updateCurrentPercentage,
 }) => {
-  // Person's target element
+  const { data: artisanData, isLoading: artisanLoading } = useSkillData("artisan");
+
   const [element, setElement] = useState(['loading']);
   const updateElement = (element) => {
     setElement(element);
   };
 
-  // Exp boosts
   const [boostsDidUpdate, setBoostDidUpdate] = useState(false);
   const [boosts, setBoosts] = useState([
     { name: "World Boost", value: 1.5, active: false },
@@ -39,11 +39,10 @@ const Cooking = ({
     setBoostDidUpdate(!boostsDidUpdate);
   };
 
-  // Select foods or baits
   const [selectFoodOrBait, setSelectFoodOrBait] = useState(false);
   const updateselectFoodOrBait = (selectFoodOrBait) => {
     setSelectFoodOrBait(selectFoodOrBait);
-    setElement(["loading"]); // Reset element to its original value
+    setElement(["loading"]);
   };
 
   return (
@@ -51,8 +50,8 @@ const Cooking = ({
       <Attribute
         maxValue={120}
         attributeName={"Your Cooking Level"}
-        value={currentLevel} // Pass the currentLevel as the value
-        percentageValue={currentPercentage} // Pass the percentage value directly
+        value={currentLevel}
+        percentageValue={currentPercentage}
         updateAttribute={updateCurrentLevel}
         updateAttribute2={updateCurrentPercentage}
         isCurrentLevel={true}
@@ -61,14 +60,14 @@ const Cooking = ({
         sx={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "center", // Center horizontally
-          height: "70px", // Set a height to center vertically
+          justifyContent: "center",
+          height: "70px",
         }}
       >
         <Attribute
           maxValue={120}
           attributeName={"Target Cooking Level"}
-          value={targetLevel} // Pass the targetLevel as the value
+          value={targetLevel}
           updateAttribute={updateTargetLevel}
           sx={{
             justifyContent: "center",
@@ -84,25 +83,27 @@ const Cooking = ({
             marginLeft: "16px",
           }}
         />
-
       </Box>
-         <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                marginBottom: 2,
-              }}
-            >
-      <CustomSwitch
-        value={selectFoodOrBait}
-        updateValue={updateselectFoodOrBait}
-        options={[
-          { label: "Food", value: false },
-          { label: "Bait", value: true },
-        ]}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: 2,
+        }}
+      >
+        <CustomSwitch
+          value={selectFoodOrBait}
+          updateValue={updateselectFoodOrBait}
+          options={[
+            { label: "Food", value: false },
+            { label: "Bait", value: true },
+          ]}
         />
-        </Box>
-      {selectFoodOrBait === true ? (
+      </Box>
+
+      {artisanLoading || !artisanData ? (
+        <LoadingIndicator text="Loading Cooking resources..." />
+      ) : selectFoodOrBait === true ? (
         <ToggleButtons
           key="bait"
           updateElement={updateElement}
@@ -124,7 +125,6 @@ const Cooking = ({
       <Boosts boosts={boostsEquipSets} updateBoosts={(boosts) => updateBoosts(boosts, true)} exclusive={true} />
 
       {selectFoodOrBait === false ? (
-        // Results for food
         <Display
           level={currentLevel}
           levelPercentage={currentPercentage}
@@ -137,7 +137,6 @@ const Cooking = ({
           skill="Cooking"
         />
       ) : (
-        // Results for baits
         <Display
           level={currentLevel}
           levelPercentage={currentPercentage}

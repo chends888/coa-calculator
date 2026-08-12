@@ -6,26 +6,25 @@ import Display from "../components/Display";
 import ToggleButtons from "../components/ToggleButtons";
 import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
+import LoadingIndicator from "../components/LoadingIndicator";
+import useSkillData from "../hooks/useSkillData";
 import { Box } from "@mui/material";
-
-
-import gatheringData from "../data/gathering_data.json";
 
 const Mining = ({
   currentLevel,
   updateCurrentLevel,
   targetLevel,
   updateTargetLevel,
-  currentPercentage, // Add currentPercentage prop
-  updateCurrentPercentage, // Add updateCurrentPercentage prop
+  currentPercentage,
+  updateCurrentPercentage,
 }) => {
-  // Person's target element
+  const { data: gatheringData, isLoading: gatheringLoading } = useSkillData("gathering");
+
   const [element, setElement] = useState(['loading']);
   const updateElement = (element) => {
     setElement(element);
   };
 
-  // Exp boosts
   const [boostsDidUpdate, setBoostDidUpdate] = useState(false);
   const [boosts, setBoosts] = useState([
     { name: "World Boost", value: 1.5, active: false },
@@ -44,8 +43,8 @@ const Mining = ({
       <Attribute
         maxValue={120}
         attributeName={"Your Mining Level"}
-        value={currentLevel} // Pass the currentLevel as the value
-        percentageValue={currentPercentage} // Pass the percentage value directly
+        value={currentLevel}
+        percentageValue={currentPercentage}
         updateAttribute={updateCurrentLevel}
         updateAttribute2={updateCurrentPercentage}
         isCurrentLevel={true}
@@ -54,14 +53,14 @@ const Mining = ({
         sx={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "center", // Center horizontally
-          height: "70px", // Set a height to center vertically
+          justifyContent: "center",
+          height: "70px",
         }}
       >
         <Attribute
           maxValue={120}
           attributeName={"Target Mining Level"}
-          value={targetLevel} // Pass the targetLevel as the value
+          value={targetLevel}
           updateAttribute={updateTargetLevel}
           sx={{
             justifyContent: "center",
@@ -78,12 +77,18 @@ const Mining = ({
           }}
         />
       </Box>
-      <ToggleButtons
-        updateElement={updateElement}
-        skillsData={gatheringData}
-        skill="Mining"
-        currentLevel={currentLevel}
-      />
+
+      {gatheringLoading || !gatheringData ? (
+        <LoadingIndicator text="Loading Mining resources..." />
+      ) : (
+        <ToggleButtons
+          updateElement={updateElement}
+          skillsData={gatheringData}
+          skill="Mining"
+          currentLevel={currentLevel}
+        />
+      )}
+
       <Boosts boosts={boosts} updateBoosts={(boosts) => updateBoosts(boosts, false)} exclusive={false} />
       <Boosts boosts={boostsEquipSets} updateBoosts={(boosts) => updateBoosts(boosts, true)} exclusive={true} />
 

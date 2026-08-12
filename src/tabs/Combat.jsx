@@ -6,28 +6,25 @@ import Display from "../components/Display";
 import ToggleButtons from "../components/ToggleButtons";
 import Boosts from "../components/Boosts";
 import Footer from "../components/Footer";
+import LoadingIndicator from "../components/LoadingIndicator";
+import useSkillData from "../hooks/useSkillData";
 import { Box } from "@mui/material";
-
-// import Alert from '@mui/material/Alert';
-
-import monsterData from "../data/monsters_data.json";
 
 const Combat = ({
   currentLevel,
   updateCurrentLevel,
   targetLevel,
   updateTargetLevel,
-  currentPercentage, // Add currentPercentage prop
-  updateCurrentPercentage, // Add updateCurrentPercentage prop
+  currentPercentage,
+  updateCurrentPercentage,
 }) => {
+  const { data: monsterData, isLoading: monsterLoading } = useSkillData("monsters");
 
-  // Person's target monster
   const [monster, setMonster] = useState(['loading']);
   const updateMonster = (monster) => {
     setMonster(monster);
   };
 
-  // Exp boosts
   const [boostsDidUpdate, setBoostDidUpdate] = useState(false);
   const [boosts, setBoosts] = useState([
     { name: "World Boost", value: 1.5, active: false },
@@ -42,13 +39,11 @@ const Combat = ({
 
   return (
     <>
-      {/* <Alert severity="info">Missing or bugged icons will be updated once new sprites are released</Alert> */}
-
       <Attribute
         maxValue={120}
         attributeName={"Your Combat Level"}
-        value={currentLevel} // Pass the currentLevel as the value
-        percentageValue={currentPercentage} // Pass the percentage value directly
+        value={currentLevel}
+        percentageValue={currentPercentage}
         updateAttribute={updateCurrentLevel}
         updateAttribute2={updateCurrentPercentage}
         isCurrentLevel={true}
@@ -57,14 +52,14 @@ const Combat = ({
         sx={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "center", // Center horizontally
-          height: "70px", // Set a height to center vertically
+          justifyContent: "center",
+          height: "70px",
         }}
       >
         <Attribute
           maxValue={120}
           attributeName={"Target Combat Level"}
-          value={targetLevel} // Pass the targetLevel as the value
+          value={targetLevel}
           updateAttribute={updateTargetLevel}
           sx={{
             justifyContent: "center",
@@ -81,11 +76,17 @@ const Combat = ({
           }}
         />
       </Box>
-      <ToggleButtons
-        updateElement={updateMonster}
-        skillsData={monsterData}
-        skill="Combat"
-      />
+
+      {monsterLoading || !monsterData ? (
+        <LoadingIndicator text="Loading Combat monsters..." />
+      ) : (
+        <ToggleButtons
+          updateElement={updateMonster}
+          skillsData={monsterData}
+          skill="Combat"
+        />
+      )}
+
       <Boosts boosts={boosts} updateBoosts={updateBoosts} />
 
       <Display
@@ -94,7 +95,7 @@ const Combat = ({
         targetLevel={targetLevel}
         element={monster}
         boosts={boosts}
-        boostsEquipSets={[]} // Provide a default empty array for boostsEquipSets
+        boostsEquipSets={[]}
         keywords={[""]}
         skill="Combat"
       />

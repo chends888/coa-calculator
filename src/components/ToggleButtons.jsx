@@ -30,7 +30,21 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   },
 }));
 
-
+// Single reusable image element: color when unlocked, grayscale (via CSS
+// filter) when locked. Replaces the old approach of loading a separate
+// "Gray X.gif" file per item, so only one image copy is needed per item.
+const ItemImage = ({ skill, name, locked }) => (
+  <img
+    src={process.env.PUBLIC_URL + `/images/${skill}/${name}.gif`}
+    width="22"
+    height="22"
+    alt=""
+    style={{
+      filter: locked ? "grayscale(100%)" : "none",
+      opacity: locked ? 0.5 : 1,
+    }}
+  />
+);
 
 const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
   const [selectedElement, setSelectedElement] = React.useState();
@@ -99,13 +113,7 @@ const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
                         marginRight: 0.4,
                       }}
                     >
-                      <img
-                        src={process.env.PUBLIC_URL + `/images/${skill}/${attribute}.gif`}
-                        width="22"
-                        height="22"
-                        value={attribute}
-                        alt=""
-                      />
+                      <ItemImage skill={skill} name={attribute} locked={false} />
                     </Box>
                     {attribute}
                   </ToggleButton>
@@ -143,10 +151,18 @@ const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
               marginBottom: 3
             }}
           >
-            {createCombatButtons([1, 50])}
-            {createCombatButtons([51, 70])}
-            {createCombatButtons([71, 90])}
-            {createCombatButtons([91, 150])}
+            {(() => {
+              const levels = Object.values(skillsData[skill]).map((m) => parseInt(m['level']));
+              const maxLevel = Math.max(...levels);
+              const bucketSize = 50;
+              const ranges = [];
+              for (let start = 1; start <= maxLevel; start += bucketSize) {
+                ranges.push([start, start + bucketSize - 1]);
+              }
+              return ranges.map((range) => (
+                <React.Fragment key={range[0]}>{createCombatButtons(range)}</React.Fragment>
+              ));
+            })()}
           </Box>
         ) : (
           // All of other skill's buttons
@@ -159,39 +175,13 @@ const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
               padding: 1,
             }}
           >
-            {Object.keys(skillsData[skill]).map((element) =>
-              currentLevel >= parseInt(skillsData[skill][element]['level']) ? (
+            {Object.keys(skillsData[skill]).map((element) => {
+              const isUnlocked = currentLevel >= parseInt(skillsData[skill][element]['level']);
+              return (
                 <ToggleButton
                   value={element}
-                  onClick={handleChange}
-                  sx={{
-
-                    "& > :not(style)": {
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    },
-                  }}
-                >
-                  <Box
-                    sx={{
-                      marginRight: 0.4,
-                    }}
-                  >
-                    <img
-                      src={process.env.PUBLIC_URL + `/images/${skill}/${element}.gif`}
-                      width="22"
-                      height="22"
-                      value={element}
-                      alt=""
-                    />
-                  </Box>
-                  {element}
-                </ToggleButton>
-              ) : (
-                <ToggleButton
-                  value={element}
-                  disabled
+                  onClick={isUnlocked ? handleChange : undefined}
+                  disabled={!isUnlocked}
                   sx={{
                     "& > :not(style)": {
                       display: "flex",
@@ -202,21 +192,31 @@ const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
                 >
                   <Box
                     sx={{
-                      marginRight: 0.4,
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
                     }}
                   >
-                    <img
-                      src={process.env.PUBLIC_URL + `/images/${skill}/Gray ${element}.gif`}
-                      width="22"
-                      height="22"
-                      value={element}
-                      alt=""
-                    />
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                      <Box sx={{ marginRight: 0.4 }}>
+                        <ItemImage skill={skill} name={element} locked={!isUnlocked} />
+                      </Box>
+                      {element}
+                    </Box>
+                    <Box
+                      component="span"
+                      sx={{
+                        fontSize: "0.65rem",
+                        color: "text.secondary",
+                        lineHeight: 1.2,
+                      }}
+                    >
+                      Lvl {skillsData[skill][element]['level']}
+                    </Box>
                   </Box>
-                  {element}
                 </ToggleButton>
-              )
-            )}
+              );
+            })}
           </StyledToggleButtonGroup>
         )) : (
         <ToggleButton value="loading" >Loading...</ToggleButton>

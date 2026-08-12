@@ -14,12 +14,16 @@ import Woodcutting from "./tabs/Woodcutting";
 import Fishing from "./tabs/Fishing";
 import Combat from "./tabs/Combat";
 
-import expData from "./data/exp_data.json"; // Import your existing experience data
+import useSkillData from "./hooks/useSkillData";
 
 const Home = (props) => {
   const { match, history, currentTheme, updateCurrentTheme } = props;
   const { params } = match;
   const { page } = params;
+
+  // exp_data now comes from the backend instead of a local JSON import, so
+  // this stays in sync with whatever the backend's data/exp_data.json has.
+  const { data: expData } = useSkillData("exp");
 
   const tabNameToIndex = {
     0: "smithing",
@@ -80,6 +84,12 @@ const Home = (props) => {
 
   // Wrap fetchUserLevel in useCallback to stabilize its reference
   const fetchUserLevel = useCallback(async (username) => {
+    if (!expData) {
+      // exp data hasn't loaded from the backend yet — nothing to compute
+      // percentages against, so bail out rather than throwing.
+      console.error("exp data not loaded yet, cannot compute level percentage.");
+      return;
+    }
     try {
       const response = await fetch(`https://curseofaros.com/highscores-personal.json?user=${username}`);
       if (!response.ok) {
@@ -119,7 +129,7 @@ const Home = (props) => {
     } catch (error) {
       console.error("Error fetching user level:", error);
     }
-  }, []); // No dependencies needed
+  }, [expData]); // Recreate if expData finishes loading after mount
 
   // Memoize the debounced function to ensure it doesn't change on re-renders
   const debouncedFetchUserLevel = useMemo(
