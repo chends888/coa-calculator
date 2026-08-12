@@ -70,6 +70,7 @@ const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "center",
+          width: "100%",
           maxWidth: 600,
           marginBottom: 0.4,
           marginLeft: "auto",
@@ -77,7 +78,7 @@ const ToggleButtons = ({ updateElement, skillsData, skill, currentLevel }) => {
         }}
       >
 
-        <Accordion>
+        <Accordion sx={{ width: "100%" }}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
