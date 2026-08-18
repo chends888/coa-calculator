@@ -111,7 +111,18 @@ const Display = ({
 
   let priceableItems = [];
   if (pricingEnabled && hasValidResult) {
-    if (skill !== "Smithing" && result.subelements && result.subelements.length > 0) {
+    if (skill === "Cooking") {
+      // Cooking's submaterials are seasoning (e.g. Salt), not a full
+      // ingredient breakdown - price both the fish itself and the seasoning.
+      if (result.primary && !hidePrimaryLine) {
+        priceableItems.push({ name: element[0], quantity: result.primary.value });
+      }
+      if (result.subelements) {
+        result.subelements.forEach((sub) => {
+          priceableItems.push({ name: sub.name, quantity: sub.value });
+        });
+      }
+    } else if (skill !== "Smithing" && result.subelements && result.subelements.length > 0) {
       result.subelements.forEach((sub) => {
         priceableItems.push({ name: sub.name, quantity: sub.value });
       });
