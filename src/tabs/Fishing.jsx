@@ -18,16 +18,13 @@ const Fishing = ({
   updateTargetLevel,
   currentPercentage,
   updateCurrentPercentage,
+  onPriceUpdate,
 }) => {
   const { data: gatheringData, isLoading: gatheringLoading } = useSkillData("gathering");
 
   const [element, setElement] = useState(['loading']);
   const updateElement = (element) => {
     setElement(element);
-  };
-  const [lolliPrice, setLolliPrice] = useState(0);
-  const updateLolliPrice = (lolliPrice) => {
-    setLolliPrice(lolliPrice);
   };
 
   const [boostsDidUpdate, setBoostDidUpdate] = useState(false);
@@ -43,7 +40,7 @@ const Fishing = ({
     setBoostDidUpdate(!boostsDidUpdate);
   };
 
-  const [selectFishOrBait, setSelectFishOrBait] = useState(false);
+  const [selectFishOrBait, setSelectFishOrBait] = useState(true);
   const updateselectFishOrBait = (selectFishOrBait) => {
     setSelectFishOrBait(selectFishOrBait);
     setElement(["loading"]);
@@ -99,8 +96,8 @@ const Fishing = ({
           value={selectFishOrBait}
           updateValue={updateselectFishOrBait}
           options={[
-            { label: "Fish", value: false },
             { label: "Bait", value: true },
+            { label: "Fish", value: false },
           ]}
         />
       </Box>
@@ -128,20 +125,6 @@ const Fishing = ({
       <Boosts boosts={boosts} updateBoosts={(boosts) => updateBoosts(boosts, false)} exclusive={false} />
       <Boosts boosts={boostsEquipSets} updateBoosts={(boosts) => updateBoosts(boosts, true)} exclusive={true} />
 
-      {element[0] === 'Bass bait' ? (
-        <Attribute
-          maxValue={9999999999}
-          attributeName={"Current Lolli Price"}
-          updateAttribute={updateLolliPrice}
-          sx={{
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        />
-      ) : (
-        <></>
-      )}
-
       <Display
         level={currentLevel}
         levelPercentage={currentPercentage}
@@ -152,7 +135,7 @@ const Fishing = ({
         boostsEquipSets={boostsEquipSets}
         boostsDidUpdate={boostsDidUpdate}
         skill="Fishing"
-        lolliPrice={lolliPrice}
+        onPriceTotalsChange={onPriceUpdate}
       />
       <Footer />
     </>

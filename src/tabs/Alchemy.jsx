@@ -20,6 +20,7 @@ const Alchemy = ({
   updateTargetLevel,
   currentPercentage,
   updateCurrentPercentage,
+  onPriceUpdate,
 }) => {
   const { data: artisanData, isLoading: artisanLoading } = useSkillData("artisan");
   const { data: gatheringData, isLoading: gatheringLoading } = useSkillData("gathering");
@@ -139,6 +140,7 @@ const Alchemy = ({
         boostsEquipSets={boostsEquipSets}
         boostsDidUpdate={boostsDidUpdate}
         skill={activeCalcSkill}
+        onPriceTotalsChange={onPriceUpdate}
       />
       <Footer />
     </>

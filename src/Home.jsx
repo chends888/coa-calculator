@@ -13,6 +13,7 @@ import Mining from "./tabs/Mining";
 import Woodcutting from "./tabs/Woodcutting";
 import Fishing from "./tabs/Fishing";
 import Combat from "./tabs/Combat";
+import Totals from "./tabs/Totals";
 
 import useSkillData from "./hooks/useSkillData";
 
@@ -35,6 +36,7 @@ const Home = (props) => {
     6: "woodcutting",
     7: "fishing",
     8: "combat",
+    9: "totals",
   };
 
   const indexToTabName = {
@@ -47,6 +49,7 @@ const Home = (props) => {
     woodcutting: 6,
     fishing: 7,
     combat: 8,
+    totals: 9,
   };
 
   const [selectedTab, setSelectedTab] = React.useState(indexToTabName[page]);
@@ -62,6 +65,24 @@ const Home = (props) => {
     fishing: { currentLevel: null, targetLevel: null, currentPercentage: 0 },
     combat: { currentLevel: null, targetLevel: null, currentPercentage: 0 },
   });
+
+  const [priceTotals, setPriceTotals] = useState({
+    smithing: [],
+    crafting: [],
+    cooking: [],
+    spellbinding: [],
+    alchemy: [],
+    mining: [],
+    woodcutting: [],
+    fishing: [],
+    combat: [],
+  });
+  const updatePriceTotals = (skill, items) => {
+    setPriceTotals((prev) => ({
+      ...prev,
+      [skill]: items,
+    }));
+  };
 
   const updateSkillLevel = (skill, type, value) => {
     setSkillLevels((prev) => ({
@@ -180,10 +201,11 @@ const Home = (props) => {
             <Tab label="Woodcutting" />
             <Tab label="Fishing" />
             <Tab label="Combat" />
+            <Tab label="Totals" />
           </Tabs>
         </Box>
       </Box>
-      {selectedTab === 0 && (
+      <Box sx={{ display: selectedTab === 0 ? "block" : "none" }}>
         <Smithing
           currentLevel={skillLevels.smithing.currentLevel}
           targetLevel={skillLevels.smithing.targetLevel}
@@ -197,9 +219,10 @@ const Home = (props) => {
           updateCurrentPercentage={(value) =>
             updateSkillLevel("smithing", "currentPercentage", value)
           }
+          onPriceUpdate={(items) => updatePriceTotals("smithing", items)}
         />
-      )}
-      {selectedTab === 1 && (
+      </Box>
+      <Box sx={{ display: selectedTab === 1 ? "block" : "none" }}>
         <Crafting
           currentLevel={skillLevels.crafting.currentLevel}
           targetLevel={skillLevels.crafting.targetLevel}
@@ -213,9 +236,10 @@ const Home = (props) => {
           updateCurrentPercentage={(value) =>
             updateSkillLevel("crafting", "currentPercentage", value)
           }
+          onPriceUpdate={(items) => updatePriceTotals("crafting", items)}
         />
-      )}
-      {selectedTab === 2 && (
+      </Box>
+      <Box sx={{ display: selectedTab === 2 ? "block" : "none" }}>
         <Cooking
           currentLevel={skillLevels.cooking.currentLevel}
           targetLevel={skillLevels.cooking.targetLevel}
@@ -229,9 +253,10 @@ const Home = (props) => {
           updateCurrentPercentage={(value) =>
             updateSkillLevel("cooking", "currentPercentage", value)
           }
+          onPriceUpdate={(items) => updatePriceTotals("cooking", items)}
         />
-      )}
-      {selectedTab === 3 && (
+      </Box>
+      <Box sx={{ display: selectedTab === 3 ? "block" : "none" }}>
         <Spellbinding
           currentLevel={skillLevels.spellbinding.currentLevel}
           targetLevel={skillLevels.spellbinding.targetLevel}
@@ -245,9 +270,10 @@ const Home = (props) => {
           updateCurrentPercentage={(value) =>
             updateSkillLevel("spellbinding", "currentPercentage", value)
           }
+          onPriceUpdate={(items) => updatePriceTotals("spellbinding", items)}
         />
-      )}
-      {selectedTab === 4 && (
+      </Box>
+      <Box sx={{ display: selectedTab === 4 ? "block" : "none" }}>
         <Alchemy
           currentLevel={skillLevels.alchemy.currentLevel}
           targetLevel={skillLevels.alchemy.targetLevel}
@@ -261,9 +287,10 @@ const Home = (props) => {
           updateCurrentPercentage={(value) =>
             updateSkillLevel("alchemy", "currentPercentage", value)
           }
+          onPriceUpdate={(items) => updatePriceTotals("alchemy", items)}
         />
-      )}
-      {selectedTab === 5 && (
+      </Box>
+      <Box sx={{ display: selectedTab === 5 ? "block" : "none" }}>
         <Mining
           currentLevel={skillLevels.mining.currentLevel}
           targetLevel={skillLevels.mining.targetLevel}
@@ -277,9 +304,10 @@ const Home = (props) => {
           updateCurrentPercentage={(value) =>
             updateSkillLevel("mining", "currentPercentage", value)
           }
+          onPriceUpdate={(items) => updatePriceTotals("mining", items)}
         />
-      )}
-      {selectedTab === 6 && (
+      </Box>
+      <Box sx={{ display: selectedTab === 6 ? "block" : "none" }}>
         <Woodcutting
           currentLevel={skillLevels.woodcutting.currentLevel}
           targetLevel={skillLevels.woodcutting.targetLevel}
@@ -293,9 +321,10 @@ const Home = (props) => {
           updateCurrentPercentage={(value) =>
             updateSkillLevel("woodcutting", "currentPercentage", value)
           }
+          onPriceUpdate={(items) => updatePriceTotals("woodcutting", items)}
         />
-      )}
-      {selectedTab === 7 && (
+      </Box>
+      <Box sx={{ display: selectedTab === 7 ? "block" : "none" }}>
         <Fishing
           currentLevel={skillLevels.fishing.currentLevel}
           targetLevel={skillLevels.fishing.targetLevel}
@@ -309,9 +338,10 @@ const Home = (props) => {
           updateCurrentPercentage={(value) =>
             updateSkillLevel("fishing", "currentPercentage", value)
           }
+          onPriceUpdate={(items) => updatePriceTotals("fishing", items)}
         />
-      )}
-      {selectedTab === 8 && (
+      </Box>
+      <Box sx={{ display: selectedTab === 8 ? "block" : "none" }}>
         <Combat
           currentLevel={skillLevels.combat.currentLevel}
           targetLevel={skillLevels.combat.targetLevel}
@@ -325,8 +355,12 @@ const Home = (props) => {
           updateCurrentPercentage={(value) =>
             updateSkillLevel("combat", "currentPercentage", value)
           }
+          onPriceUpdate={(items) => updatePriceTotals("combat", items)}
         />
-      )}
+      </Box>
+      <Box sx={{ display: selectedTab === 9 ? "block" : "none" }}>
+        <Totals priceTotals={priceTotals} />
+      </Box>
     </>
   );
 };

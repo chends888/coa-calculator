@@ -20,6 +20,7 @@ const Smithing = ({
   updateTargetLevel,
   currentPercentage, // Add currentPercentage prop
   updateCurrentPercentage, // Add updateCurrentPercentage prop
+  onPriceUpdate,
 }) => {
   const { data: artisanData, isLoading: artisanLoading } = useSkillData("artisan");
 
@@ -154,6 +155,7 @@ const Smithing = ({
         buyOrSmeltBars={buyOrSmeltBars}
         skill="Smithing"
         boostsDidUpdate={boostsDidUpdate}
+        onPriceTotalsChange={onPriceUpdate}
       />
       {/* <StickyHeadTable/> */}
       <Footer />

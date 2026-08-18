@@ -17,6 +17,7 @@ const Crafting = ({
   updateTargetLevel,
   currentPercentage,
   updateCurrentPercentage,
+  onPriceUpdate,
 }) => {
   const { data: artisanData, isLoading: artisanLoading } = useSkillData("artisan");
 
@@ -102,6 +103,7 @@ const Crafting = ({
         boostsEquipSets={boostsEquipSets}
         boostsDidUpdate={boostsDidUpdate}
         skill="Crafting"
+        onPriceTotalsChange={onPriceUpdate}
       />
       <Footer />
     </>

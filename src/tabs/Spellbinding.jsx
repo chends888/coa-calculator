@@ -17,6 +17,7 @@ const Spellbinding = ({
   updateTargetLevel,
   currentPercentage,
   updateCurrentPercentage,
+  onPriceUpdate,
 }) => {
   const { data: artisanData, isLoading: artisanLoading } = useSkillData("artisan");
 
@@ -102,6 +103,7 @@ const Spellbinding = ({
         boostsEquipSets={boostsEquipSets}
         boostsDidUpdate={boostsDidUpdate}
         skill="Spellbinding"
+        onPriceTotalsChange={onPriceUpdate}
       />
       <Footer />
     </>
