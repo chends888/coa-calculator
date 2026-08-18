@@ -4,10 +4,9 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Attribute from "./Attribute";
+import { formatNumber as addCommas } from "../utils/formatNumber";
 
 const API_URL = process.env.REACT_APP_API_URL;
-
-const addCommas = (num) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
 const Display = ({
   level, levelPercentage, targetLevel, element, boosts,

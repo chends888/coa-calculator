@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, List, ListItem, ListItemText, Typography, Divider, TextField } from "@mui/material";
-
-const addCommas = (num) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+import { formatNumber as addCommas } from "../utils/formatNumber";
 
 const SKILL_LABELS = {
   smithing: "Smithing",
