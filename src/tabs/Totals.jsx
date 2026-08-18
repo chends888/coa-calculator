@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, List, ListItem, ListItemText, Typography, Divider } from "@mui/material";
+import { Box, List, ListItem, ListItemText, Typography, Divider, TextField } from "@mui/material";
 
 const addCommas = (num) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
@@ -16,12 +16,31 @@ const SKILL_LABELS = {
 };
 
 const Totals = ({ priceTotals }) => {
+  // Owned amounts keyed by "skill:materialName", since the same material
+  // name (e.g. "Salt") can appear under more than one skill and should be
+  // tracked separately per skill.
+  const [ownedAmounts, setOwnedAmounts] = React.useState({});
+
+  const updateOwned = (key, value) => {
+    setOwnedAmounts((prev) => ({ ...prev, [key]: value }));
+  };
+
   const skillsWithPrices = Object.keys(priceTotals).filter(
     (skill) => priceTotals[skill] && priceTotals[skill].length > 0
   );
 
+  const computeRemainingTotal = (skill, item) => {
+    const key = `${skill}:${item.name}`;
+    const owned = ownedAmounts[key] || 0;
+    const remaining = Math.max(item.quantity - owned, 0);
+    return Math.ceil(remaining * item.price);
+  };
+
   const grandTotal = skillsWithPrices.reduce((sum, skill) => {
-    const skillTotal = priceTotals[skill].reduce((s, item) => s + item.total, 0);
+    const skillTotal = priceTotals[skill].reduce(
+      (s, item) => s + computeRemainingTotal(skill, item),
+      0
+    );
     return sum + skillTotal;
   }, 0);
 
@@ -39,20 +58,41 @@ const Totals = ({ priceTotals }) => {
     <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
       {skillsWithPrices.map((skill) => {
         const items = priceTotals[skill];
-        const skillTotal = items.reduce((s, item) => s + item.total, 0);
+        const skillTotal = items.reduce((s, item) => s + computeRemainingTotal(skill, item), 0);
         return (
           <Box key={skill} sx={{ width: "100%", maxWidth: 500, marginBottom: 2 }}>
             <Typography variant="h6" sx={{ textAlign: "center" }}>
               {SKILL_LABELS[skill] || skill}
             </Typography>
             <List dense={true}>
-              {items.map((item) => (
-                <ListItem key={item.name}>
-                  <ListItemText
-                    primary={`${item.name}: ${addCommas(item.quantity)} x ${addCommas(item.price)} = ${addCommas(item.total)}`}
-                  />
-                </ListItem>
-              ))}
+              {items.map((item) => {
+                const key = `${skill}:${item.name}`;
+                const owned = ownedAmounts[key] || 0;
+                const remaining = Math.max(item.quantity - owned, 0);
+                return (
+                  <ListItem
+                    key={item.name}
+                    sx={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 1 }}
+                  >
+                    <ListItemText
+                      sx={{ flex: "1 1 auto" }}
+                      primary={`${item.name}: ${addCommas(remaining)} needed x ${addCommas(item.price)} = ${addCommas(computeRemainingTotal(skill, item))}`}
+                    />
+                    <TextField
+                      label="Already owned"
+                      size="small"
+                      value={owned || ""}
+                      onFocus={(event) => event.target.select()}
+                      onChange={(event) => {
+                        const sanitized = event.target.value.replace(/[^0-9]/g, "");
+                        updateOwned(key, sanitized === "" ? 0 : parseInt(sanitized, 10));
+                      }}
+                      inputProps={{ inputMode: "numeric" }}
+                      sx={{ width: "16ch" }}
+                    />
+                  </ListItem>
+                );
+              })}
               <ListItem>
                 <ListItemText primary={`Subtotal: ${addCommas(skillTotal)}`} />
               </ListItem>

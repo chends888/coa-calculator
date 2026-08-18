@@ -201,7 +201,7 @@ const Home = (props) => {
             <Tab label="Woodcutting" />
             <Tab label="Fishing" />
             <Tab label="Combat" />
-            <Tab label="Totals" />
+            <Tab label="Total price" />
           </Tabs>
         </Box>
       </Box>
