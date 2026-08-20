@@ -5,6 +5,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Attribute from "./Attribute";
 import { formatNumber as addCommas } from "../utils/formatNumber";
+import useSkillData from "../hooks/useSkillData";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -15,6 +16,14 @@ const Display = ({
 }) => {
   const [result, setResult] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
+  // Needed only to identify which Alchemy submaterial is the "plant"
+  // (covered by Alchemy-Gathering) vs. the other ingredient that still
+  // needs a price (e.g. a monster drop or purchasable item).
+  const { data: gatheringDataForPlants } = useSkillData("gathering");
+  const plantNames = React.useMemo(() => {
+    if (!gatheringDataForPlants || !gatheringDataForPlants["Alchemy-Gathering"]) return new Set();
+    return new Set(Object.keys(gatheringDataForPlants["Alchemy-Gathering"]));
+  }, [gatheringDataForPlants]);
   // Per-material price inputs, keyed by material name. Kept here (rather
   // than in each tab) since Display already knows exactly which materials
   // (primary + submaterials) apply to the current selection.
@@ -106,8 +115,13 @@ const Display = ({
   // "Iron", not "Iron Bars"). Falls back to a single generic/placeholder
   // field when there's no valid result yet, so the price field is never
   // fully hidden - it just won't have a computable total until data loads.
-  const EXCLUDED_PRICE_SKILLS = ["Mining", "Woodcutting", "Combat"];
-  const pricingEnabled = !EXCLUDED_PRICE_SKILLS.includes(skill);
+  const EXCLUDED_PRICE_SKILLS = ["Mining", "Woodcutting", "Combat", "Alchemy-Gathering"];
+  const pricingEnabled =
+    !EXCLUDED_PRICE_SKILLS.includes(skill) && !(skill === "Smithing" && !buyOrSmeltBars);
+  // These skills should always be priced by the material/potion itself, not
+  // by their submaterials — Smithing (Iron, not Iron Ore) and Alchemy's
+  // Gather+Brew mode (the potion, not the raw plants used to make it).
+  const PRICE_PRIMARY_ONLY = skill === "Smithing" || skill === "Alchemy";
 
   let priceableItems = [];
   if (pricingEnabled && hasValidResult) {
@@ -122,18 +136,37 @@ const Display = ({
           priceableItems.push({ name: sub.name, quantity: sub.value });
         });
       }
-    } else if (skill !== "Smithing" && result.subelements && result.subelements.length > 0) {
+    } else if (PRICE_PRIMARY_ONLY) {
+      if (skill === "Alchemy") {
+        // Gather+Brew: price whichever submaterial ISN'T covered by
+        // Alchemy-Gathering (the plant) - e.g. Potion -> Brightrose (plant,
+        // skip) + Bat Eye (other ingredient, price this one).
+        const nonPlantSubs = (result.subelements || []).filter(
+          (sub) => !plantNames.has(sub.name)
+        );
+        if (nonPlantSubs.length > 0) {
+          nonPlantSubs.forEach((sub) => {
+            priceableItems.push({ name: sub.name, quantity: sub.value });
+          });
+        } else if (result.primary && !hidePrimaryLine) {
+          // Fallback (e.g. plant data still loading, or no submaterials at all)
+          priceableItems.push({ name: element[0], quantity: result.primary.value });
+        }
+      } else if (result.primary && !hidePrimaryLine) {
+        priceableItems.push({ name: element[0], quantity: result.primary.value });
+      } else if (result.subelements && result.subelements.length > 0) {
+        // Naturite (hidePrimaryLine case): no primary line, so fall back to
+        // its self-referencing subelement as the only priceable item.
+        result.subelements.forEach((sub) => {
+          priceableItems.push({ name: sub.name, quantity: sub.value });
+        });
+      }
+    } else if (result.subelements && result.subelements.length > 0) {
       result.subelements.forEach((sub) => {
         priceableItems.push({ name: sub.name, quantity: sub.value });
       });
     } else if (result.primary && !hidePrimaryLine) {
       priceableItems.push({ name: element[0], quantity: result.primary.value });
-    } else if (skill === "Smithing" && result.subelements && result.subelements.length > 0) {
-      // Naturite (hidePrimaryLine case): no primary line, so fall back to
-      // its self-referencing subelement as the only priceable item.
-      result.subelements.forEach((sub) => {
-        priceableItems.push({ name: sub.name, quantity: sub.value });
-      });
     }
   }
   if (pricingEnabled && priceableItems.length === 0) {

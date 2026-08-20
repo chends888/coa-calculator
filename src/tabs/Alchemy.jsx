@@ -9,9 +9,15 @@ import Footer from "../components/Footer";
 import CustomSwitch from "../components/CustomSwitch";
 import LoadingIndicator from "../components/LoadingIndicator";
 import useSkillData from "../hooks/useSkillData";
-import { Box } from "@mui/material";
+import { Box, Alert } from "@mui/material";
 
 const ALCHEMY_KEYWORDS = [""];
+
+const MODE_NOTES = {
+  0: "Gather + Brew considers you will gather the plants and brew them. So the exp is shared between Gathering and Brewing.",
+  1: "Brew Only uses just the brewing XP for each potion, assuming you already have the ingredients (bought or gathered separately).",
+  2: "Gather Only calculates raw ingredients (Brightrose, Snowdrops, etc.) for their own gathering XP — no potions are brewed in this mode.",
+};
 
 const Alchemy = ({
   currentLevel,
@@ -114,6 +120,12 @@ const Alchemy = ({
             { label: "Gather Only", value: 2 },
           ]}
         />
+      </Box>
+
+      <Box sx={{ display: "flex", justifyContent: "center", marginBottom: 2, paddingX: 2 }}>
+        <Alert severity="info" sx={{ maxWidth: 600 }}>
+          {MODE_NOTES[selectedOption]}
+        </Alert>
       </Box>
 
       {isLoading ? (
