@@ -109,6 +109,21 @@ const Display = ({
     ? "Total exp: " + addCommas(result.exp_gap)
     : "Total exp: -";
 
+  // Ore Bag adds 18 extra ore capacity per inventory for Mining, except
+  // Naturite (which already uses its own 100-per-inventory size). This is
+  // purely a display recalculation - the backend still returns the normal
+  // 36-per-inventory grouping, and this just regroups the same total.
+  const oreBagActive =
+    skill === "Mining" &&
+    element?.[0] !== "Naturite" &&
+    boosts?.some((b) => b.name === "Ore Bag" && b.active);
+  const displayInventorySize =
+    oreBagActive && result?.inventories ? 52 : result?.inventories?.size;
+  const displayInventoryValue =
+    oreBagActive && result?.primary
+      ? Math.ceil(result.primary.value / 52)
+      : result?.inventories?.value;
+
   // Every material this selection could show a price field for: the primary
   // material (unless hidden, e.g. Naturite) plus every submaterial. Using the
   // raw selected key for the primary keeps the field label simple (e.g.
@@ -226,10 +241,10 @@ const Display = ({
               </ListItem>
             ))}
 
-            {result.inventories && result.inventories.value != null && (
+            {result.inventories && displayInventoryValue != null && (
               <ListItem>
                 <ListItemText
-                  primary={`Inventories (${result.inventories.size} per inventory): ${addCommas(result.inventories.value)}`}
+                  primary={`Inventories (${displayInventorySize} per inventory): ${addCommas(displayInventoryValue)}`}
                 />
               </ListItem>
             )}

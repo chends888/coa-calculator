@@ -17,18 +17,30 @@ const Mining = ({
   updateTargetLevel,
   currentPercentage,
   updateCurrentPercentage,
+  onPriceUpdate,
 }) => {
   const { data: gatheringData, isLoading: gatheringLoading } = useSkillData("gathering");
 
   const [element, setElement] = useState(['loading']);
   const updateElement = (element) => {
     setElement(element);
+    // Ore Bag doesn't apply to Naturite (it already uses its own inventory
+    // size), so deactivate it if it was on when switching to Naturite.
+    if (element[0] === "Naturite") {
+      setBoosts((prev) =>
+        prev.map((boost) =>
+          boost.name === "Ore Bag" ? { ...boost, active: false } : boost
+        )
+      );
+    }
   };
 
   const [boostsDidUpdate, setBoostDidUpdate] = useState(false);
   const [boosts, setBoosts] = useState([
     { name: "World Boost", value: 1.5, active: false },
     { name: "Prospector's Necklace", value: 1.05, active: false },
+    { name: "Relic of Wisdom", value: 1.05, active: false },
+    { name: "Ore Bag", label: "Ore Bag (18 extra ores)", value: 1, active: false },
   ]);
   const [boostsEquipSets, setBoostsEquipSets] = useState([
     { name: "Golem's Set I, II and III", value: 1.06, active: false },
@@ -38,6 +50,9 @@ const Mining = ({
     isEquipSet ? setBoostsEquipSets(boosts) : setBoosts(boosts);
     setBoostDidUpdate(!boostsDidUpdate);
   };
+
+  const isNaturiteSelected = element[0] === "Naturite";
+  const disabledBoostNames = isNaturiteSelected ? ["Ore Bag"] : [];
   return (
     <>
       <Attribute
@@ -89,7 +104,12 @@ const Mining = ({
         />
       )}
 
-      <Boosts boosts={boosts} updateBoosts={(boosts) => updateBoosts(boosts, false)} exclusive={false} />
+      <Boosts
+        boosts={boosts}
+        updateBoosts={(boosts) => updateBoosts(boosts, false)}
+        exclusive={false}
+        disabledNames={disabledBoostNames}
+      />
       <Boosts boosts={boostsEquipSets} updateBoosts={(boosts) => updateBoosts(boosts, true)} exclusive={true} />
 
       <Display
@@ -102,6 +122,7 @@ const Mining = ({
         boostsEquipSets={boostsEquipSets}
         boostsDidUpdate={boostsDidUpdate}
         skill="Mining"
+        onPriceTotalsChange={onPriceUpdate}
       />
       <Footer />
     </>

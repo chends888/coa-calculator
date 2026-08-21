@@ -22,13 +22,16 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   },
 }));
 
-const Boosts = ({ boosts, updateBoosts, exclusive = false }) => {
-  const [selectedBoost, setSelectedBoost] = React.useState([]);
+const Boosts = ({ boosts, updateBoosts, exclusive = false, disabledNames = [] }) => {
+  // Fully controlled by the boosts prop's `active` field, rather than a
+  // separate internal state - so if a parent programmatically deactivates a
+  // boost (e.g. auto-turning off Ore Bag when Naturite is selected), the
+  // button's visual selected state always stays in sync.
+  const selectedBoost = exclusive
+    ? boosts?.find((b) => b.active)?.name ?? null
+    : boosts?.filter((b) => b.active).map((b) => b.name) ?? [];
 
   const handleChange = (event, newBoost) => {
-    // Update the selectedBoost state with the new selected boost(s)
-    setSelectedBoost(newBoost);
-
     // Create a copy of the boosts array and update the active property
     let boostsCopy = boosts.map(boost => ({
       ...boost,
@@ -59,37 +62,47 @@ const Boosts = ({ boosts, updateBoosts, exclusive = false }) => {
           onChange={(event, newBoost) => handleChange(event, newBoost)}
         >
           {boosts !== undefined ? (
-            boosts.map((boost) => (
-              <ToggleButton
-                key={boost.name}
-                value={boost.name}
-                sx={{
-                  "& > :not(style)": {
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  },
-                }}
-              >
-                <Box
+            boosts.map((boost) => {
+              const isDisabled = disabledNames.includes(boost.name);
+              return (
+                <ToggleButton
+                  key={boost.name}
+                  value={boost.name}
+                  disabled={isDisabled}
                   sx={{
-                    marginRight: 0.4,
+                    "& > :not(style)": {
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    },
                   }}
                 >
-                  <img
-                    src={process.env.PUBLIC_URL + `/images/Boosts/${boost.name}.gif`}
-                    style={{ width: 'auto', height: '22px' }}
-                    value={boost.name}
-                    alt=""
-                  />
-                </Box>
-                {boost.name +
-                  " (+" +
-                  Math.floor((boost.value - 1) * 100) +
-                  "%)"}
-              </ToggleButton>
-
-            ))
+                  <Box
+                    sx={{
+                      marginRight: 0.4,
+                    }}
+                  >
+                    <img
+                      src={process.env.PUBLIC_URL + `/images/Boosts/${boost.name}.gif`}
+                      style={{
+                        width: 'auto',
+                        height: '22px',
+                        filter: isDisabled ? "grayscale(100%)" : "none",
+                        opacity: isDisabled ? 0.5 : 1,
+                      }}
+                      value={boost.name}
+                      alt=""
+                    />
+                  </Box>
+                  {boost.label
+                    ? boost.label
+                    : boost.name +
+                      " (+" +
+                      Math.floor((boost.value - 1) * 100) +
+                      "%)"}
+                </ToggleButton>
+              );
+            })
           ) : (
             <></>
           )}

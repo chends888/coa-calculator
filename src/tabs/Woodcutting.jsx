@@ -28,6 +28,7 @@ const Woodcutting = ({
   const [boostsDidUpdate, setBoostDidUpdate] = useState(false);
   const [boosts, setBoosts] = useState([
     { name: "World Boost", value: 1.5, active: false },
+    { name: "Relic of Wisdom", value: 1.05, active: false }
   ]);
   const [boostsEquipSets, setBoostsEquipSets] = useState([
     { name: "Ent's Set I, II and III", value: 1.06, active: false },

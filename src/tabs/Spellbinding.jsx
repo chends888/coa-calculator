@@ -33,6 +33,7 @@ const Spellbinding = ({
   const [boostsEquipSets, setBoostsEquipSets] = useState([
     { name: "Binder's Set I, II and III", value: 1.06, active: false },
     { name: "Weaver's (Elite) Set", value: 1.12, active: false },
+    { name: "Relic of Wisdom", value: 1.05, active: false }
   ]);
   const updateBoosts = (boosts, isEquipSet = false) => {
     isEquipSet ? setBoostsEquipSets(boosts) : setBoosts(boosts);
